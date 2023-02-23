@@ -6,7 +6,7 @@ const bryners = async () => {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
-  await page.goto('https://bryners.se/veckans-lunch-v-j/bryners-bistro.html ', {
+  await page.goto('https://bryners.se/veckans-lunch-v-j/bryners-bistro.html', {
     waitUntil: 'networkidle0',
   });
 
