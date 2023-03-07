@@ -16,6 +16,11 @@ export interface Restaurants {
   restaurants: Restaurant[];
 }
 
+export interface WeekMenu {
+  lunchWeek: LunchMenu[];
+  weeklySpecials: WeeklySpecial[];
+}
+
 export interface WeeklySpecial {
   type: string;
   food: string;
