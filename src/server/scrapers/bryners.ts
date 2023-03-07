@@ -1,7 +1,8 @@
 import puppeteer from 'puppeteer';
+import { type LunchMenu } from '~/types/lunch-menu';
 
-const bryners = async () => {
-  console.log('Hämtar bryners meny!');
+const brynersWebScraper = async () => {
+  console.log('Fetching Bryners menu!');
 
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
@@ -11,27 +12,25 @@ const bryners = async () => {
   });
 
   const lunchMenu = await page.evaluate(() => {
-    const days = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
-    const menuItems = Array.from(document.querySelectorAll('ul'))
+    const sweDays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
+    return Array.from(document.querySelectorAll('ul'))
       .filter((ul) =>
-        days.includes(
+        sweDays.includes(
           ul.previousElementSibling?.textContent?.split(' ')[0] ?? ''
         )
       )
-      .map((item) => {
-        const title = item.previousElementSibling?.textContent;
-        const menu = item.textContent;
-        return { title, menu };
-      });
-
-    // days.includes(ul.previousElementSibling.textContent.split(" ")[0])
-
-    return menuItems;
+      .map(
+        (item) =>
+          ({
+            day: item.previousElementSibling?.textContent?.split(' ')[0],
+            food: item.textContent,
+          } as LunchMenu)
+      );
   });
-
-  console.debug(lunchMenu);
+  console.log(lunchMenu);
 
   await browser.close();
+  return lunchMenu;
 };
 
-export default bryners;
+export default brynersWebScraper;
