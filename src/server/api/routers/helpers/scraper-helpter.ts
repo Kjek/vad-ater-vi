@@ -1,5 +1,4 @@
-import type { WeekMenu } from '~/types/lunch-menu';
-import type { LunchMenu } from '~/types/lunch-menu';
+import { isLunchMenus, isWeekMenu } from '~/types/lunch-menu';
 import type { PrismaInterface } from '~/types/prisma-custom';
 import type Scraper from '~/types/scraper';
 import { convertRestaurant } from '~/utils/restaurantUtils';
@@ -43,29 +42,4 @@ export const handleScraper = async (
     restaurant = restaurantModel && convertRestaurant(restaurantModel);
   }
   return restaurant;
-};
-
-const isWeekMenu = (object: unknown): object is WeekMenu => {
-  return (
-    typeof object === 'object' &&
-    object !== null &&
-    'lunchWeek' in object &&
-    'weeklySpecials' in object
-  );
-};
-
-const isLunchMenu = (object: unknown): object is LunchMenu => {
-  return (
-    typeof object === 'object' &&
-    object !== null &&
-    'day' in object &&
-    'food' in object
-  );
-};
-
-const isLunchMenus = (object: unknown): object is LunchMenu[] => {
-  return (
-    Array.isArray(object) &&
-    isLunchMenu((object as LunchMenu[])[0] as LunchMenu)
-  );
 };
