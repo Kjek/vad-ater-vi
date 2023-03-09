@@ -7,7 +7,7 @@ const Header = () => {
       <nav className='bg-gradient-to-r pb-1 dark:from-[#ef473a] dark:to-[#cb2d3e]'>
         <div className='flex h-12 justify-between bg-white dark:bg-gray-900'>
           <div className='m-auto justify-center'>
-            <h1 className='text-3xl font-bold text-black dark:text-white'>
+            <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-300'>
               Lunch i Sundsvall
             </h1>
           </div>
