@@ -18,7 +18,7 @@ const LunchList = (props: LunchListProps) => {
             </li>
           ))
         ) : (
-          <p className='text-lg text-white'>Loading menu...</p>
+          <p className='text-lg text-black dark:text-white'>Loading menu...</p>
         )}
       </ul>
     </div>

@@ -8,9 +8,9 @@ interface ListProps {
 const ListItem = (props: ListProps) => {
   return (
     <>
-      <div className='text-white'>
-        <div className='rounded-md bg-gradient-to-r from-[#ef473a] to-[#cb2d3e] p-1'>
-          <div className='bg-neutral-775 rounded-md'>
+      <div className='text-black dark:text-white'>
+        <div className='rounded-md bg-gradient-to-r p-1 dark:from-[#ef473a] dark:to-[#cb2d3e]'>
+          <div className='dark:bg-neutral-775 rounded-md bg-white'>
             <div className='whitespace-pre-line p-10'>
               <h1 className='text-center text-3xl font-bold'>
                 {props.restaurant.name}
