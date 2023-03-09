@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @layer base {
-  .bg-neutral-775 {
+  .bg-gray-custom {
     --tw-bg-opacity: 1;
-    background-color: rgb(45 45 45 / var(--tw-bg-opacity));
+    background-color: rgb(24 32.5 47 / var(--tw-bg-opacity));
   }
 }

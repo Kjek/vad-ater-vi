@@ -9,13 +9,15 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <MetaHeader />
-      <Header />
-      <main className='flex min-h-screen justify-center dark:bg-neutral-800'>
-        <div className='container flex justify-center px-4 py-16'>
-          <LunchList restaurants={restaurants} />
-        </div>
-      </main>
+      <div className='bg-white dark:bg-gray-900'>
+        <MetaHeader />
+        <Header />
+        <main className='flex min-h-screen justify-center'>
+          <div className='container flex justify-center px-4 py-16'>
+            <LunchList restaurants={restaurants} />
+          </div>
+        </main>
+      </div>
     </>
   );
 };

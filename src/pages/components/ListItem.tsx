@@ -10,7 +10,7 @@ const ListItem = (props: ListProps) => {
     <>
       <div className='text-black dark:text-white'>
         <div className='rounded-md bg-gradient-to-r p-1 dark:from-[#ef473a] dark:to-[#cb2d3e]'>
-          <div className='dark:bg-neutral-775 rounded-md bg-white'>
+          <div className='dark:bg-gray-custom rounded-md bg-white'>
             <div className='whitespace-pre-line p-10'>
               <h1 className='text-center text-3xl font-bold'>
                 {props.restaurant.name}
