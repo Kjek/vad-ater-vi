@@ -19,7 +19,7 @@ const Collapsable = (props: CollapsableProps) => {
         </div>
       </div>
       {open && (
-        <div className='bg-neutral-775 rounded-md p-4'>
+        <div className='bg-neutral-775 whitespace-pre-line rounded-md p-4'>
           {props.lunchMenu.map((item) => (
             <div key={item.day}>
               <h3 className='text-lg font-bold'>{item.day}</h3>

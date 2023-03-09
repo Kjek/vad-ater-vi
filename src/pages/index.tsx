@@ -7,8 +7,8 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <main className='flex min-h-screen flex-col items-center justify-center bg-neutral-800'>
-        <div className='container flex flex-col items-center justify-center gap-12 px-4 py-16 '>
+      <main className='flex min-h-screen justify-center bg-neutral-800'>
+        <div className='container flex justify-center px-4 py-16'>
           <LunchList restaurants={restaurants} />
         </div>
       </main>

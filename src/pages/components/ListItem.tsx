@@ -11,7 +11,7 @@ const ListItem = (props: ListProps) => {
       <div className='text-white'>
         <div className='rounded-md bg-gradient-to-r from-[#ef473a] to-[#cb2d3e] p-1'>
           <div className='bg-neutral-775 rounded-md'>
-            <div className='p-10'>
+            <div className='whitespace-pre-line p-10'>
               <h1 className='text-center text-3xl font-bold'>
                 {props.restaurant.name}
               </h1>
@@ -23,7 +23,7 @@ const ListItem = (props: ListProps) => {
                 {props.restaurant.weeklySpecials &&
                 props.restaurant.weeklySpecials.length > 0
                   ? props.restaurant.weeklySpecials.map((item) => (
-                      <div className='pb-4' key={item.type}>
+                      <div className='whitespace-pre-line pb-4' key={item.type}>
                         <h3 className='font-bold'>{item.type}</h3>
                         <h4>{item.food}</h4>
                       </div>

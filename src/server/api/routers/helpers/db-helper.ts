@@ -2,21 +2,27 @@ import type { LunchMenu, WeeklySpecial } from '~/types/lunch-menu';
 import type { PrismaInterface, PrismaType } from '~/types/prisma-custom';
 import type { MenuProps, WeeklySpecialProps } from '~/types/restaurant-props';
 
-export const getUpdatedAt = async (
+export const getRestaurantNeedsUpdating = async (
   ctx: { prisma: PrismaType },
   name: string
 ) => {
-  return await ctx.prisma.restaurant.findFirst({
+  const restaurant = await ctx.prisma.restaurant.findFirst({
     where: {
       name: name,
     },
     select: {
+      id: true,
       updatedAt: true,
     },
   });
+
+  return {
+    restaurantId: restaurant?.id,
+    newWeek: new Date().getWeek() !== restaurant?.updatedAt?.getWeek(),
+  };
 };
 
-export const removeMenuAndWeekly = async (ctx: PrismaInterface, id: string) => {
+export const deleteMenuAndWeekly = async (ctx: PrismaInterface, id: string) => {
   await ctx.prisma.restaurant.update({
     where: {
       id: id,

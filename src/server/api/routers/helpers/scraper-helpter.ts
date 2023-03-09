@@ -5,7 +5,8 @@ import { convertRestaurant } from '~/utils/restaurantUtils';
 import {
   createRestaurantIfNotExists,
   findRestaurantByName,
-  getUpdatedAt,
+  getRestaurantNeedsUpdating,
+  deleteMenuAndWeekly,
 } from './db-helper';
 
 export const handleScraper = async (
@@ -13,12 +14,12 @@ export const handleScraper = async (
   name: string,
   scraper: Scraper
 ) => {
-  const updatedAt = (await getUpdatedAt(ctx, name))?.updatedAt;
+  const { restaurantId, newWeek } = await getRestaurantNeedsUpdating(ctx, name);
   let restaurant = null;
-  if (
-    !updatedAt ||
-    (updatedAt && new Date().getWeek() !== updatedAt.getWeek())
-  ) {
+  if (!restaurantId || newWeek) {
+    if (restaurantId && newWeek) {
+      await deleteMenuAndWeekly(ctx, restaurantId);
+    }
     const menu = await scraper();
 
     if (isLunchMenus(menu)) {

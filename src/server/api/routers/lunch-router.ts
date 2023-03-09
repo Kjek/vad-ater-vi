@@ -1,5 +1,6 @@
 import { createTRPCRouter, publicProcedure } from '~/server/api/trpc';
 import augustasWebScraper from '~/server/scrapers/augustas';
+import bergHjortWebScraper from '~/server/scrapers/berg-hjort';
 import brynersWebScraper from '~/server/scrapers/bryners';
 import estreetWebScraper from '~/server/scrapers/estreet';
 import innegardenWebScraper from '~/server/scrapers/innegarden';
@@ -9,6 +10,7 @@ import { handleScraper } from './helpers/scraper-helpter';
 
 const Restaurants = {
   augustas: 'Augustas',
+  bergHjort: 'Berg & Hjort',
   bryners: 'Bryners',
   estreet: 'E Street',
   innegarden: 'Innegården',
@@ -43,6 +45,19 @@ export const lunchRouter = createTRPCRouter({
       innegardenWebScraper
     );
 
-    return [augustas, bryners, estreet, innegarden, invito] as Restaurant[];
+    const bergHjort = await handleScraper(
+      ctx,
+      Restaurants.bergHjort,
+      bergHjortWebScraper
+    );
+
+    return [
+      augustas,
+      bergHjort,
+      bryners,
+      estreet,
+      innegarden,
+      invito,
+    ] as Restaurant[];
   }),
 });

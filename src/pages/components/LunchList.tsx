@@ -9,11 +9,11 @@ const LunchList = (props: LunchListProps) => {
   const restaurants = props.restaurants;
 
   return (
-    <>
-      <ul id='restaurant-list'>
+    <div id='restaurant-list'>
+      <ul id='restaurant-list-ul' className='flex flex-col gap-8'>
         {restaurants ? (
           restaurants.map((restaurant) => (
-            <li className='mb-8' key={restaurant.name}>
+            <li key={restaurant.name}>
               <ListItem restaurant={restaurant} />
             </li>
           ))
@@ -21,7 +21,7 @@ const LunchList = (props: LunchListProps) => {
           <p className='text-lg text-white'>Loading menu...</p>
         )}
       </ul>
-    </>
+    </div>
   );
 };
 
