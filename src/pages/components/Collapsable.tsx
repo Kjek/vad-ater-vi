@@ -10,27 +10,29 @@ const Collapsable = (props: CollapsableProps) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <div className='bg-black bg-gradient-to-r pt-1 dark:from-[#ef473a] dark:to-[#cb2d3e]'>
-        <div
-          className='grid cursor-pointer justify-center'
-          onClick={() => setOpen(!open)}
-        >
+      <div
+        className={
+          'dark:bg-gray-custom cursor-pointer whitespace-pre-line rounded-md bg-white p-4 transition-all duration-500'
+        }
+        onClick={() => setOpen(!open)}
+      >
+        <div className='grid justify-center'>
           <ExpandMore className={open ? 'rotate-[-180deg]' : ''} />
         </div>
+        {open && (
+          <ul id='weekly-lunch-list'>
+            {props.lunchMenu.map((item) => (
+              <li key={item.day}>
+                <h3 className='text-lg font-bold text-gray-800 dark:text-gray-300'>
+                  {item.day}
+                </h3>
+                <p className='text-gray-500 dark:text-gray-300'>{item.food}</p>
+                <br />
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-      {open && (
-        <div className='dark:bg-neutral-775 whitespace-pre-line rounded-md bg-white p-4'>
-          {props.lunchMenu.map((item) => (
-            <div key={item.day}>
-              <h3 className='text-lg font-bold text-gray-800 dark:text-gray-300'>
-                {item.day}
-              </h3>
-              <p className='text-gray-500 dark:text-gray-300'>{item.food}</p>
-              <br />
-            </div>
-          ))}
-        </div>
-      )}
     </>
   );
 };

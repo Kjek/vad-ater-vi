@@ -2,7 +2,7 @@ import type { HTMLAttributes } from 'react';
 
 const ExpandMore = (props: HTMLAttributes<HTMLDivElement>) => {
   props.className;
-  const className = `ml-auto -mr-1 shrink-0 transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-red-300 dark:group-[[data-te-collapse-collapsed]]:fill-white ${
+  const className = `ml-auto -mr-1 shrink-0 transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:mr-0 group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-gray-300 dark:group-[[data-te-collapse-collapsed]]:fill-white ${
     props.className ? props.className : ''
   }`;
   return (
