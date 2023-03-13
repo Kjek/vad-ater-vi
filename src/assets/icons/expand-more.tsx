@@ -9,9 +9,9 @@ const ExpandMore = (props: HTMLAttributes<HTMLDivElement>) => {
     <span className={className}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        height='48'
+        height='40'
         viewBox='0 96 960 960'
-        width='48'
+        width='40'
       >
         <path d='M480 711 240 471l43-43 197 198 197-197 43 43-240 239Z' />
       </svg>

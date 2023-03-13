@@ -22,7 +22,7 @@ const augustasWebScraper = async () => {
     return Array.from(document.querySelectorAll('strong'))
       .filter((strong) => strong.textContent?.includes('Måndag'))
       .map((item) =>
-        item.innerHTML
+        item.parentElement?.innerHTML
           .replaceAll('\n', ' ')
           .replaceAll('<br><br>&nbsp;', '\n') // used to seperate days
           .replaceAll('<br>&nbsp;', ' ') // used to 'concat' broken sentences
@@ -37,7 +37,9 @@ const augustasWebScraper = async () => {
   const weeklySpecials: WeeklySpecial[] = [];
 
   if (lunchMenu) {
-    const match = lunchMenu.matchAll(/^(.*[^-]):?\s*\n(.*)$/gm);
+    const match = lunchMenu.matchAll(
+      /^(.*[^-:]):?\s*\n\<?[\/][a-z]*\>?(.*?)$/gm
+    );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1])) {
         lunchWeek.push({ day: lu[1], food: lu[2] } as LunchMenu);

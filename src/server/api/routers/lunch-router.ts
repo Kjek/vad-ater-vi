@@ -6,7 +6,7 @@ import estreetWebScraper from '~/server/scrapers/estreet';
 import innegardenWebScraper from '~/server/scrapers/innegarden';
 import invitoWebScraper from '~/server/scrapers/invito';
 import type { Restaurant } from '~/types/lunch-menu';
-import { handleScraper } from './helpers/scraper-helpter';
+import { handleScraper } from './helpers/scraper-helper';
 
 const Restaurants = {
   augustas: 'Augustas',
@@ -51,13 +51,15 @@ export const lunchRouter = createTRPCRouter({
       bergHjortWebScraper
     );
 
-    return [
-      augustas,
-      bergHjort,
-      bryners,
-      estreet,
-      innegarden,
-      invito,
-    ] as Restaurant[];
+    return (
+      [
+        augustas,
+        bergHjort,
+        bryners,
+        estreet,
+        innegarden,
+        invito,
+      ] as Restaurant[]
+    ).filter((restaurant) => restaurant.today);
   }),
 });

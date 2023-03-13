@@ -12,7 +12,7 @@ const Collapsable = (props: CollapsableProps) => {
     <>
       <div
         className={
-          'dark:bg-gray-custom cursor-pointer whitespace-pre-line rounded-md bg-white p-4 transition-all duration-500'
+          'dark:bg-gray-custom cursor-pointer whitespace-pre-line rounded-md bg-white p-2 transition-all duration-500'
         }
         onClick={() => setOpen(!open)}
       >
@@ -20,7 +20,7 @@ const Collapsable = (props: CollapsableProps) => {
           <ExpandMore className={open ? 'rotate-[-180deg]' : ''} />
         </div>
         {open && (
-          <ul id='weekly-lunch-list'>
+          <ul id='weekly-lunch-list' className='p-4 pb-0'>
             {props.lunchMenu.map((item) => (
               <li key={item.day}>
                 <h3 className='text-lg font-bold text-gray-800 dark:text-gray-300'>

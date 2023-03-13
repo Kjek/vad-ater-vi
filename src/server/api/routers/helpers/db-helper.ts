@@ -23,17 +23,15 @@ export const getRestaurantNeedsUpdating = async (
 };
 
 export const deleteMenuAndWeekly = async (ctx: PrismaInterface, id: string) => {
-  await ctx.prisma.restaurant.update({
+  await ctx.prisma.menu.deleteMany({
     where: {
-      id: id,
+      restaurantId: id,
     },
-    data: {
-      menu: {
-        set: [],
-      },
-      weeklySpecial: {
-        set: [],
-      },
+  });
+
+  await ctx.prisma.weeklySpecial.deleteMany({
+    where: {
+      restaurantId: id,
     },
   });
 };
@@ -106,6 +104,7 @@ export const createRestaurantIfNotExists = async (
       },
     },
     update: {
+      updatedAt: new Date(),
       menu: {
         connectOrCreate: menu.map(
           (item) =>
