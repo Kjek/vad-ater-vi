@@ -1,3 +1,4 @@
+import useDarkMode from '~/hooks/useDarkMode';
 import useThemeDetector from '~/hooks/useThemeDetector';
 
 interface GitHubIconProps {
@@ -6,12 +7,13 @@ interface GitHubIconProps {
 }
 
 const GitHubIcon = (props: GitHubIconProps) => {
-  const isDarkTheme = useThemeDetector();
+  const { isDarkMode } = useDarkMode();
+  console.log(isDarkMode);
 
   return (
     <>
       <a className={props.className} href='https://github.com/Kjek/lunch-menu'>
-        {isDarkTheme ? (
+        {isDarkMode ? (
           <svg
             width='100%'
             height='100%'

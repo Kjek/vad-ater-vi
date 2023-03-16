@@ -23,8 +23,9 @@ const estreetWebScraper = async () => {
               ?.charAt(0)
               .concat(item.textContent?.slice(1).toLocaleLowerCase()),
             food: item.nextElementSibling?.textContent
-              ?.replace(' • ', '')
-              .replace('• ', ''),
+              ?.replace(/^\s?\W\s?/gm, '')
+              .replace(/\s+\W\s?[^\w]/gm, '\n')
+              .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n'),
           } as LunchMenu)
       );
 
@@ -40,11 +41,11 @@ const estreetWebScraper = async () => {
               ?.charAt(0)
               .concat(item.textContent?.slice(1).toLocaleLowerCase()),
             food: item.nextElementSibling?.textContent
-              ?.replace(' • ', '')
-              .replace('• ', ''),
+              ?.replace(/^\s?\W\s?/gm, '')
+              .replace(/\s+\W\s?[^\w]/gm, '\n')
+              .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n'),
           } as WeeklySpecial)
       );
-
     return { lunchWeek, weeklySpecials };
   });
   console.log(lunchMenu);

@@ -1,5 +1,6 @@
 import puppeteer from 'puppeteer';
 import { sweDays, type LunchMenu } from '~/types/lunch-menu';
+import { decodeHtmlEntity } from '~/utils/htmlUtils';
 
 const innegardenWebScraper = async () => {
   console.log('Fetching Innegården menu!');
@@ -11,22 +12,22 @@ const innegardenWebScraper = async () => {
     waitUntil: 'networkidle0',
   });
 
-  const lunchMenu = await page.evaluate(() => {
-    return document.querySelector('#lunchmeny')?.innerHTML;
-  });
+  const lunchMenu = await page.evaluate(
+    () => document.querySelector('#lunchmeny')?.innerHTML
+  );
   const lunchWeek: LunchMenu[] = [];
   if (lunchMenu) {
-    const match = lunchMenu.matchAll(
-      /\>([A-Öa-ö]+):\s?\<\/?\S+[\s<br>]+\*\s([A-Öa-ö\s<>*.\/]+[^<>\w:])/gm
+    const match = decodeHtmlEntity(lunchMenu).matchAll(
+      /(?:\<\/?\w+\>)([a-öA-Ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*+\s+([a-öA-Ö\s<>*-\/&]+[^<>\w:])/gm
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1])) {
         lunchWeek.push({
           day: lu[1],
-          food: lu[2]
+          food: decodeHtmlEntity(lu[2])
             .replaceAll('<br>*', '\n')
-            .replaceAll('<br>', '')
-            .replaceAll('&', ''),
+            .replaceAll('Går även bra att ta Take Away', '')
+            .replaceAll(/<\/?[^>]+>|$/gim, ''),
         } as LunchMenu);
       }
     }

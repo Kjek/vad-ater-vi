@@ -6,16 +6,17 @@ module.exports = {
 
   // ensure typescript files compiles according to config
   '**/*.ts': () => 'tsc --noEmit',
+  '**/*.tsx': () => 'tsc --noEmit',
 
   // lint and format script files
   // @ts-ignore
-  '**/*.(ts|js)': (filenames) => [
+  '**/*.(ts|js|tsx)': (filenames) => [
     `eslint --fix ${filenames.join(' ')}`,
     `prettier --write ${filenames.join(' ')}`,
   ],
 
   // format anything else that can be formated
   // @ts-ignore
-  '**/!(*.ts|*.js)': (filenames) =>
+  '**/!(*.ts|*.js|*.tsx)': (filenames) =>
     `prettier --write --ignore-unknown ${filenames.join(' ')}`,
 };

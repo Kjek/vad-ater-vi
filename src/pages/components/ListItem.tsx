@@ -8,7 +8,7 @@ interface ListProps {
 const ListItem = (props: ListProps) => {
   return (
     <>
-      <div className='dark:bg-gray-custom rounded-md bg-white shadow-md dark:shadow-gray-800'>
+      <div className='dark:bg-gray-custom rounded-md bg-white shadow-md transition-all duration-500 dark:shadow-gray-800'>
         <div className='whitespace-pre-line p-6 pb-0'>
           <h2 className='text-center text-3xl font-bold text-gray-800 dark:text-gray-300'>
             {props.restaurant.name}

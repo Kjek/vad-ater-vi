@@ -4,18 +4,18 @@ const useThemeDetector = () => {
   const getCurrentTheme = () =>
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const [isDarkOS, setIsDarkOS] = useState(false);
   const mqListener = (event: MediaQueryListEvent) => {
-    setIsDarkTheme(event.matches);
+    setIsDarkOS(event.matches);
   };
 
   useEffect(() => {
-    setIsDarkTheme(getCurrentTheme());
+    setIsDarkOS(getCurrentTheme());
     const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)');
     darkThemeMq.addEventListener('change', mqListener);
     return () => darkThemeMq.removeEventListener('change', mqListener);
   }, []);
-  return isDarkTheme;
+  return { isDarkOS, setIsDarkOS };
 };
 
 export default useThemeDetector;

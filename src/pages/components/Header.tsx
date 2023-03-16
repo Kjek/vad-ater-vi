@@ -4,9 +4,9 @@ import Switcher from './Switcher';
 const Header = () => {
   return (
     <header>
-      <nav className='flex h-10 justify-between bg-white shadow-md dark:bg-gray-900 dark:shadow-gray-800'>
+      <nav className='flex h-10 justify-between bg-white shadow-md transition-all duration-500 dark:bg-gray-900 dark:shadow-gray-800'>
         <div className='m-auto justify-center'>
-          <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-300'>
+          <h1 className='text-3xl font-bold text-gray-800 dark:text-gray-300 sm:ml-32'>
             Lunch i Sundsvall
           </h1>
         </div>
