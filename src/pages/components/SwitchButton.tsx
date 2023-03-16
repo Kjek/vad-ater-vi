@@ -1,15 +1,26 @@
+import { useCallback } from 'react';
+import { useGlobalState } from '~/hooks/useGlobalState';
 import useToggle from '~/hooks/useToggle';
+import { sweDays } from '~/types/lunch-menu';
 
-interface SwitchButtonProps {
-  onClick: (isMultiSelect: boolean) => void;
-}
-
-const SwitchButton = (props: SwitchButtonProps) => {
+const SwitchButton = () => {
+  const { dispatch } = useGlobalState();
   const [isMultiSelect, toggleMultiSelect] = useToggle();
-  const onClick = () => {
-    props.onClick(!isMultiSelect);
-    toggleMultiSelect();
-  };
+  const today = sweDays[new Date().getDay() - 1];
+  const onClick = useCallback(
+    () => {
+      dispatch({
+        type: !isMultiSelect ? 'multi-select' : 'single-select',
+        payload: {
+          day: !isMultiSelect ? undefined : today,
+          isSelected: isMultiSelect,
+        },
+      });
+      toggleMultiSelect();
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [isMultiSelect]
+  );
 
   return (
     <>

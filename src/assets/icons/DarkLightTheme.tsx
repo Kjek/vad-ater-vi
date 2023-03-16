@@ -1,4 +1,5 @@
 import useDarkMode from '~/hooks/useDarkMode';
+import { useTheme } from '~/hooks/useTheme';
 import useThemeDetector from '~/hooks/useThemeDetector';
 
 const DarkLightTheme = () => {

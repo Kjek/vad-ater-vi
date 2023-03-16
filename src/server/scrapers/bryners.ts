@@ -23,7 +23,7 @@ const brynersWebScraper = async () => {
         (item) =>
           ({
             day: item.previousElementSibling?.textContent?.split(' ')[0],
-            food: item.textContent,
+            food: item.textContent?.trim(),
           } as LunchMenu)
       );
   });

@@ -23,11 +23,12 @@ const innegardenWebScraper = async () => {
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1])) {
         lunchWeek.push({
-          day: lu[1],
+          day: lu[1].trim(),
           food: decodeHtmlEntity(lu[2])
             .replaceAll('<br>*', '\n')
             .replaceAll('Går även bra att ta Take Away', '')
-            .replaceAll(/<\/?[^>]+>|$/gim, ''),
+            .replaceAll(/<\/?[^>]+>|$/gim, '')
+            .trim(),
         } as LunchMenu);
       }
     }

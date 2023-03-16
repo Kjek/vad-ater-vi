@@ -19,11 +19,12 @@ const invitoWebScraper = async () => {
       .flatMap(
         (li) =>
           ({
-            day: li.querySelector('p')?.textContent,
+            day: li.querySelector('p')?.textContent?.trim(),
             food: li
               .querySelector('.beskrivning')
               ?.textContent?.replaceAll('\t', '')
-              .replace('\n', ''),
+              .replace('\n', '')
+              .trim(),
           } as LunchMenu)
       );
   });

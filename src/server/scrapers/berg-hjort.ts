@@ -49,7 +49,7 @@ const bergHjortWebScraper = async () => {
       }
       return acc;
     }, new Map<string, string>()),
-    (item) => ({ day: item[0], food: item[1] } as LunchMenu)
+    (item) => ({ day: item[0].trim(), food: item[1].trim() } as LunchMenu)
   );
 
   console.log(lunchMenu);

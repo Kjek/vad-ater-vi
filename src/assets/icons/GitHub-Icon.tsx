@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import useDarkMode from '~/hooks/useDarkMode';
+import { useTheme } from '~/hooks/useTheme';
 import useThemeDetector from '~/hooks/useThemeDetector';
 
 interface GitHubIconProps {
@@ -7,8 +9,8 @@ interface GitHubIconProps {
 }
 
 const GitHubIcon = (props: GitHubIconProps) => {
-  const { isDarkMode } = useDarkMode();
-  console.log(isDarkMode);
+  const { theme } = useTheme();
+  const isDarkMode = theme === 'dark';
 
   return (
     <>

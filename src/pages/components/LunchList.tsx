@@ -6,7 +6,7 @@ interface LunchListProps {
 }
 
 const LunchList = (props: LunchListProps) => {
-  const restaurants = props.restaurants;
+  const { restaurants } = props;
 
   return (
     <div id='restaurant-list' className='flex'>

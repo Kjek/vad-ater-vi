@@ -39,11 +39,13 @@ const estreetWebScraper = async () => {
           ({
             type: item.textContent
               ?.charAt(0)
-              .concat(item.textContent?.slice(1).toLocaleLowerCase()),
+              .concat(item.textContent?.slice(1).toLocaleLowerCase())
+              .trim(),
             food: item.nextElementSibling?.textContent
               ?.replace(/^\s?\W\s?/gm, '')
               .replace(/\s+\W\s?[^\w]/gm, '\n')
-              .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n'),
+              .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n')
+              .trim(),
           } as WeeklySpecial)
       );
     return { lunchWeek, weeklySpecials };

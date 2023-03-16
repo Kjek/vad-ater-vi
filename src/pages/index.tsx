@@ -7,7 +7,6 @@ import MetaHeader from './components/MetaHeader';
 
 const Home: NextPage = () => {
   const restaurants = api.lunch.menu.useQuery().data;
-
   return (
     <>
       <div className='bg-white transition-all duration-500 dark:bg-gray-900'>

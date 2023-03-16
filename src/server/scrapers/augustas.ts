@@ -42,11 +42,11 @@ const augustasWebScraper = async () => {
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1])) {
-        lunchWeek.push({ day: lu[1], food: lu[2] } as LunchMenu);
+        lunchWeek.push({ day: lu[1].trim(), food: lu[2].trim() } as LunchMenu);
       } else if (lu[1] && lu[2] && /Veckans\s.*:?$/.test(lu[1])) {
         weeklySpecials.push({
-          type: lu[1].replace(':', ''),
-          food: lu[2],
+          type: lu[1].replace(':', '').trim(),
+          food: lu[2].trim(),
         } as WeeklySpecial);
       }
     }
