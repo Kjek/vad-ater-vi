@@ -9,16 +9,20 @@ const LunchList = (props: LunchListProps) => {
   const { restaurants } = props;
 
   return (
-    <div id='restaurant-list' className='flex'>
-      <ul id='restaurant-list-ul' className='flex flex-col gap-8'>
-        {restaurants
-          ? restaurants.map((restaurant) => (
-              <li key={restaurant.name}>
-                <ListItem restaurant={restaurant} />
-              </li>
-            ))
-          : null}
-      </ul>
+    <div className='flex min-h-screen justify-center'>
+      <div className='container flex justify-center px-4'>
+        <div id='restaurant-list' className='flex'>
+          <ul id='restaurant-list-ul' className='flex flex-col gap-8'>
+            {restaurants
+              ? restaurants.map((restaurant) => (
+                  <li key={restaurant.name}>
+                    <ListItem restaurant={restaurant} />
+                  </li>
+                ))
+              : null}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

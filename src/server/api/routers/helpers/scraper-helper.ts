@@ -1,5 +1,5 @@
 import { isLunchMenus, isWeekMenu } from '~/types/lunch-menu';
-import type { PrismaInterface } from '~/types/prisma-custom';
+import type { PrismaType } from '~/types/prisma-custom';
 import type Scraper from '~/types/scraper';
 import { convertRestaurant } from '~/utils/restaurantUtils';
 import {
@@ -10,28 +10,31 @@ import {
 } from './db-helper';
 
 export const handleScraper = async (
-  ctx: PrismaInterface,
+  prisma: PrismaType,
   name: string,
   scraper: Scraper
 ) => {
-  const { restaurantId, newWeek } = await getRestaurantNeedsUpdating(ctx, name);
+  const { restaurantId, newWeek } = await getRestaurantNeedsUpdating(
+    prisma,
+    name
+  );
   let restaurant = null;
   if (!restaurantId || newWeek) {
     if (restaurantId && newWeek) {
-      await deleteMenuAndWeekly(ctx, restaurantId);
+      await deleteMenuAndWeekly(prisma, restaurantId);
     }
     const menu = await scraper();
 
     if (isLunchMenus(menu)) {
       const restaurantModel = await createRestaurantIfNotExists(
-        ctx,
+        prisma,
         name,
         menu
       );
       restaurant = restaurantModel && convertRestaurant(restaurantModel);
     } else if (isWeekMenu(menu)) {
       const restaurantModel = await createRestaurantIfNotExists(
-        ctx,
+        prisma,
         name,
         menu.lunchWeek,
         menu.weeklySpecials
@@ -39,7 +42,7 @@ export const handleScraper = async (
       restaurant = restaurantModel && convertRestaurant(restaurantModel);
     }
   } else {
-    const restaurantModel = await findRestaurantByName(ctx, name);
+    const restaurantModel = await findRestaurantByName(prisma, name);
     restaurant = restaurantModel && convertRestaurant(restaurantModel);
   }
   return restaurant;

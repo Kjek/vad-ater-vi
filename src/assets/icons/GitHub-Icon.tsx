@@ -3,23 +3,21 @@ import useDarkMode from '~/hooks/useDarkMode';
 import { useTheme } from '~/hooks/useTheme';
 import useThemeDetector from '~/hooks/useThemeDetector';
 
-interface GitHubIconProps {
-  className?: string;
-  viewBox?: string;
-}
-
-const GitHubIcon = (props: GitHubIconProps) => {
+const GitHubIcon = () => {
   const { theme } = useTheme();
   const isDarkMode = theme === 'dark';
 
   return (
     <>
-      <a className={props.className} href='https://github.com/Kjek/lunch-menu'>
+      <a
+        className='cursor-pointer self-center rounded-md bg-gray-50 p-2 shadow-inner transition-all duration-500 dark:bg-gray-800 dark:shadow-gray-800 dark:hover:shadow-gray-700'
+        href='https://github.com/Kjek/lunch-menu'
+      >
         {isDarkMode ? (
           <svg
             width='100%'
             height='100%'
-            viewBox={props.viewBox ?? '0 0 98 96'}
+            viewBox='0 0 98 96'
             xmlns='http://www.w3.org/2000/svg'
           >
             <path
@@ -33,7 +31,7 @@ const GitHubIcon = (props: GitHubIconProps) => {
           <svg
             width='100%'
             height='100%'
-            viewBox={props.viewBox ?? '0 0 98 96'}
+            viewBox='0 0 98 96'
             xmlns='http://www.w3.org/2000/svg'
           >
             <path

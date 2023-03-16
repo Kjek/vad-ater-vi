@@ -7,7 +7,7 @@ const DarkLightTheme = () => {
 
   return (
     <span
-      className='cursor-pointer rounded-md p-2 shadow-inner transition-all duration-500 dark:shadow-gray-800 dark:hover:shadow-gray-700'
+      className='cursor-pointer self-center rounded-md bg-gray-50 p-2 shadow-inner transition-all duration-500 dark:bg-gray-800 dark:shadow-gray-800 dark:hover:shadow-gray-700'
       onClick={() => toggle()}
     >
       {isDarkMode ? (
