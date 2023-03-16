@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import useEffectOnce from '~/hooks/useEffectOnce';
 import { useGlobalState } from '~/hooks/useGlobalState';
 import { sweDays } from '~/types/lunch-menu';
