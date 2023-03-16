@@ -1,5 +1,5 @@
 import { type NextPage } from 'next';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useIsFirstRender from '~/hooks/useIsFirstRender';
 import { api } from '~/utils/api';
 import FilterSection from './components/FilterSection';
@@ -18,13 +18,13 @@ const Home: NextPage = () => {
     : api.lunch.menu.useQuery().data;
 
   return (
-    <>
+    <div
+      className={`min-h-screen bg-white dark:bg-gray-900 ${
+        isFirstRender ? '' : 'transition duration-500'
+      }`}
+    >
       {!isFirstRender ? (
-        <div
-          className={`bg-white dark:bg-gray-900 ${
-            isFirstRender ? '' : 'transition duration-500'
-          }`}
-        >
+        <>
           <MetaHeader />
           <Header />
           <main>
@@ -35,9 +35,9 @@ const Home: NextPage = () => {
               <LoadingIndicator />
             )}
           </main>
-        </div>
+        </>
       ) : null}
-    </>
+    </div>
   );
 };
 

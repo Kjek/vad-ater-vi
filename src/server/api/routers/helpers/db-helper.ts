@@ -1,5 +1,5 @@
 import type { LunchMenu, WeeklySpecial } from '~/types/lunch-menu';
-import type { PrismaInterface, PrismaType } from '~/types/prisma-custom';
+import type { PrismaType } from '~/types/prisma-custom';
 import type { MenuProps, WeeklySpecialProps } from '~/types/restaurant-props';
 
 export const getRestaurantNeedsUpdating = async (
@@ -167,5 +167,6 @@ export const searchRestaurantByName = async (
         startsWith: searchText,
       },
     },
+    take: limit ?? 100,
   });
 };

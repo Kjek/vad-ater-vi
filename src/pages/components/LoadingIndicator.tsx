@@ -1,8 +1,8 @@
 const LoadingIndicator = () => {
   return (
-    <div className='flex h-fit justify-center'>
+    <div className='flex h-full w-full justify-center'>
       <svg
-        className='m-auto h-5 w-5 animate-spin text-gray-800 dark:text-gray-300'
+        className='my-auto h-5 w-5 animate-spin text-gray-800 dark:text-gray-300'
         xmlns='http://www.w3.org/2000/svg'
         fill='none'
         viewBox='0 0 24 24'
@@ -14,7 +14,7 @@ const LoadingIndicator = () => {
         ></path>
       </svg>
       <p className='ml-2 text-lg text-gray-800 dark:text-gray-300'>
-        Laddar menyn vänligen vänta en stund...
+        Laddar menyer vänligen vänta en stund...
       </p>
     </div>
   );

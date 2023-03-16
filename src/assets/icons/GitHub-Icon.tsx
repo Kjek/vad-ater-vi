@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-import useDarkMode from '~/hooks/useDarkMode';
 import { useTheme } from '~/hooks/useTheme';
-import useThemeDetector from '~/hooks/useThemeDetector';
 
 const GitHubIcon = () => {
   const { theme } = useTheme();
