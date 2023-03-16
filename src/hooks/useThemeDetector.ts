@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import useEffectOnce from './useEffectOnce';
 
 const useThemeDetector = () => {
   const getCurrentTheme = () =>
@@ -9,12 +10,12 @@ const useThemeDetector = () => {
     setIsDarkOS(event.matches);
   };
 
-  useEffect(() => {
+  useEffectOnce(() => {
     setIsDarkOS(getCurrentTheme());
     const darkThemeMq = window.matchMedia('(prefers-color-scheme: dark)');
     darkThemeMq.addEventListener('change', mqListener);
     return () => darkThemeMq.removeEventListener('change', mqListener);
-  }, []);
+  });
   return { isDarkOS, setIsDarkOS };
 };
 

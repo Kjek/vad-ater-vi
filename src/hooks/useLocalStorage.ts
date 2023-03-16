@@ -1,6 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useEffect } from 'react';
 import { useCallback, useState } from 'react';
+import useEffectOnce from './useEffectOnce';
 import useEventCallback from './useEventCallback';
 
 type SetValue<T> = Dispatch<SetStateAction<T | undefined>>;
@@ -39,10 +40,9 @@ const useLocalStorage = <T = string>(
     }
   });
 
-  useEffect(() => {
+  useEffectOnce(() => {
     setValue(readValue());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   return [value as T, updateValue];
 };

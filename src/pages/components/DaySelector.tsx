@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import useEffectOnce from '~/hooks/useEffectOnce';
 import { useGlobalState } from '~/hooks/useGlobalState';
 import { sweDays } from '~/types/lunch-menu';
 import DayButton from './DayButton';
@@ -6,7 +7,7 @@ import SwitchButton from './SwitchButton';
 
 const DaySelector = () => {
   const { dispatch } = useGlobalState();
-  useEffect(() => {
+  useEffectOnce(() => {
     dispatch({
       type: 'single-select',
       payload: {
@@ -14,8 +15,7 @@ const DaySelector = () => {
         isSelected: true,
       },
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  });
 
   const days = sweDays;
   return (
