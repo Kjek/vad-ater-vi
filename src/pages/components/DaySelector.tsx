@@ -2,13 +2,13 @@ import useEffectOnce from '~/hooks/useEffectOnce';
 import { useGlobalState } from '~/hooks/useGlobalState';
 import { sweDays } from '~/types/lunch-menu';
 import DayButton from './DayButton';
-import SwitchButton from './SwitchButton';
+import ResetButton from './ResetButton';
 
 const DaySelector = () => {
   const { dispatch } = useGlobalState();
   useEffectOnce(() => {
     dispatch({
-      type: 'single-select',
+      type: 'reset',
       payload: {
         day: sweDays[new Date().getDay() - 1],
         isSelected: true,
@@ -31,7 +31,7 @@ const DaySelector = () => {
           ))}
         </ul>
         <div className='flex justify-center'>
-          <SwitchButton />
+          <ResetButton />
         </div>
       </div>
     </>

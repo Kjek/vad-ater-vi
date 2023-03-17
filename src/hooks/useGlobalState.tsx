@@ -8,8 +8,8 @@ export interface MultiSelectorState {
 }
 
 export type Action<T> =
-  | { type: 'multi-select'; payload: T }
-  | { type: 'single-select'; payload: T };
+  | { type: 'selected'; payload: T }
+  | { type: 'reset'; payload: T };
 
 export interface MultiSelectorPayload {
   day?: string;
@@ -29,7 +29,7 @@ const useMultiSelector = () => {
   ): MultiSelectorState => {
     const { day, isSelected } = action.payload;
     switch (action.type) {
-      case 'multi-select':
+      case 'selected':
         day &&
           isSelected !== undefined &&
           state.daysSelected.set(day, isSelected);
@@ -37,7 +37,7 @@ const useMultiSelector = () => {
           ...state,
           isMultiSelect: true,
         };
-      case 'single-select':
+      case 'reset':
         const initialDaysSelected = new Map(initialState.daysSelected);
         const newDaysSelected =
           day && isSelected !== undefined

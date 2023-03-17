@@ -13,18 +13,18 @@ const DayButton = (props: DayButtonProps) => {
   const onClick = useCallback(
     () =>
       dispatch({
-        type: state.isMultiSelect ? 'multi-select' : 'single-select',
+        type: 'selected',
         payload: {
           isSelected: !isSelected,
           day: title,
         },
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [state]
+    [isSelected]
   );
 
   const selectedClasses = isSelected
-    ? 'z-10 outline-none ring-4 ring-gray-200 duration-75 dark:ring-gray-700'
+    ? 'z-10 outline-none ring-2 ring-gray-300 duration-75 dark:ring-gray-600'
     : '';
 
   return (
