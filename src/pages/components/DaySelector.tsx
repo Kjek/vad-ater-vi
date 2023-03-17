@@ -19,7 +19,7 @@ const DaySelector = () => {
   const days = sweDays;
   return (
     <>
-      <div className='flex flex-col gap-4 sm:flex-row'>
+      <div className='flex flex-grow flex-col justify-center gap-2 sm:flex-row'>
         <ul
           id='day-button-list'
           className='flex flex-wrap items-center justify-center gap-2'
@@ -29,10 +29,10 @@ const DaySelector = () => {
               <DayButton title={day} />
             </li>
           ))}
+          <li key='reset'>
+            <ResetButton />
+          </li>
         </ul>
-        <div className='flex justify-center'>
-          <ResetButton />
-        </div>
       </div>
     </>
   );
