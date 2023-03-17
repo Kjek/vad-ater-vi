@@ -19,12 +19,17 @@ const DaySelector = () => {
   const days = sweDays;
   return (
     <>
-      <div className='flex flex-col gap-2'>
-        <div className='flex flex-row'>
+      <div className='flex flex-col gap-4 sm:flex-row'>
+        <ul
+          id='day-button-list'
+          className='flex flex-wrap items-center justify-center gap-2'
+        >
           {days.map((day) => (
-            <DayButton key={day} title={day} />
+            <li key={day}>
+              <DayButton title={day} />
+            </li>
           ))}
-        </div>
+        </ul>
         <div className='flex justify-center'>
           <SwitchButton />
         </div>

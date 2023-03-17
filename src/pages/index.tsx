@@ -19,7 +19,7 @@ const Home: NextPage = () => {
 
   return (
     <div
-      className={`min-h-screen bg-white dark:bg-gray-900 ${
+      className={`min-h-screen bg-neutral-100 dark:bg-gray-900 ${
         isFirstRender ? '' : 'transition duration-500'
       }`}
     >

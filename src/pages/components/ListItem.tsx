@@ -12,11 +12,11 @@ const ListItem = (props: ListProps) => {
   const menuToShow = restaurant.menu.filter((item) => daysToShow.get(item.day));
   return (
     <>
-      <div className='dark:bg-gray-custom rounded-md bg-white shadow-md transition-all duration-500 dark:shadow-gray-800'>
-        <div className='whitespace-pre-line p-6'>
-          <h2 className='text-center text-3xl font-bold text-gray-800 dark:text-gray-300'>
-            {restaurant.name}
-          </h2>
+      <li className='dark:bg-gray-custom whitespace-pre-line border-b bg-white p-6 shadow-md transition-all duration-500 last:border-none dark:border-gray-700 dark:shadow-none sm:flex'>
+        <h2 className='pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0'>
+          {restaurant.name}
+        </h2>
+        <div className='sm:w-2/3 sm:grow'>
           <ul>
             {menuToShow.map((lunch) => (
               <li key={lunch.day} className='pb-6'>
@@ -49,7 +49,7 @@ const ListItem = (props: ListProps) => {
             </ul>
           ) : null}
         </div>
-      </div>
+      </li>
     </>
   );
 };
