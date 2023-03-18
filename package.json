@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
+    "build": "next build && mkdir .next/prisma && cp prisma/db.sqlite .next/prisma",
     "dev": "next dev",
     "postinstall": "prisma generate && husky install",
     "lint": "next lint",
