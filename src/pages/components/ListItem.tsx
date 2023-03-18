@@ -19,7 +19,7 @@ const ListItem = (props: ListProps) => {
         </h2>
         <div className='sm:w-2/3 sm:grow'>
           <ul>
-            {menuToShow.map((lunch, index) => (
+            {menuToShow.map((lunch) => (
               <li key={lunch.day} className='pb-6'>
                 <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
                   {lunch.day + ` ${lunch.day.getShortDate()}`}

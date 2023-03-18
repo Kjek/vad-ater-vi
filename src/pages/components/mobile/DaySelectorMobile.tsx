@@ -1,9 +1,10 @@
 import type { Dispatch, SetStateAction } from 'react';
-import { useEffectOnce } from 'usehooks-ts';
+import { useEffectOnce, useToggle } from 'usehooks-ts';
 import ResetButtonIcon from '~/assets/icons/ResetButtonIcon';
 import SearchButton from '~/assets/icons/SearchButton';
 import { useGlobalState } from '~/hooks/useGlobalState';
 import { sweDays } from '~/types/swedish-days';
+import SearchBar from '../SearchBar';
 import DayButtonMobile from './DayButtonMobile';
 
 interface DaySelectorMobileProps {
@@ -12,6 +13,7 @@ interface DaySelectorMobileProps {
 
 const DaySelectorMobile = (props: DaySelectorMobileProps) => {
   const { dispatch } = useGlobalState();
+  const [isSearchBarVisible, toggleSearchBar] = useToggle();
   const { setSearchQuery } = props;
 
   useEffectOnce(() => {
@@ -36,9 +38,17 @@ const DaySelectorMobile = (props: DaySelectorMobileProps) => {
           <li key='reset'>
             <ResetButtonIcon />
           </li>
-          <li key='search'>
-            <SearchButton setSearchQuery={setSearchQuery} />
+          <li key='search-button'>
+            <SearchButton
+              isSearchBarVisible={isSearchBarVisible}
+              toggleSearchBar={toggleSearchBar}
+            />
           </li>
+          {isSearchBarVisible ? (
+            <li key='search-bar'>
+              <SearchBar setSearchQuery={setSearchQuery} />
+            </li>
+          ) : null}
         </ul>
       </div>
     </>

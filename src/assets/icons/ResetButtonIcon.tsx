@@ -16,7 +16,7 @@ const ResetButtonIcon = () => {
 
   return (
     <span
-      className='flex cursor-pointer rounded-md border border-gray-200 py-2.5 px-3.5 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700'
+      className='flex cursor-pointer rounded-md border border-gray-200 py-2.5 px-3.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700'
       onClick={onClick}
     >
       <svg

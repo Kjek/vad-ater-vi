@@ -1,7 +1,7 @@
 import { isLunchMenus, isWeekMenu } from '~/types/lunch-menu';
 import type { PrismaType } from '~/types/prisma-custom';
 import type Scraper from '~/types/scraper';
-import { convertRestaurant } from '~/utils/restaurant-utils';
+import { convertRestaurant } from '~/utils/restaurantUtils';
 import {
   createRestaurantIfNotExists,
   findRestaurantByName,
