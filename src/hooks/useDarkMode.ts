@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLocalStorage, useTernaryDarkMode } from 'usehooks-ts';
+import { useTernaryDarkMode } from 'usehooks-ts';
 import { useTheme } from './useTheme';
 
 interface UseDarkModeOutput {

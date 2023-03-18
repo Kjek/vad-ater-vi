@@ -1,5 +1,4 @@
 import { useTheme } from '~/hooks/useTheme';
-import SearchBar from '~/pages/components/SearchBar';
 
 interface SearchButtonProps {
   isSearchBarVisible: boolean;
