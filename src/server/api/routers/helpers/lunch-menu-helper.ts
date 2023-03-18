@@ -6,7 +6,7 @@ import innegardenWebScraper from '~/server/scrapers/innegarden';
 import invitoWebScraper from '~/server/scrapers/invito';
 import type { Restaurant } from '~/types/lunch-menu';
 import type { PrismaType } from '~/types/prisma-custom';
-import { convertRestaurant } from '~/utils/restaurantUtils';
+import { convertRestaurant } from '~/utils/restaurant-utils';
 import { searchRestaurantByName } from './db-helper';
 import { handleScraper } from './scraper-helper';
 

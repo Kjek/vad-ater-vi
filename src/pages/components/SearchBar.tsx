@@ -1,8 +1,6 @@
 import type { Dispatch, SetStateAction } from 'react';
 import { useRef } from 'react';
 import { useEffect, useState } from 'react';
-import useDarkMode from '~/hooks/useDarkMode';
-import { useGlobalState } from '~/hooks/useGlobalState';
 import { useTheme } from '~/hooks/useTheme';
 
 interface SearchBarProps {

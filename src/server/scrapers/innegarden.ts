@@ -1,6 +1,8 @@
 import puppeteer from 'puppeteer';
-import { sweDays, type LunchMenu } from '~/types/lunch-menu';
-import { decodeHtmlEntity } from '~/utils/htmlUtils';
+import { type LunchMenu } from '~/types/lunch-menu';
+import type { SwedishDay } from '~/types/swedish-days';
+import { sweDays } from '~/types/swedish-days';
+import { decodeHtmlEntity } from '~/utils/html-utils';
 
 const innegardenWebScraper = async () => {
   console.log('Fetching Innegården menu!');
@@ -21,7 +23,7 @@ const innegardenWebScraper = async () => {
       /(?:\<\/?\w+\>)([a-öA-Ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*+\s+([a-öA-Ö\s<>*-\/&]+[^<>\w:])/gm
     );
     for (const lu of match) {
-      if (lu[1] && lu[2] && sweDays.includes(lu[1])) {
+      if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
         lunchWeek.push({
           day: lu[1].trim(),
           food: decodeHtmlEntity(lu[2])

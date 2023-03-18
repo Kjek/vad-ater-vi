@@ -1,14 +1,16 @@
 import { type NextPage } from 'next';
 import { useState } from 'react';
-import useIsFirstRender from '~/hooks/useIsFirstRender';
+import { useIsFirstRender, useWindowSize } from 'usehooks-ts';
 import { api } from '~/utils/api';
 import FilterSection from './components/FilterSection';
+import FilterSectionMobile from './components/mobile/FilterSectionMobile';
 import Header from './components/Header';
 import LoadingIndicator from './components/LoadingIndicator';
 import LunchList from './components/LunchList';
 import MetaHeader from './components/MetaHeader';
 
 const Home: NextPage = () => {
+  const isMobile = useWindowSize().width < 640;
   const isFirstRender = useIsFirstRender();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const restaurants = searchQuery
@@ -28,7 +30,11 @@ const Home: NextPage = () => {
           <MetaHeader />
           <Header />
           <main>
-            <FilterSection setSearchQuery={setSearchQuery} />
+            {isMobile ? (
+              <FilterSectionMobile setSearchQuery={setSearchQuery} />
+            ) : (
+              <FilterSection setSearchQuery={setSearchQuery} />
+            )}
             {restaurants ? (
               <LunchList restaurants={restaurants} />
             ) : (

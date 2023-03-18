@@ -1,6 +1,6 @@
 import type { Dispatch } from 'react';
 import { createContext, useContext, useReducer } from 'react';
-import { sweDays } from '~/types/lunch-menu';
+import { sweDays } from '~/types/swedish-days';
 
 export interface MultiSelectorState {
   isMultiSelect: boolean;
@@ -17,9 +17,7 @@ export interface MultiSelectorPayload {
 }
 const initialState: MultiSelectorState = {
   isMultiSelect: false,
-  daysSelected: new Map<string, boolean>(
-    sweDays.map((day) => [day, false]) ?? []
-  ),
+  daysSelected: new Map<string, boolean>(sweDays.map((day) => [day, false])),
 };
 
 const useMultiSelector = () => {
@@ -39,14 +37,14 @@ const useMultiSelector = () => {
         };
       case 'reset':
         const initialDaysSelected = new Map(initialState.daysSelected);
-        const newDaysSelected =
-          day && isSelected !== undefined
-            ? initialDaysSelected.set(day, isSelected)
-            : initialState.daysSelected;
+        initialDaysSelected.set(
+          sweDays[new Date().getDay() - 1] ?? sweDays[0],
+          true
+        );
         return {
           ...initialState,
           isMultiSelect: false,
-          daysSelected: newDaysSelected,
+          daysSelected: initialDaysSelected,
         };
       default:
         return state;

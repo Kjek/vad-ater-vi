@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useLocalStorage from './useLocalStorage';
+import { useLocalStorage } from 'usehooks-ts';
 import { useTheme } from './useTheme';
 import useThemeDetector from './useThemeDetector';
 

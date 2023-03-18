@@ -1,16 +1,12 @@
 import { useCallback } from 'react';
 import { useGlobalState } from '~/hooks/useGlobalState';
-import { sweDays } from '~/types/lunch-menu';
 
 const ResetButton = () => {
   const { dispatch } = useGlobalState();
   const onClick = useCallback(() => {
     dispatch({
       type: 'reset',
-      payload: {
-        day: sweDays[new Date().getDay() - 1],
-        isSelected: true,
-      },
+      payload: {},
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

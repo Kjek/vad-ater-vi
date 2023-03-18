@@ -4,7 +4,8 @@ import { api } from '../utils/api';
 
 import '../styles/globals.css';
 
-import {} from '~/utils/dateUtils'; // To inizialize the functions
+import {} from '~/utils/date-utils'; // To inizialize the functions
+import {} from '~/utils/string-utils'; // To inizialize the functions
 import { ThemeProvider } from '~/hooks/useTheme';
 import { StateProvider } from '~/hooks/useGlobalState';
 

@@ -1,5 +1,3 @@
-export const sweDays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
-
 export interface LunchMenu {
   day: string;
   food: string;

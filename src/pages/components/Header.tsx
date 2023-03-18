@@ -1,4 +1,4 @@
-import GitHubIcon from '~/assets/icons/GitHub-Icon';
+import GitHubIcon from '~/assets/icons/GitHubIcon';
 import Switcher from './Switcher';
 
 const Header = () => {

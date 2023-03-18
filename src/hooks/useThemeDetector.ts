@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useEffectOnce from './useEffectOnce';
+import { useEffectOnce } from 'usehooks-ts';
 
 const useThemeDetector = () => {
   const getCurrentTheme = () =>

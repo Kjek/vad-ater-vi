@@ -10,6 +10,7 @@ const ListItem = (props: ListProps) => {
   const { restaurant } = props;
   const daysToShow = state.daysSelected;
   const menuToShow = restaurant.menu.filter((item) => daysToShow.get(item.day));
+
   return (
     <>
       <li className='dark:bg-gray-custom whitespace-pre-line border-b bg-white p-6 shadow-md transition-all duration-500 last:border-none dark:border-gray-700 dark:shadow-none sm:flex'>
@@ -18,10 +19,10 @@ const ListItem = (props: ListProps) => {
         </h2>
         <div className='sm:w-2/3 sm:grow'>
           <ul>
-            {menuToShow.map((lunch) => (
+            {menuToShow.map((lunch, index) => (
               <li key={lunch.day} className='pb-6'>
                 <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
-                  {lunch.day}
+                  {lunch.day + ` ${lunch.day.getShortDate()}`}
                 </h3>
                 <p className='text-lg text-gray-500 dark:text-gray-300'>
                   {lunch.food}
