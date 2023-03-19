@@ -1,5 +1,4 @@
-import { args, executablePath, headless } from 'chrome-aws-lambda';
-import playwright from 'playwright-core';
+import { JSDOM } from 'jsdom';
 import { type LunchMenu, type WeeklySpecial } from '~/types/lunch-menu';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
@@ -7,40 +6,26 @@ import { sweDays } from '~/types/swedish-days';
 const augustasWebScraper = async () => {
   console.log('Fetching Mamma Augustas menu!');
 
-  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
-
-  const options = isVercel
-    ? {
-        args: args,
-        executablePath: await executablePath,
-        headless: headless,
-      }
-    : { headless: true };
-
-  const browser = await playwright.chromium.launch(options);
-  const page = await browser.newPage();
-
-  await page.goto(
+  const dom = await JSDOM.fromURL(
     'https://www.baltichotell.com/mamma-augustas-kok-restaurang-sundsvall/lunch',
     {
-      waitUntil: 'networkidle',
+      resources: 'usable',
     }
   );
+  const scrapedDocument = dom.window.document;
 
-  const lunchMenu = await page.evaluate(() => {
-    return Array.from(document.querySelectorAll('strong'))
-      .filter((strong) => strong.textContent?.includes('Måndag'))
-      .map((item) =>
-        item.parentElement?.innerHTML
-          .replaceAll('\n', ' ')
-          .replaceAll('<br><br>&nbsp;', '\n') // used to seperate days
-          .replaceAll('<br>&nbsp;', ' ') // used to 'concat' broken sentences
-          .replaceAll('<br><br>', '<br>')
-          .replaceAll('<br>', '\n')
-          .replaceAll('  ', ' ')
-          .replaceAll('   ', ' ')
-      )[0];
-  });
+  const lunchMenu = Array.from(scrapedDocument.querySelectorAll('strong'))
+    .filter((strong) => strong.textContent?.includes('Måndag'))
+    .map((item) =>
+      item.parentElement?.innerHTML
+        .replaceAll('\n', ' ')
+        .replaceAll('<br><br>&nbsp;', '\n') // used to seperate days
+        .replaceAll('<br>&nbsp;', ' ') // used to 'concat' broken sentences
+        .replaceAll('<br><br>', '<br>')
+        .replaceAll('<br>', '\n')
+        .replaceAll('  ', ' ')
+        .replaceAll('   ', ' ')
+    )[0];
 
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
@@ -64,7 +49,6 @@ const augustasWebScraper = async () => {
   console.log(lunchWeek);
   console.log(weeklySpecials);
 
-  await browser.close();
   return { lunchWeek, weeklySpecials };
 };
 

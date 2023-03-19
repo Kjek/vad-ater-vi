@@ -1,47 +1,34 @@
-import { args, executablePath, headless } from 'chrome-aws-lambda';
-import playwright from 'playwright-core';
+import { JSDOM } from 'jsdom';
 import type { LunchMenu } from '~/types/lunch-menu';
 
 const invitoWebScraper = async () => {
   console.log('Fetching Invito menu!');
 
-  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
+  const dom = await JSDOM.fromURL(
+    'http://sundsvall.invitobar.se/mat/#veckans-lunch',
+    {
+      resources: 'usable',
+    }
+  );
+  const scrapedDocument = dom.window.document;
 
-  const options = isVercel
-    ? {
-        args: args,
-        executablePath: await executablePath,
-        headless: headless,
-      }
-    : { headless: true };
-
-  const browser = await playwright.chromium.launch(options);
-  const page = await browser.newPage();
-
-  await page.goto('http://sundsvall.invitobar.se/mat/#veckans-lunch', {
-    waitUntil: 'networkidle',
-  });
-
-  const lunchMenu = await page.evaluate(() => {
-    return Array.from(
-      document.querySelectorAll('#meny-objekt-veckans-lunch-ul')
-    )
-      .flatMap((ul) => Array.from(ul.querySelectorAll('li')))
-      .flatMap(
-        (li) =>
-          ({
-            day: li.querySelector('p')?.textContent?.trim(),
-            food: li
-              .querySelector('.beskrivning')
-              ?.textContent?.replaceAll('\t', '')
-              .replace('\n', '')
-              .trim(),
-          } as LunchMenu)
-      );
-  });
+  const lunchMenu = Array.from(
+    scrapedDocument.querySelectorAll('#meny-objekt-veckans-lunch-ul')
+  )
+    .flatMap((ul) => Array.from(ul.querySelectorAll('li')))
+    .flatMap(
+      (li) =>
+        ({
+          day: li.querySelector('p')?.textContent?.trim(),
+          food: li
+            .querySelector('.beskrivning')
+            ?.textContent?.replaceAll('\t', '')
+            .replace('\n', '')
+            .trim(),
+        } as LunchMenu)
+    );
   console.log(lunchMenu);
 
-  await browser.close();
   return lunchMenu;
 };
 

@@ -33,6 +33,9 @@ CREATE TABLE "WeeklySpecial" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Restaurant_name_key" ON "Restaurant"("name");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Menu_restaurantId_day_key" ON "Menu"("restaurantId", "day");
 
 -- CreateIndex

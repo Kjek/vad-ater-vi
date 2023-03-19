@@ -1,54 +1,40 @@
-import { args, executablePath, headless } from 'chrome-aws-lambda';
-import playwright from 'playwright-core';
+import { JSDOM } from 'jsdom';
 import { type LunchMenu } from '~/types/lunch-menu';
+import type { SwedishDay } from '~/types/swedish-days';
+import { sweDays } from '~/types/swedish-days';
 
 const bergHjortWebScraper = async () => {
   console.log('Fetching Berg & Hjort menu!');
 
-  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
-
-  const options = isVercel
-    ? {
-        args: args,
-        executablePath: await executablePath,
-        headless: headless,
-      }
-    : { headless: true };
-
-  const browser = await playwright.chromium.launch(options);
-  const page = await browser.newPage();
-
-  await page.goto(
+  const dom = await JSDOM.fromURL(
     'https://www.matochmat.se/lunch/sundsvall/berg-och-hjort-foajen/',
     {
-      waitUntil: 'networkidle',
+      resources: 'usable',
     }
   );
+  const scrapedDocument = dom.window.document;
 
-  const lunchMenuSeperated = await page.evaluate(() => {
-    const sweDays = ['Måndag', 'Tisdag', 'Onsdag', 'Torsdag', 'Fredag'];
-    return Array.from(document.querySelectorAll('span'))
-      .filter((span) =>
-        sweDays.includes(
-          span.parentElement?.parentElement?.parentElement?.previousElementSibling?.textContent?.split(
-            ' '
-          )[0] ?? ''
-        )
+  const lunchMenuSeperated = Array.from(
+    scrapedDocument.querySelectorAll('span')
+  )
+    .filter((span) =>
+      sweDays.includes(
+        (span.parentElement?.parentElement?.parentElement?.previousElementSibling?.textContent?.split(
+          ' '
+        )[0] as SwedishDay) ?? ''
       )
-      .map(
-        (span) =>
-          ({
-            day: span.parentElement?.parentElement?.parentElement?.previousElementSibling?.textContent?.split(
-              ' '
-            )[0],
-            food: span.textContent
-              ?.concat(
-                span.parentElement?.nextElementSibling?.textContent ?? ''
-              )
-              .concat('\n'),
-          } as LunchMenu)
-      );
-  });
+    )
+    .map(
+      (span) =>
+        ({
+          day: span.parentElement?.parentElement?.parentElement?.previousElementSibling?.textContent?.split(
+            ' '
+          )[0],
+          food: span.textContent
+            ?.concat(span.parentElement?.nextElementSibling?.textContent ?? '')
+            .concat('\n'),
+        } as LunchMenu)
+    );
 
   const lunchMenu = Array.from(
     lunchMenuSeperated.reduce((acc, item) => {
@@ -65,7 +51,6 @@ const bergHjortWebScraper = async () => {
 
   console.log(lunchMenu);
 
-  await browser.close();
   return lunchMenu;
 };
 
