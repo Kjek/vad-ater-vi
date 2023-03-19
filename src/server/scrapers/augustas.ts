@@ -1,5 +1,5 @@
 import { args, executablePath, headless } from 'chrome-aws-lambda';
-import playwright from 'playwright';
+import playwright from 'playwright-core';
 import { type LunchMenu, type WeeklySpecial } from '~/types/lunch-menu';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';

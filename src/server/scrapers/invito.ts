@@ -1,5 +1,5 @@
 import { args, executablePath, headless } from 'chrome-aws-lambda';
-import playwright from 'playwright';
+import playwright from 'playwright-core';
 import type { LunchMenu } from '~/types/lunch-menu';
 
 const invitoWebScraper = async () => {
