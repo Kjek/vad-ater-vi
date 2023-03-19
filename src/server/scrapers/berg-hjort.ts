@@ -1,16 +1,27 @@
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
+import chrome from 'chrome-aws-lambda';
 import { type LunchMenu } from '~/types/lunch-menu';
 
 const bergHjortWebScraper = async () => {
   console.log('Fetching Berg & Hjort menu!');
 
-  const browser = await puppeteer.launch({ headless: true });
+  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
+
+  const options = isVercel
+    ? {
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+      }
+    : { headless: true };
+
+  const browser = await playwright.chromium.launch(options);
   const page = await browser.newPage();
 
   await page.goto(
     'https://www.matochmat.se/lunch/sundsvall/berg-och-hjort-foajen/',
     {
-      waitUntil: 'networkidle0',
+      waitUntil: 'networkidle',
     }
   );
 

@@ -1,4 +1,5 @@
-import puppeteer from 'puppeteer';
+import chrome from 'chrome-aws-lambda';
+import playwright from 'playwright';
 import { type LunchMenu } from '~/types/lunch-menu';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
@@ -7,11 +8,21 @@ import { decodeHtmlEntity } from '~/utils/html-utils';
 const innegardenWebScraper = async () => {
   console.log('Fetching Innegården menu!');
 
-  const browser = await puppeteer.launch({ headless: true });
+  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
+
+  const options = isVercel
+    ? {
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+      }
+    : { headless: true };
+
+  const browser = await playwright.chromium.launch(options);
   const page = await browser.newPage();
 
   await page.goto('http://www.innergarden.se/#lunchmeny', {
-    waitUntil: 'networkidle0',
+    waitUntil: 'networkidle',
   });
 
   const lunchMenu = await page.evaluate(

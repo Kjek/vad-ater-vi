@@ -1,15 +1,26 @@
-import puppeteer from 'puppeteer';
+import chrome from 'chrome-aws-lambda';
+import playwright from 'playwright';
 import type { WeeklySpecial } from '~/types/lunch-menu';
 import { type LunchMenu } from '~/types/lunch-menu';
 
 const estreetWebScraper = async () => {
   console.log('Fetching E-Street menu!');
 
-  const browser = await puppeteer.launch({ headless: true });
+  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
+
+  const options = isVercel
+    ? {
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+      }
+    : { headless: true };
+
+  const browser = await playwright.chromium.launch(options);
   const page = await browser.newPage();
 
   await page.goto('https://www.estreet.nu/', {
-    waitUntil: 'networkidle0',
+    waitUntil: 'networkidle',
   });
 
   const lunchMenu = await page.evaluate(() => {

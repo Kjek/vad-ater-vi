@@ -1,4 +1,5 @@
-import puppeteer from 'puppeteer';
+import chrome from 'chrome-aws-lambda';
+import playwright from 'playwright';
 import { type LunchMenu, type WeeklySpecial } from '~/types/lunch-menu';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
@@ -6,13 +7,23 @@ import { sweDays } from '~/types/swedish-days';
 const augustasWebScraper = async () => {
   console.log('Fetching Mamma Augustas menu!');
 
-  const browser = await puppeteer.launch({ headless: true });
+  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
+
+  const options = isVercel
+    ? {
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+      }
+    : { headless: true };
+
+  const browser = await playwright.chromium.launch(options);
   const page = await browser.newPage();
 
   await page.goto(
     'https://www.baltichotell.com/mamma-augustas-kok-restaurang-sundsvall/lunch',
     {
-      waitUntil: 'networkidle0',
+      waitUntil: 'networkidle',
     }
   );
 

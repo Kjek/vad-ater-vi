@@ -1,14 +1,25 @@
-import puppeteer from 'puppeteer';
+import chrome from 'chrome-aws-lambda';
+import playwright from 'playwright';
 import { type LunchMenu } from '~/types/lunch-menu';
 
 const brynersWebScraper = async () => {
   console.log('Fetching Bryners menu!');
 
-  const browser = await puppeteer.launch({ headless: true });
+  const isVercel = process.env.AWS_LAMBDA_FUNCTION_VERSION;
+
+  const options = isVercel
+    ? {
+        args: chrome.args,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+      }
+    : { headless: true };
+
+  const browser = await playwright.chromium.launch(options);
   const page = await browser.newPage();
 
   await page.goto('https://bryners.se/veckans-lunch-v-j/bryners-bistro.html', {
-    waitUntil: 'networkidle0',
+    waitUntil: 'networkidle',
   });
 
   const lunchMenu = await page.evaluate(() => {
