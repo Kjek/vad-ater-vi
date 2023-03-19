@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer';
+import { JSDOM } from 'jsdom';
 import { type LunchMenu } from '~/types/lunch-menu';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
@@ -7,16 +7,12 @@ import { decodeHtmlEntity } from '~/utils/html-utils';
 const innegardenWebScraper = async () => {
   console.log('Fetching Innegården menu!');
 
-  const browser = await puppeteer.launch({ headless: true });
-  const page = await browser.newPage();
-
-  await page.goto('http://www.innergarden.se/#lunchmeny', {
-    waitUntil: 'networkidle0',
+  const dom = await JSDOM.fromURL('http://www.innergarden.se/#lunchmeny', {
+    resources: 'usable',
   });
+  const scrapedDocument = dom.window.document;
 
-  const lunchMenu = await page.evaluate(
-    () => document.querySelector('#lunchmeny')?.innerHTML
-  );
+  const lunchMenu = scrapedDocument.querySelector('#lunchmeny')?.innerHTML;
   const lunchWeek: LunchMenu[] = [];
   if (lunchMenu) {
     const match = decodeHtmlEntity(lunchMenu).matchAll(
@@ -38,7 +34,6 @@ const innegardenWebScraper = async () => {
 
   console.log(lunchWeek);
 
-  await browser.close();
   return lunchWeek;
 };
 

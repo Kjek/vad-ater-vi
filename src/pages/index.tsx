@@ -2,12 +2,12 @@ import { type NextPage } from 'next';
 import { useState } from 'react';
 import { useIsFirstRender, useWindowSize } from 'usehooks-ts';
 import { api } from '~/utils/api';
-import FilterSection from './components/FilterSection';
-import FilterSectionMobile from './components/mobile/FilterSectionMobile';
-import Header from './components/Header';
-import LoadingIndicator from './components/LoadingIndicator';
-import LunchList from './components/LunchList';
-import MetaHeader from './components/MetaHeader';
+import FilterSection from '../components/FilterSection';
+import FilterSectionMobile from '../components/mobile/FilterSectionMobile';
+import Header from '../components/Header';
+import LoadingIndicator from '../components/LoadingIndicator';
+import LunchList from '../components/LunchList';
+import MetaHeader from '../components/MetaHeader';
 
 const Home: NextPage = () => {
   const isMobile = useWindowSize().width < 640;
