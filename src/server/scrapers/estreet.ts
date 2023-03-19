@@ -12,11 +12,10 @@ const estreetWebScraper = async () => {
   });
   const scrapedDocument = dom.window.document;
 
+  const sweDaysCaps = sweDays.map((day) => day.toUpperCase());
+
   const lunchWeek = Array.from(scrapedDocument.querySelectorAll('div'))
-    .filter(
-      (div) =>
-        div.textContent && sweDays.includes(div.textContent as SwedishDay)
-    )
+    .filter((div) => div.textContent && sweDaysCaps.includes(div.textContent))
     .map(
       (item) =>
         ({
