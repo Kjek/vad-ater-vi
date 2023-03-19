@@ -19,6 +19,7 @@ const augustasWebScraper = async () => {
     .map((item) =>
       item.parentElement?.innerHTML
         .replaceAll('\n', ' ')
+        .replaceAll(/\<\w+\>\s+/gm, ' ')
         .replaceAll('<br><br>&nbsp;', '\n') // used to seperate days
         .replaceAll('<br>&nbsp;', ' ') // used to 'concat' broken sentences
         .replaceAll('<br><br>', '<br>')
@@ -34,7 +35,7 @@ const augustasWebScraper = async () => {
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /^(.*[^-:])\:?\s*\n\<?\/?[a-z]*\>?(.*?)$/gm
+      /^([a-öA-Ö ]+)\:?\s*\n\<?\/?[a-z]*\>?([a-öA-Ö,\- ]+)$/gm
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
