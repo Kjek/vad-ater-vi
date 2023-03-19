@@ -165,6 +165,7 @@ export const searchRestaurantByName = async (
     where: {
       name: {
         startsWith: searchText,
+        mode: 'insensitive',
       },
     },
     take: limit ?? 100,
