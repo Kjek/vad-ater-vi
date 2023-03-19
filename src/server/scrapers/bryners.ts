@@ -1,4 +1,4 @@
-import chrome from 'chrome-aws-lambda';
+import { args, executablePath, headless } from 'chrome-aws-lambda';
 import playwright from 'playwright';
 import { type LunchMenu } from '~/types/lunch-menu';
 
@@ -9,9 +9,9 @@ const brynersWebScraper = async () => {
 
   const options = isVercel
     ? {
-        args: chrome.args,
-        executablePath: await chrome.executablePath,
-        headless: chrome.headless,
+        args: args,
+        executablePath: await executablePath,
+        headless: headless,
       }
     : { headless: true };
 
