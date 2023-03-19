@@ -20,40 +20,35 @@ const Restaurants = {
 };
 
 export const handleLunchScrapers = async (prisma: PrismaType) => {
-  const bryners = await handleScraper(
-    prisma,
-    Restaurants.bryners,
-    brynersWebScraper
-  );
-  const augustas = await handleScraper(
+  const bryners = handleScraper(prisma, Restaurants.bryners, brynersWebScraper);
+  const augustas = handleScraper(
     prisma,
     Restaurants.augustas,
     augustasWebScraper
   );
-  const invito = await handleScraper(
-    prisma,
-    Restaurants.invito,
-    invitoWebScraper
-  );
-  const estreet = await handleScraper(
-    prisma,
-    Restaurants.estreet,
-    estreetWebScraper
-  );
-  const innegarden = await handleScraper(
+  const invito = handleScraper(prisma, Restaurants.invito, invitoWebScraper);
+  const estreet = handleScraper(prisma, Restaurants.estreet, estreetWebScraper);
+  const innegarden = handleScraper(
     prisma,
     Restaurants.innegarden,
     innegardenWebScraper
   );
 
-  const bergHjort = await handleScraper(
+  const bergHjort = handleScraper(
     prisma,
     Restaurants.bergHjort,
     bergHjortWebScraper
   );
 
   return (
-    [augustas, bergHjort, bryners, estreet, innegarden, invito] as Restaurant[]
+    [
+      await augustas,
+      await bergHjort,
+      await bryners,
+      await estreet,
+      await innegarden,
+      await invito,
+    ] as Restaurant[]
   ).filter((restaurant) => restaurant.menu.length > 0);
 };
 
