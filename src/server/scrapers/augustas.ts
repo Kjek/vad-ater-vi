@@ -27,12 +27,14 @@ const augustasWebScraper = async () => {
         .replaceAll('   ', ' ')
     )[0];
 
+  console.log(lunchMenu);
+
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /^(.*[^-:]):?\s*\n\<?[\/][a-z]*\>?(.*?)$/gm
+      /^(.*[^-:])\:?\s*\n\<?\/?[a-z]*\>?(.*?)$/gm
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
