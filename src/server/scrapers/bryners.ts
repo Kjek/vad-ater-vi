@@ -1,17 +1,15 @@
 import { JSDOM } from 'jsdom';
 import { type LunchMenu } from '~/types/lunch-menu';
+import { RestaurantURL } from '~/types/restaurant-links';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
 
 const brynersWebScraper = async () => {
   console.log('Fetching Bryners menu!');
 
-  const dom = await JSDOM.fromURL(
-    'https://bryners.se/veckans-lunch-v-j/bryners-bistro.html',
-    {
-      resources: 'usable',
-    }
-  );
+  const dom = await JSDOM.fromURL(RestaurantURL['Bryners'], {
+    resources: 'usable',
+  });
   const scrapedDocument = dom.window.document;
 
   const lunchMenu = Array.from(scrapedDocument.querySelectorAll('ul'))

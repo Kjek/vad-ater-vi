@@ -1,5 +1,6 @@
 import { JSDOM } from 'jsdom';
 import { type LunchMenu } from '~/types/lunch-menu';
+import { RestaurantURL } from '~/types/restaurant-links';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
 import { decodeHtmlEntity } from '~/utils/html-utils';
@@ -7,7 +8,7 @@ import { decodeHtmlEntity } from '~/utils/html-utils';
 const innegardenWebScraper = async () => {
   console.log('Fetching Innegården menu!');
 
-  const dom = await JSDOM.fromURL('http://www.innergarden.se/#lunchmeny', {
+  const dom = await JSDOM.fromURL(RestaurantURL['Innegården'], {
     resources: 'usable',
   });
   const scrapedDocument = dom.window.document;

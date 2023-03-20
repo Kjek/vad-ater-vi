@@ -45,6 +45,7 @@ const DarkLightTheme = () => {
 
   return (
     <span
+      title='Byt mellan mörk-, ljus- och operativsystemläge för tema på sidan'
       className='cursor-pointer self-center rounded-md bg-white p-2 transition-all duration-500 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
       onClick={toggle}
     >
