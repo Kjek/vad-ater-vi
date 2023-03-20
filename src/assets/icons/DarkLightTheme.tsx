@@ -36,7 +36,7 @@ const DarkLightTheme = () => {
         );
 
       case 'system':
-        return <h2 className='text-black dark:text-gray-500'>OS</h2>;
+        return <h2 className='h-6 w-6 text-gray-800 dark:text-gray-300'>OS</h2>;
 
       default:
         break;
