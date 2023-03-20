@@ -10,8 +10,3 @@ export const sortLunch = (lunchMenu: LunchMenu[]) => {
       : -1
   );
 };
-
-export const lunchToday = (lunchMenu: LunchMenu[]) => {
-  const dayOfWeek = new Date().getDay() - 1;
-  return lunchMenu.filter((item) => sweDays[dayOfWeek] == item.day)[0];
-};
