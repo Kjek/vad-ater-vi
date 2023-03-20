@@ -1,17 +1,15 @@
 import { JSDOM } from 'jsdom';
 import { type LunchMenu, type WeeklySpecial } from '~/types/lunch-menu';
+import { RestaurantURL } from '~/types/restaurant-links';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
 
 const augustasWebScraper = async () => {
   console.log('Fetching Mamma Augustas menu!');
 
-  const dom = await JSDOM.fromURL(
-    'https://www.baltichotell.com/mamma-augustas-kok-restaurang-sundsvall/lunch',
-    {
-      resources: 'usable',
-    }
-  );
+  const dom = await JSDOM.fromURL(RestaurantURL['Augustas'], {
+    resources: 'usable',
+  });
   const scrapedDocument = dom.window.document;
 
   const lunchMenu = Array.from(scrapedDocument.querySelectorAll('strong'))

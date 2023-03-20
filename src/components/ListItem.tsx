@@ -1,5 +1,7 @@
 import { useGlobalState } from '~/hooks/useGlobalState';
 import type { Restaurant } from '~/types/lunch-menu';
+import type { RestaurantType } from '~/types/restaurant-links';
+import { RestaurantURL } from '~/types/restaurant-links';
 
 interface ListProps {
   restaurant: Restaurant;
@@ -15,7 +17,12 @@ const ListItem = (props: ListProps) => {
     <>
       <li className='dark:bg-gray-custom whitespace-pre-line border-b bg-white p-6 shadow-md transition-all duration-500 last:border-none dark:border-gray-700 dark:shadow-none sm:flex'>
         <h2 className='pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0'>
-          {restaurant.name}
+          <a
+            title='Gå till restaurangens hemsida'
+            href={RestaurantURL[restaurant.name as RestaurantType]}
+          >
+            {restaurant.name}
+          </a>
         </h2>
         <div className='sm:w-2/3 sm:grow'>
           <ul>

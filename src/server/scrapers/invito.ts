@@ -1,15 +1,13 @@
 import { JSDOM } from 'jsdom';
 import type { LunchMenu } from '~/types/lunch-menu';
+import { RestaurantURL } from '~/types/restaurant-links';
 
 const invitoWebScraper = async () => {
   console.log('Fetching Invito menu!');
 
-  const dom = await JSDOM.fromURL(
-    'http://sundsvall.invitobar.se/mat/#veckans-lunch',
-    {
-      resources: 'usable',
-    }
-  );
+  const dom = await JSDOM.fromURL(RestaurantURL['Invito'], {
+    resources: 'usable',
+  });
   const scrapedDocument = dom.window.document;
 
   const lunchMenu = Array.from(
