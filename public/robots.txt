@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.xn--vadtervi-2za.nu/
+
+# Sitemaps
+Sitemap: https://www.xn--vadtervi-2za.nu/sitemap.xml
