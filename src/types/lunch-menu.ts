@@ -6,7 +6,6 @@ export interface LunchMenu {
 export interface Restaurant {
   menu: LunchMenu[];
   name: string;
-  today: LunchMenu;
   weeklySpecials: WeeklySpecial[];
 }
 
