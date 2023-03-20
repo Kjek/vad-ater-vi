@@ -24,7 +24,7 @@ const DayButton = (props: DayButtonProps) => {
   );
 
   const selectedClasses = isSelected
-    ? 'z-10 outline-none ring-2 ring-gray-300 duration-75 dark:ring-gray-600'
+    ? 'z-10 outline-none ring-2 ring-gray-700 duration-75 dark:ring-gray-400'
     : '';
 
   return (
