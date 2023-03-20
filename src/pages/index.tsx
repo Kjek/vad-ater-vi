@@ -20,13 +20,9 @@ const Home: NextPage = () => {
     : api.lunch.menu.useQuery().data;
 
   return (
-    <div
-      className={`min-h-screen bg-neutral-100 dark:bg-gray-900 ${
-        isFirstRender ? '' : 'transition duration-500'
-      }`}
-    >
+    <>
       {!isFirstRender ? (
-        <>
+        <div className='min-h-screen bg-neutral-100 transition duration-500 dark:bg-gray-900'>
           <MetaHeader />
           <Header />
           <main>
@@ -41,9 +37,9 @@ const Home: NextPage = () => {
               <LoadingIndicator />
             )}
           </main>
-        </>
+        </div>
       ) : null}
-    </div>
+    </>
   );
 };
 
