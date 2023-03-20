@@ -1,17 +1,15 @@
 import { JSDOM } from 'jsdom';
 import { type LunchMenu } from '~/types/lunch-menu';
+import { RestaurantURL } from '~/types/restaurant-links';
 import type { SwedishDay } from '~/types/swedish-days';
 import { sweDays } from '~/types/swedish-days';
 
 const bergHjortWebScraper = async () => {
   console.log('Fetching Berg & Hjort menu!');
 
-  const dom = await JSDOM.fromURL(
-    'https://www.matochmat.se/lunch/sundsvall/berg-och-hjort-foajen/',
-    {
-      resources: 'usable',
-    }
-  );
+  const dom = await JSDOM.fromURL(RestaurantURL['Berg & Hjort'], {
+    resources: 'usable',
+  });
   const scrapedDocument = dom.window.document;
 
   const lunchMenuSeperated = Array.from(

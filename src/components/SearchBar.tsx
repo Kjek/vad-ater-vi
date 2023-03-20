@@ -30,6 +30,7 @@ const SearchBar = (props: SearchBarProps) => {
       <div className='flex justify-center'>
         <div className='relative'>
           <input
+            title='Sök på restauranger som ska visas i listan'
             type='text'
             id='search-restaurant'
             ref={inputRef}

@@ -1,13 +1,13 @@
 import { JSDOM } from 'jsdom';
 import type { WeeklySpecial } from '~/types/lunch-menu';
 import { type LunchMenu } from '~/types/lunch-menu';
-import type { SwedishDay } from '~/types/swedish-days';
+import { RestaurantURL } from '~/types/restaurant-links';
 import { sweDays } from '~/types/swedish-days';
 
 const estreetWebScraper = async () => {
   console.log('Fetching E-Street menu!');
 
-  const dom = await JSDOM.fromURL('https://www.estreet.nu/', {
+  const dom = await JSDOM.fromURL(RestaurantURL['E Street'], {
     resources: 'usable',
   });
   const scrapedDocument = dom.window.document;
