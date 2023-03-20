@@ -10,13 +10,17 @@ const MetaHeader = () => {
         key='title'
         charSet='UTF-8'
       />
-      <meta name='description' content='Lunch i Sundsvall' />
+      <meta
+        name='description'
+        content='Vad äter vi? Kolla dagens eller veckans lunch i Sundsvall. Här listas olika restaurangers lunchmenyer för nuvarande vecka så man lätt kan ta reda på vad man vill äta för lunch.'
+      />
       <meta
         name='keywords'
-        content='HTML, CSS, JavaScript, TypeScript, NextJS, T3, T3 App, Prisma, tRPC, ReactJS'
+        content='lunch, sundsvall, mat, meny, menyer, restaurang, dagens lunch, veckans lunch, lunch i sundsvall, vad äter vi'
       />
       <meta name='author' content='Kjek' />
       <link rel='icon' href='/favicon.ico' />
+      <link rel='canonical' href='https://www.vadätervi.nu/' />
     </Head>
   );
 };
