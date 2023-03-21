@@ -26,16 +26,32 @@ const ListItem = (props: ListProps) => {
         </h2>
         <div className='sm:w-2/3 sm:grow'>
           <ul>
-            {menuToShow.map((lunch) => (
-              <li key={lunch.day} className='pb-6'>
+            {restaurant.menu.length === 5 ? (
+              menuToShow.map((lunch) => (
+                <li key={lunch.day} className='pb-6'>
+                  <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
+                    {lunch.day + ` ${lunch.day.getShortDate()}`}
+                  </h3>
+                  <p className='text-lg text-gray-500 dark:text-gray-300'>
+                    {lunch.food}
+                  </p>
+                </li>
+              ))
+            ) : (
+              <li key='error-message' className='pb-6'>
                 <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
-                  {lunch.day + ` ${lunch.day.getShortDate()}`}
+                  {
+                    'Fel vid hämtning av menyer gå till restaurangens hemsida istället: '
+                  }
                 </h3>
-                <p className='text-lg text-gray-500 dark:text-gray-300'>
-                  {lunch.food}
-                </p>
+                <a
+                  className='text-2xl font-bold text-blue-700 underline hover:no-underline dark:text-gray-500'
+                  href={RestaurantURL[restaurant.name as RestaurantType]}
+                >
+                  {RestaurantURL[restaurant.name as RestaurantType]}
+                </a>
               </li>
-            ))}
+            )}
           </ul>
           {restaurant.weeklySpecials && restaurant.weeklySpecials.length > 0 ? (
             <ul id='weekly-specials-list'>
