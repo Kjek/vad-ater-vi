@@ -1,5 +1,5 @@
-import type { SwedishDay } from '~/types/swedish-days';
-import { sweDays } from '~/types/swedish-days';
+import type { SwedishDay } from '@type/swedish-days';
+import { sweDays } from '@type/swedish-days';
 
 export {};
 declare global {

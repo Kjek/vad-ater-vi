@@ -1,5 +1,5 @@
+import useDarkMode from '@hook/useDarkMode';
 import { useTernaryDarkMode } from 'usehooks-ts';
-import useDarkMode from '~/hooks/useDarkMode';
 
 const DarkLightTheme = () => {
   const { toggle } = useDarkMode();

@@ -1,5 +1,5 @@
-import {} from '~/utils/date-utils'; // To inizialize the functions
-import { createTRPCRouter } from '~/server/api/trpc';
+import { createTRPCRouter } from '@server/api/trpc';
+import {} from '@util/date-utils'; // To inizialize the functions
 import { lunchRouter } from './routers/lunch-router';
 
 /**

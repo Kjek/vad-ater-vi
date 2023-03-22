@@ -1,8 +1,9 @@
+import { useGlobalState } from '@hook/useGlobalState';
+import { sweDays } from '@type/swedish-days';
 import { useEffectOnce } from 'usehooks-ts';
-import { useGlobalState } from '~/hooks/useGlobalState';
-import { sweDays } from '~/types/swedish-days';
 import DayButton from './DayButton';
-import ResetButton from './ResetButton';
+import AllWeekButton from './AllWeekButton';
+import AllWeekButtonIcon from '@asset/AllWeekButtonIcon';
 
 const DaySelector = () => {
   const { dispatch } = useGlobalState();
@@ -10,7 +11,6 @@ const DaySelector = () => {
   useEffectOnce(() => {
     dispatch({
       type: 'reset',
-      payload: {},
     });
   });
 
@@ -21,14 +21,14 @@ const DaySelector = () => {
           id='day-button-list'
           className='flex flex-wrap items-center justify-center gap-2'
         >
+          <li key='all-week'>
+            <AllWeekButtonIcon />
+          </li>
           {sweDays.map((day) => (
             <li key={day}>
               <DayButton title={day} />
             </li>
           ))}
-          <li key='reset'>
-            <ResetButton />
-          </li>
         </ul>
       </div>
     </>

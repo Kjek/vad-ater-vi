@@ -1,7 +1,7 @@
-import { useGlobalState } from '~/hooks/useGlobalState';
-import type { Restaurant } from '~/types/lunch-menu';
-import type { RestaurantType } from '~/types/restaurant-links';
-import { RestaurantURL } from '~/types/restaurant-links';
+import { useGlobalState } from '@hook/useGlobalState';
+import type { Restaurant } from '@type/lunch-menu';
+import type { RestaurantType } from '@type/restaurant-links';
+import { RestaurantURL } from '@type/restaurant-links';
 
 interface ListProps {
   restaurant: Restaurant;

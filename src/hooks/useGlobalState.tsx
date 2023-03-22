@@ -1,6 +1,6 @@
+import { sweDays } from '@type/swedish-days';
 import type { Dispatch } from 'react';
 import { createContext, useContext, useReducer } from 'react';
-import { sweDays } from '~/types/swedish-days';
 
 export interface MultiSelectorState {
   isMultiSelect: boolean;
@@ -8,12 +8,12 @@ export interface MultiSelectorState {
 }
 
 export type Action<T> =
+  | { type: 'all' }
   | { type: 'selected'; payload: T }
-  | { type: 'reset'; payload: T };
+  | { type: 'reset' };
 
 export interface MultiSelectorPayload {
-  day?: string;
-  isSelected?: boolean;
+  day: string;
 }
 const initialState: MultiSelectorState = {
   isMultiSelect: false,
@@ -25,26 +25,29 @@ const useMultiSelector = () => {
     state: MultiSelectorState,
     action: Action<MultiSelectorPayload>
   ): MultiSelectorState => {
-    const { day, isSelected } = action.payload;
     switch (action.type) {
-      case 'selected':
-        day &&
-          isSelected !== undefined &&
-          state.daysSelected.set(day, isSelected);
+      case 'all':
+        sweDays.map((day) => state.daysSelected.set(day, true));
         return {
           ...state,
           isMultiSelect: true,
         };
-      case 'reset':
+      case 'selected':
+        const { day } = action.payload;
         const initialDaysSelected = new Map(initialState.daysSelected);
-        initialDaysSelected.set(
-          sweDays[new Date().getDay() - 1] ?? sweDays[0],
-          true
-        );
+        initialDaysSelected.set(day, true);
         return {
           ...initialState,
           isMultiSelect: false,
           daysSelected: initialDaysSelected,
+        };
+      case 'reset':
+        const resettedDays = new Map(initialState.daysSelected);
+        resettedDays.set(sweDays[new Date().getDay() - 1] ?? sweDays[0], true);
+        return {
+          ...initialState,
+          isMultiSelect: false,
+          daysSelected: resettedDays,
         };
       default:
         return state;

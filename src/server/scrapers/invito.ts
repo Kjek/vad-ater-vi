@@ -1,6 +1,6 @@
+import type { LunchMenu } from '@type/lunch-menu';
+import { RestaurantURL } from '@type/restaurant-links';
 import { JSDOM } from 'jsdom';
-import type { LunchMenu } from '~/types/lunch-menu';
-import { RestaurantURL } from '~/types/restaurant-links';
 
 const invitoWebScraper = async () => {
   console.log('Fetching Invito menu!');
@@ -25,7 +25,6 @@ const invitoWebScraper = async () => {
             .trim(),
         } as LunchMenu)
     );
-  console.log(lunchMenu);
 
   return lunchMenu;
 };

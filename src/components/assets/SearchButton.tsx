@@ -1,4 +1,4 @@
-import { useTheme } from '~/hooks/useTheme';
+import { useTheme } from '@hook/useTheme';
 
 interface SearchButtonProps {
   isSearchBarVisible: boolean;
@@ -15,13 +15,13 @@ const SearchButton = (props: SearchButtonProps) => {
   return (
     <>
       <span
-        className={`flex cursor-pointer rounded-md border border-gray-200 bg-white py-2.5 px-3.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 ${activeClasses}`}
+        className={`flex cursor-pointer rounded-md border border-gray-200 bg-white py-2.5 px-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 ${activeClasses}`}
         onClick={toggleSearchBar}
       >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           viewBox='0 0 24 24'
-          fill={theme === 'dark' ? 'white' : 'currentColor'}
+          fill={theme === 'dark' ? '#D1D5DB' : 'currentColor'}
           className='h-4 w-4'
         >
           <path

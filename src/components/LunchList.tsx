@@ -1,4 +1,4 @@
-import type { Restaurant } from '~/types/lunch-menu';
+import type { Restaurant } from '@type/lunch-menu';
 import ListItem from './ListItem';
 
 interface LunchListProps {
