@@ -1,7 +1,7 @@
+import { useTheme } from '@hook/useTheme';
 import type { Dispatch, SetStateAction } from 'react';
 import { useRef } from 'react';
 import { useEffect, useState } from 'react';
-import { useTheme } from '~/hooks/useTheme';
 
 interface SearchBarProps {
   setSearchQuery: Dispatch<SetStateAction<string>>;
@@ -28,13 +28,13 @@ const SearchBar = (props: SearchBarProps) => {
   return (
     <>
       <div className='flex justify-center'>
-        <div className='relative'>
+        <div className='relative w-full sm:w-auto'>
           <input
             title='Sök på restauranger som ska visas i listan'
             type='text'
             id='search-restaurant'
             ref={inputRef}
-            className='self-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 transition duration-500 focus:border-gray-300 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-gray-600 dark:focus:ring-gray-600 md:w-auto'
+            className='w-full self-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-800 transition duration-500 focus:border-gray-300 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:border-gray-600 dark:focus:ring-gray-600 md:w-auto'
             placeholder='Sök restauranger...'
             onChange={(event) => setInputText(event.currentTarget.value)}
           />

@@ -1,12 +1,12 @@
-import augustasWebScraper from '~/server/scrapers/augustas';
-import bergHjortWebScraper from '~/server/scrapers/berg-hjort';
-import brynersWebScraper from '~/server/scrapers/bryners';
-import estreetWebScraper from '~/server/scrapers/estreet';
-import innegardenWebScraper from '~/server/scrapers/innegarden';
-import invitoWebScraper from '~/server/scrapers/invito';
-import type { Restaurant } from '~/types/lunch-menu';
-import type { PrismaType } from '~/types/prisma-custom';
-import { convertRestaurant } from '~/utils/restaurantUtils';
+import augustasWebScraper from '@scraper/augustas';
+import bergHjortWebScraper from '@scraper/berg-hjort';
+import brynersWebScraper from '@scraper/bryners';
+import estreetWebScraper from '@scraper/estreet';
+import innegardenWebScraper from '@scraper/innegarden';
+import invitoWebScraper from '@scraper/invito';
+import type { Restaurant } from '@type/lunch-menu';
+import type { PrismaType } from '@type/prisma-custom';
+import { convertRestaurant } from '@util/restaurantUtils';
 import { searchRestaurantByName } from './db-helper';
 import { handleScraper } from './scraper-helper';
 
@@ -40,16 +40,14 @@ export const handleLunchScrapers = async (prisma: PrismaType) => {
     bergHjortWebScraper
   );
 
-  return (
-    [
-      await augustas,
-      await bergHjort,
-      await bryners,
-      await estreet,
-      await innegarden,
-      await invito,
-    ] as Restaurant[]
-  ).filter((restaurant) => restaurant.menu.length > 0);
+  return [
+    await augustas,
+    await bergHjort,
+    await bryners,
+    await estreet,
+    await innegarden,
+    await invito,
+  ] as Restaurant[];
 };
 
 export const handleLunchSearch = async (

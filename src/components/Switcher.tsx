@@ -1,4 +1,4 @@
-import DarkLightTheme from '~/assets/icons/DarkLightTheme';
+import DarkLightTheme from '@asset/DarkLightTheme';
 
 const Switcher = () => {
   return (
