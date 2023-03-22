@@ -1,6 +1,6 @@
-import type { LunchMenu, WeeklySpecial } from '~/types/lunch-menu';
-import type { PrismaType } from '~/types/prisma-custom';
-import type { MenuProps, WeeklySpecialProps } from '~/types/restaurant-props';
+import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
+import type { PrismaType } from '@type/prisma-custom';
+import type { MenuProps, WeeklySpecialProps } from '@type/restaurant-props';
 
 export const getRestaurantNeedsUpdating = async (
   prisma: PrismaType,

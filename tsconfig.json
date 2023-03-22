@@ -14,7 +14,16 @@
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "~/*": ["./src/*"]
+      "@asset/*": ["./src/components/assets/*"],
+      "@component/*": ["./src/components/*"],
+      "@hook/*": ["./src/hooks/*"],
+      "@page/*": ["./src/pages/*"],
+      "@router/*": ["./src/server/api/routers/*"],
+      "@router/helper/*": ["./src/server/api/routers/helpers/*"],
+      "@scraper/*": ["./src/server/scrapers/*"],
+      "@server/*": ["./src/server/*"],
+      "@type/*": ["./src/types/*"],
+      "@util/*": ["./src/utils/*"]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,

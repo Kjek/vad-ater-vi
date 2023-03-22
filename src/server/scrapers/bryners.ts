@@ -1,8 +1,8 @@
+import type { LunchMenu } from '@type/lunch-menu';
+import { RestaurantURL } from '@type/restaurant-links';
+import type { SwedishDay } from '@type/swedish-days';
+import { sweDays } from '@type/swedish-days';
 import { JSDOM } from 'jsdom';
-import { type LunchMenu } from '~/types/lunch-menu';
-import { RestaurantURL } from '~/types/restaurant-links';
-import type { SwedishDay } from '~/types/swedish-days';
-import { sweDays } from '~/types/swedish-days';
 
 const brynersWebScraper = async () => {
   console.log('Fetching Bryners menu!');
@@ -26,8 +26,6 @@ const brynersWebScraper = async () => {
           food: item.textContent?.trim(),
         } as LunchMenu)
     );
-
-  console.log(lunchMenu);
 
   return lunchMenu;
 };

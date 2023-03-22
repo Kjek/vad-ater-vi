@@ -1,4 +1,4 @@
-import { useTheme } from '~/hooks/useTheme';
+import { useTheme } from '@hook/useTheme';
 
 const GitHubIcon = () => {
   const { theme } = useTheme();

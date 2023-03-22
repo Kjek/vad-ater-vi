@@ -1,8 +1,8 @@
+import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
+import { RestaurantURL } from '@type/restaurant-links';
+import type { SwedishDay } from '@type/swedish-days';
+import { sweDays } from '@type/swedish-days';
 import { JSDOM } from 'jsdom';
-import { type LunchMenu, type WeeklySpecial } from '~/types/lunch-menu';
-import { RestaurantURL } from '~/types/restaurant-links';
-import type { SwedishDay } from '~/types/swedish-days';
-import { sweDays } from '~/types/swedish-days';
 
 const augustasWebScraper = async () => {
   console.log('Fetching Mamma Augustas menu!');
@@ -26,8 +26,6 @@ const augustasWebScraper = async () => {
         .replaceAll('   ', ' ')
     )[0];
 
-  console.log(lunchMenu);
-
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
 
@@ -46,9 +44,6 @@ const augustasWebScraper = async () => {
       }
     }
   }
-
-  console.log(lunchWeek);
-  console.log(weeklySpecials);
 
   return { lunchWeek, weeklySpecials };
 };

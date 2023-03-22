@@ -1,12 +1,12 @@
-import { isLunchMenus, isWeekMenu } from '~/types/lunch-menu';
-import type { PrismaType } from '~/types/prisma-custom';
-import type Scraper from '~/types/scraper';
-import { convertRestaurant } from '~/utils/restaurantUtils';
+import { isLunchMenus, isWeekMenu } from '@type/lunch-menu';
+import type { PrismaType } from '@type/prisma-custom';
+import type Scraper from '@type/scraper';
+import { convertRestaurant } from '@util/restaurantUtils';
 import {
   createRestaurantIfNotExists,
+  deleteMenuAndWeekly,
   findRestaurantByName,
   getRestaurantNeedsUpdating,
-  deleteMenuAndWeekly,
 } from './db-helper';
 
 export const handleScraper = async (

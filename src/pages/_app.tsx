@@ -1,13 +1,13 @@
 import { type AppType } from 'next/app';
 
-import { api } from '../utils/api';
+import { api } from '@util/api';
 
 import '../styles/globals.css';
 
-import {} from '~/utils/date-utils'; // To inizialize the functions
-import {} from '~/utils/string-utils'; // To inizialize the functions
-import { ThemeProvider } from '~/hooks/useTheme';
-import { StateProvider } from '~/hooks/useGlobalState';
+import { StateProvider } from '@hook/useGlobalState';
+import { ThemeProvider } from '@hook/useTheme';
+import {} from '@util/date-utils'; // To inizialize the functions
+import {} from '@util/string-utils'; // To inizialize the functions
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
