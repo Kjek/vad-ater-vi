@@ -1,5 +1,6 @@
 import augustasWebScraper from '@scraper/augustas';
 import bergHjortWebScraper from '@scraper/berg-hjort';
+import blocoWebScraper from '@scraper/bloco';
 import brynersWebScraper from '@scraper/bryners';
 import estreetWebScraper from '@scraper/estreet';
 import innegardenWebScraper from '@scraper/innegarden';
@@ -13,6 +14,7 @@ import { handleScraper } from './scraper-helper';
 const Restaurants = {
   augustas: 'Augustas',
   bergHjort: 'Berg & Hjort',
+  bloco: 'Bloco',
   bryners: 'Bryners',
   estreet: 'E Street',
   innegarden: 'Innegården',
@@ -33,16 +35,17 @@ export const handleLunchScrapers = async (prisma: PrismaType) => {
     Restaurants.innegarden,
     innegardenWebScraper
   );
-
   const bergHjort = handleScraper(
     prisma,
     Restaurants.bergHjort,
     bergHjortWebScraper
   );
+  const bloco = handleScraper(prisma, Restaurants.bloco, blocoWebScraper);
 
   return [
     await augustas,
     await bergHjort,
+    await bloco,
     await bryners,
     await estreet,
     await innegarden,

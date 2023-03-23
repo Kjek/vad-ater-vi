@@ -1,4 +1,4 @@
-import AllWeekButtonIcon from '@asset/AllWeekButtonIcon';
+import AllWeekButton from '@component/AllWeekButton';
 import SearchButton from '@asset/SearchButton';
 import { useGlobalState } from '@hook/useGlobalState';
 import { sweDays } from '@type/swedish-days';
@@ -14,6 +14,7 @@ interface DaySelectorMobileProps {
 const DaySelectorMobile = (props: DaySelectorMobileProps) => {
   const { dispatch } = useGlobalState();
   const [isSearchBarVisible, toggleSearchBar] = useToggle();
+  const [isAllSelected, _, setAllSelected] = useToggle();
   const { setSearchQuery } = props;
 
   useEffectOnce(() => {
@@ -35,11 +36,18 @@ const DaySelectorMobile = (props: DaySelectorMobileProps) => {
             </li>
           ) : null}
           <li key='all'>
-            <AllWeekButtonIcon />
+            <AllWeekButton
+              isAllSelected={isAllSelected}
+              setAllSelected={setAllSelected}
+            />
           </li>
           {sweDays.map((day) => (
             <li key={day}>
-              <DayButtonMobile title={day} />
+              <DayButtonMobile
+                isAllSelected={isAllSelected}
+                setAllSelected={setAllSelected}
+                title={day}
+              />
             </li>
           ))}
           <li key='search-button'>

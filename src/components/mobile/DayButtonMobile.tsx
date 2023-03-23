@@ -1,25 +1,28 @@
+import type { AllWeekButtonProps } from '@component/AllWeekButton';
 import { useGlobalState } from '@hook/useGlobalState';
 import { useCallback } from 'react';
 
-interface DayButtonMobileProps {
+interface DayButtonMobileProps extends AllWeekButtonProps {
   title: string;
 }
 
 const DayButton = (props: DayButtonMobileProps) => {
   const { state, dispatch } = useGlobalState();
-  const { title } = props;
+  const { title, setAllSelected } = props;
   const isSelected = state.daysSelected.get(title);
 
   const onClick = useCallback(
-    () =>
+    () => {
       dispatch({
         type: 'selected',
         payload: {
           day: title,
         },
       }),
+        setAllSelected(false);
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [isSelected]
+    []
   );
 
   const selectedClasses = isSelected

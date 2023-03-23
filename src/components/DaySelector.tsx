@@ -1,12 +1,12 @@
 import { useGlobalState } from '@hook/useGlobalState';
 import { sweDays } from '@type/swedish-days';
-import { useEffectOnce } from 'usehooks-ts';
+import { useEffectOnce, useToggle } from 'usehooks-ts';
 import DayButton from './DayButton';
 import AllWeekButton from './AllWeekButton';
-import AllWeekButtonIcon from '@asset/AllWeekButtonIcon';
 
 const DaySelector = () => {
   const { dispatch } = useGlobalState();
+  const [isAllSelected, _, setAllSelected] = useToggle();
 
   useEffectOnce(() => {
     dispatch({
@@ -22,11 +22,14 @@ const DaySelector = () => {
           className='flex flex-wrap items-center justify-center gap-2'
         >
           <li key='all-week'>
-            <AllWeekButtonIcon />
+            <AllWeekButton
+              isAllSelected={isAllSelected}
+              setAllSelected={setAllSelected}
+            />
           </li>
           {sweDays.map((day) => (
             <li key={day}>
-              <DayButton title={day} />
+              <DayButton title={day} setAllSelected={setAllSelected} />
             </li>
           ))}
         </ul>
