@@ -1,25 +1,40 @@
 import { useGlobalState } from '@hook/useGlobalState';
+import { useTheme } from '@hook/useTheme';
+import type { Dispatch, SetStateAction } from 'react';
 import { useCallback } from 'react';
+import CalendarIcon from './assets/CalendarIcon';
+import CloseIcon from './assets/CloseIcon';
 
-const AllWeekButton = () => {
+export interface AllWeekButtonProps {
+  isAllSelected?: boolean;
+  setAllSelected: Dispatch<SetStateAction<boolean>>;
+}
+
+const AllWeekButton = (props: AllWeekButtonProps) => {
   const { dispatch } = useGlobalState();
+  const { theme } = useTheme();
+  const { isAllSelected, setAllSelected } = props;
   const onClick = useCallback(() => {
     dispatch({
-      type: 'all',
+      type: !isAllSelected ? 'all' : 'reset',
     });
+    setAllSelected(!isAllSelected);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAllSelected]);
+
+  const icon = isAllSelected ? <CloseIcon /> : <CalendarIcon theme={theme} />;
+
+  const selectedClasses = isAllSelected
+    ? 'ring-2 ring-gray-700 duration-75 bg-white dark:ring-gray-400 dark:bg-gray-800'
+    : '';
 
   return (
-    <>
-      <input
-        title='Tryck för att rensa valen och visa dagens lunch'
-        className='cursor-pointer rounded-lg border border-gray-200 py-2.5 px-5 text-sm font-thin text-gray-800 transition-all duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white'
-        type='button'
-        value='Hela veckan'
-        onClick={onClick}
-      />
-    </>
+    <span
+      className={`flex cursor-pointer rounded-md border border-gray-300 py-2.5 px-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 ${selectedClasses}`}
+      onClick={onClick}
+    >
+      {icon}
+    </span>
   );
 };
 

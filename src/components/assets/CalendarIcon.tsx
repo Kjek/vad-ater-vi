@@ -1,22 +1,11 @@
-import { useGlobalState } from '@hook/useGlobalState';
-import { useTheme } from '@hook/useTheme';
-import { useCallback } from 'react';
+interface CalendarIconProps {
+  theme: string;
+}
 
-const AllWeekButtonIcon = () => {
-  const { dispatch } = useGlobalState();
-  const { theme } = useTheme();
-  const onClick = useCallback(() => {
-    dispatch({
-      type: 'all',
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+const CalendarIcon = (props: CalendarIconProps) => {
+  const { theme } = props;
   return (
-    <span
-      className='flex cursor-pointer rounded-md border border-gray-200 py-2.5 px-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3'
-      onClick={onClick}
-    >
+    <>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         viewBox='0 0 24 24'
@@ -30,8 +19,8 @@ const AllWeekButtonIcon = () => {
           clipRule='evenodd'
         />
       </svg>
-    </span>
+    </>
   );
 };
 
-export default AllWeekButtonIcon;
+export default CalendarIcon;

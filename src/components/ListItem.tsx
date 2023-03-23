@@ -28,7 +28,7 @@ const ListItem = (props: ListProps) => {
           <ul>
             {restaurant.menu.length === 5 ? (
               menuToShow.map((lunch) => (
-                <li key={lunch.day} className='pb-6'>
+                <li key={lunch.day} className='pb-6 last:pb-0'>
                   <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
                     {lunch.day + ` ${lunch.day.getShortDate()}`}
                   </h3>
@@ -38,7 +38,7 @@ const ListItem = (props: ListProps) => {
                 </li>
               ))
             ) : (
-              <li key='error-message' className='pb-6'>
+              <li key='error-message'>
                 <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
                   {
                     'Fel vid hämtning av menyer gå till restaurangens hemsida istället: '
@@ -54,7 +54,7 @@ const ListItem = (props: ListProps) => {
             )}
           </ul>
           {restaurant.weeklySpecials && restaurant.weeklySpecials.length > 0 ? (
-            <ul id='weekly-specials-list'>
+            <ul id='weekly-specials-list' className='pt-6'>
               {restaurant.weeklySpecials.map((item, index) => (
                 <li
                   className={`whitespace-pre-line  ${
