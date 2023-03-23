@@ -27,6 +27,7 @@ const innegardenWebScraper = async () => {
             .replaceAll('<br>*', '\n')
             .replaceAll('Går även bra att ta Take Away', '')
             .replaceAll(/<\/?[^>]+>|$/gim, '')
+            .replaceAll(/\s?\|+\s/gm, ', ')
             .trim(),
         } as LunchMenu);
       }

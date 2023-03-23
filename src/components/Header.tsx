@@ -1,6 +1,6 @@
-import GitHubIcon from '@asset/GitHubIcon';
+import GitHubButton from '@component/GitHubButton';
 import Image from 'next/image';
-import Switcher from './Switcher';
+import ThemeButton from './ThemeButton';
 
 const Header = () => {
   return (
@@ -20,10 +20,10 @@ const Header = () => {
         </div>
         <div className='flex items-center gap-2'>
           <div className='rounded-md'>
-            <Switcher />
+            <ThemeButton />
           </div>
           <div className='rounded-md'>
-            <GitHubIcon />
+            <GitHubButton />
           </div>
         </div>
       </nav>
