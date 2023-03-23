@@ -1,4 +1,4 @@
-# Vad äter vi?
+# Vad äter vi? ![](https://github.com/Kjek/vad-ater-vi/actions/workflows/preview.yml/badge.svg) ![](https://github.com/Kjek/vad-ater-vi/actions/workflows/production.yml/badge.svg)
 
 En [T3 Stack](https://create.t3.gg/) med [Next.js](https://nextjs.org) för front och back-end, [Prisma](https://prisma.io) för databashantering, [Tailwind CSS](https://tailwindcss.com) för styling och [tRPC](https://trpc.io) för typesafe routing.
 
