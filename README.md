@@ -2,6 +2,8 @@
 
 En [T3 Stack](https://create.t3.gg/) med [Next.js](https://nextjs.org) för front och back-end, [Prisma](https://prisma.io) för databashantering, [Tailwind CSS](https://tailwindcss.com) för styling och [tRPC](https://trpc.io) för typesafe routing.
 
+![](https://badges.aleen42.com/src/typescript.svg) ![](https://badges.aleen42.com/src/react.svg) ![](https://badges.aleen42.com/src/tailwindcss.svg) [![badges](https://badges.aleen42.com/src/buymeacoffee.svg)](https://www.buymeacoffee.com/kjek)
+
 ## Innehålsförtäckning
 
 - [Installation](#installation)
