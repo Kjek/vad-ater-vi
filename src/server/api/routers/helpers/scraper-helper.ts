@@ -14,13 +14,13 @@ export const handleScraper = async (
   name: string,
   scraper: Scraper
 ) => {
-  const { restaurantId, newWeek } = await getRestaurantNeedsUpdating(
+  const { restaurantId, updatedAt } = await getRestaurantNeedsUpdating(
     prisma,
     name
   );
   let restaurant = null;
-  if (!restaurantId || newWeek) {
-    if (restaurantId && newWeek) {
+  if (!restaurantId || updatedAt?.getUTCDay() !== new Date().getUTCDay()) {
+    if (restaurantId && updatedAt?.getUTCDay() !== new Date().getUTCDay()) {
       await deleteMenuAndWeekly(prisma, restaurantId);
     }
     const menu = await scraper();
