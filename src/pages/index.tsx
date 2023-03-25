@@ -14,10 +14,13 @@ const Home: NextPage = () => {
   const isFirstRender = useIsFirstRender();
   const [searchQuery, setSearchQuery] = useState<string>('');
   const restaurants = searchQuery
-    ? api.lunch.menuSearch.useQuery({
-        searchText: searchQuery,
-      }).data
-    : api.lunch.menu.useQuery().data;
+    ? api.lunch.menuSearch.useQuery(
+        {
+          searchText: searchQuery,
+        },
+        { refetchOnWindowFocus: false }
+      ).data
+    : api.lunch.menu.useQuery(undefined, { refetchOnWindowFocus: false }).data;
 
   return (
     <>

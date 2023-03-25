@@ -1,7 +1,5 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
-import type { SwedishDay } from '@type/swedish-days';
-import { sweDays } from '@type/swedish-days';
 import { JSDOM } from 'jsdom';
 
 const blocoWebScraper = async () => {
@@ -11,6 +9,8 @@ const blocoWebScraper = async () => {
     resources: 'usable',
   });
   const scrapedDocument = dom.window.document;
+  const lunchWeek = [];
+  const weeklySpecials = [];
 
   const scrapedMenu = Array.from(scrapedDocument.querySelectorAll('p'))
     .filter(
@@ -23,15 +23,13 @@ const blocoWebScraper = async () => {
     .map((p) => p.innerHTML)
     .join(' ');
 
-  const lunchMenu = [];
-
   if (scrapedMenu) {
     const match = scrapedMenu.matchAll(
       /\<\w\>([a-ö]{3,4})(?:\<+\/?\w+\>+)+([a-ö\s\”\",]+)/gim
     );
     for (const text of match) {
       if (text[1] && text[2]) {
-        lunchMenu.push({
+        lunchWeek.push({
           day: text[1].concat('dag').trim(),
           food: text[2].trim(),
         } as LunchMenu);
@@ -39,7 +37,32 @@ const blocoWebScraper = async () => {
     }
   }
 
-  return lunchMenu;
+  const scrapedWeekly = Array.from(scrapedDocument.querySelectorAll('p'))
+    .filter(
+      (p) =>
+        p.innerHTML.match(
+          /^\<\w\>([a-ö\s]+)(?:\<\/?\w+\>)+([a-ö\s,\”\"]+$)/gim
+        ) &&
+        (p.innerHTML.includes('Veckans') || p.innerHTML.includes('Vegetarisk'))
+    )
+    .map((p) => p.innerHTML)
+    .join(' ');
+
+  if (scrapedWeekly) {
+    const match = scrapedWeekly.matchAll(
+      /\<\w\>([a-ö\s]+)(?:\<\/?\w+\>)+([a-ö\s,\”\"]+)/gim
+    );
+    for (const text of match) {
+      if (text[1] && text[2]) {
+        weeklySpecials.push({
+          type: text[1].trim(),
+          food: text[2].trim(),
+        } as WeeklySpecial);
+      }
+    }
+  }
+
+  return { lunchWeek, weeklySpecials };
 };
 
 export default blocoWebScraper;
