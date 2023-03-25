@@ -11,7 +11,7 @@ export const decodeHtmlEntity = (text: string) => {
     quot: '"',
     nbsp: ' ',
   };
-  return text.replace(/&([a-z]+);/gi, (match, entity: string) => {
+  return text.replaceAll(/&(\w+);/gi, (match, entity: string) => {
     return entityMap[entity] || match;
   });
 };

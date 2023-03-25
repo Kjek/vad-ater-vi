@@ -16,10 +16,7 @@ export const getRestaurantNeedsUpdating = async (
     },
   });
 
-  return {
-    restaurantId: restaurant?.id,
-    newWeek: new Date().getWeek() !== restaurant?.updatedAt?.getWeek(),
-  };
+  return { restaurantId: restaurant?.id, updatedAt: restaurant?.updatedAt };
 };
 
 export const deleteMenuAndWeekly = async (prisma: PrismaType, id: string) => {
