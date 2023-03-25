@@ -1,3 +1,4 @@
+import resetRouter from '@router/reset-router';
 import { createTRPCRouter } from '@server/api/trpc';
 import {} from '@util/date-utils'; // To inizialize the functions
 import { lunchRouter } from './routers/lunch-router';
@@ -9,6 +10,7 @@ import { lunchRouter } from './routers/lunch-router';
  */
 export const appRouter = createTRPCRouter({
   lunch: lunchRouter,
+  reset: resetRouter,
 });
 
 // export type definition of API
