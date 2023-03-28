@@ -39,6 +39,7 @@ const SearchBar = (props: SearchBarProps) => {
             onChange={(event) => setInputText(event.currentTarget.value)}
           />
           <button
+            aria-label='rensa sökfältet'
             type='button'
             className='absolute right-0 bottom-[5px] rounded-lg px-2 py-2 text-sm font-medium text-white sm:bottom-[55px] lg:bottom-[5px]'
             onClick={() => onClear()}
