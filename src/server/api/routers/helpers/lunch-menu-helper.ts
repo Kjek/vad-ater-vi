@@ -5,7 +5,6 @@ import brynersWebScraper from '@scraper/bryners';
 import estreetWebScraper from '@scraper/estreet';
 import innegardenWebScraper from '@scraper/innegarden';
 import invitoWebScraper from '@scraper/invito';
-import steakHouseWebScraper from '@scraper/steakhouse';
 import type { Restaurant } from '@type/lunch-menu';
 import type { PrismaType } from '@type/prisma-custom';
 import { convertRestaurant } from '@util/restaurantUtils';
@@ -20,7 +19,6 @@ const Restaurants = {
   estreet: 'E Street',
   innegarden: 'Innegården',
   invito: 'Invito',
-  steakHouse: 'Steak House',
 };
 
 export const handleLunchScrapers = async (prisma: PrismaType) => {
@@ -44,12 +42,6 @@ export const handleLunchScrapers = async (prisma: PrismaType) => {
   );
   const bloco = handleScraper(prisma, Restaurants.bloco, blocoWebScraper);
 
-  const steakHouse = handleScraper(
-    prisma,
-    Restaurants.steakHouse,
-    steakHouseWebScraper
-  );
-
   return [
     await augustas,
     await bergHjort,
@@ -58,7 +50,6 @@ export const handleLunchScrapers = async (prisma: PrismaType) => {
     await estreet,
     await innegarden,
     await invito,
-    await steakHouse,
   ] as Restaurant[];
 };
 
