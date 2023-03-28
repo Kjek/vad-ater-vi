@@ -3,14 +3,15 @@
   "short_name": "VÄV",
   "theme_color": "#111827",
   "background_color": "#111827",
-  "display": "browser",
+  "display": "standalone",
   "scope": "/",
   "start_url": "/",
   "icons": [
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/icon-256x256.png",
