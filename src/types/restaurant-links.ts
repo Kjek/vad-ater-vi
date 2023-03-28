@@ -8,6 +8,7 @@ export const RestaurantURL = {
   'E Street': 'https://www.estreet.nu',
   Innegården: 'http://www.innergarden.se/#lunchmeny',
   Invito: 'http://sundsvall.invitobar.se/mat/#veckans-lunch',
+  Steakhouse: 'https://thesteakhouse.se/sundsvall-first-hotel/',
 } as const;
 
 export type RestaurantType =
@@ -17,4 +18,5 @@ export type RestaurantType =
   | 'Bryners'
   | 'E Street'
   | 'Innegården'
-  | 'Invito';
+  | 'Invito'
+  | 'Steakhouse';
