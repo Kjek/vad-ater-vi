@@ -2,17 +2,15 @@ import type { LunchMenu } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
 import type { SwedishDay } from '@type/swedish-days';
 import { sweDays } from '@type/swedish-days';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 
 const brynersWebScraper = async () => {
-  console.log('Fetching Bryners menu!');
+  console.time('Fetching Bryners menu');
 
-  const dom = await JSDOM.fromURL(RestaurantURL['Bryners'], {
-    resources: 'usable',
-  });
-  const scrapedDocument = dom.window.document;
+  const html = await (await fetch(RestaurantURL['Bryners'])).text();
+  const { document } = parseHTML(html);
 
-  const lunchMenu = Array.from(scrapedDocument.querySelectorAll('ul'))
+  const lunchMenu = Array.from(document.querySelectorAll('ul'))
     .filter((ul) =>
       sweDays.includes(
         (ul.previousElementSibling?.textContent?.split(' ')[0] as SwedishDay) ??
@@ -27,6 +25,7 @@ const brynersWebScraper = async () => {
         } as LunchMenu)
     );
 
+  console.timeEnd('Fetching Bryners menu');
   return lunchMenu;
 };
 

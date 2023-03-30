@@ -1,56 +1,17 @@
-import augustasWebScraper from '@scraper/augustas';
-import bergHjortWebScraper from '@scraper/berg-hjort';
-import blocoWebScraper from '@scraper/bloco';
-import brynersWebScraper from '@scraper/bryners';
-import estreetWebScraper from '@scraper/estreet';
-import innegardenWebScraper from '@scraper/innegarden';
-import invitoWebScraper from '@scraper/invito';
+import webScraper from '@scraper/webscraper';
 import type { Restaurant } from '@type/lunch-menu';
 import type { PrismaType } from '@type/prisma-custom';
+import type { RestaurantType } from '@type/restaurant-links';
+import { RestaurantURL } from '@type/restaurant-links';
 import { convertRestaurant } from '@util/restaurantUtils';
 import { searchRestaurantByName } from './db-helper';
-import { handleScraper } from './scraper-helper';
-
-const Restaurants = {
-  augustas: 'Augustas',
-  bergHjort: 'Berg & Hjort',
-  bloco: 'Bloco',
-  bryners: 'Bryners',
-  estreet: 'E Street',
-  innegarden: 'Innergården 1891',
-  invito: 'Invito',
-};
 
 export const handleLunchScrapers = async (prisma: PrismaType) => {
-  const bryners = handleScraper(prisma, Restaurants.bryners, brynersWebScraper);
-  const augustas = handleScraper(
-    prisma,
-    Restaurants.augustas,
-    augustasWebScraper
-  );
-  const invito = handleScraper(prisma, Restaurants.invito, invitoWebScraper);
-  const estreet = handleScraper(prisma, Restaurants.estreet, estreetWebScraper);
-  const innegarden = handleScraper(
-    prisma,
-    Restaurants.innegarden,
-    innegardenWebScraper
-  );
-  const bergHjort = handleScraper(
-    prisma,
-    Restaurants.bergHjort,
-    bergHjortWebScraper
-  );
-  const bloco = handleScraper(prisma, Restaurants.bloco, blocoWebScraper);
-
-  return [
-    await augustas,
-    await bergHjort,
-    await bloco,
-    await bryners,
-    await estreet,
-    await innegarden,
-    await invito,
-  ] as Restaurant[];
+  return (await Promise.all(
+    Object.keys(RestaurantURL).map((restaurantName) =>
+      webScraper(prisma, restaurantName as RestaurantType)
+    )
+  )) as Restaurant[];
 };
 
 export const handleLunchSearch = async (
