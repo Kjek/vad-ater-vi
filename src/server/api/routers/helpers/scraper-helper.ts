@@ -19,8 +19,16 @@ export const handleScraper = async (
     name
   );
   let restaurant = null;
-  if (!restaurantId || updatedAt?.getUTCDay() !== new Date().getUTCDay()) {
-    if (restaurantId && updatedAt?.getUTCDay() !== new Date().getUTCDay()) {
+  const today = new Date();
+  if (
+    !restaurantId ||
+    (updatedAt?.getUTCDay() !== today.getUTCDay() && today.isPastNine())
+  ) {
+    if (
+      restaurantId &&
+      updatedAt?.getUTCDay() !== today.getUTCDay() &&
+      today.isPastNine()
+    ) {
       await deleteMenuAndWeekly(prisma, restaurantId);
     }
     const menu = await scraper();
