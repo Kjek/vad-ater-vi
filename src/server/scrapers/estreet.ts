@@ -1,19 +1,17 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
 import { sweDays } from '@type/swedish-days';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 
 const estreetWebScraper = async () => {
-  console.log('Fetching E-Street menu!');
+  console.time('Fetching E-Street menu');
 
-  const dom = await JSDOM.fromURL(RestaurantURL['E Street'], {
-    resources: 'usable',
-  });
-  const scrapedDocument = dom.window.document;
+  const html = await (await fetch(RestaurantURL['E Street'])).text();
+  const { document } = parseHTML(html);
 
   const sweDaysCaps = sweDays.map((day) => day.toUpperCase());
 
-  const lunchWeek = Array.from(scrapedDocument.querySelectorAll('div'))
+  const lunchWeek = Array.from(document.querySelectorAll('div'))
     .filter((div) => div.textContent && sweDaysCaps.includes(div.textContent))
     .map(
       (item) =>
@@ -28,7 +26,7 @@ const estreetWebScraper = async () => {
         } as LunchMenu)
     );
 
-  const weeklySpecials = Array.from(scrapedDocument.querySelectorAll('div'))
+  const weeklySpecials = Array.from(document.querySelectorAll('div'))
     .filter(
       (div) =>
         div.textContent && /^veckans\s\w*\s?\w*:?$/i.test(div.textContent)
@@ -49,6 +47,7 @@ const estreetWebScraper = async () => {
     );
   const lunchMenu = { lunchWeek, weeklySpecials };
 
+  console.timeEnd('Fetching E-Street menu');
   return lunchMenu;
 };
 

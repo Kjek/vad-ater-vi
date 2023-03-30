@@ -3,17 +3,21 @@ import { RestaurantURL } from '@type/restaurant-links';
 import type { SwedishDay } from '@type/swedish-days';
 import { sweDays } from '@type/swedish-days';
 import { decodeHtmlEntity } from '@util/html-utils';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 
 const augustasWebScraper = async () => {
-  console.log('Fetching Mamma Augustas menu!');
+  console.time('Fetching Mamma Augustas menu');
 
-  const dom = await JSDOM.fromURL(RestaurantURL['Augustas'], {
-    resources: 'usable',
-  });
-  const scrapedDocument = dom.window.document;
+  const html = await (
+    await fetch(RestaurantURL['Augustas'], {
+      headers: {
+        'Accept-Encoding': 'gzip',
+      },
+    })
+  ).text();
+  const { document } = parseHTML(html);
 
-  const lunchMenu = Array.from(scrapedDocument.querySelectorAll('strong'))
+  const lunchMenu = Array.from(document.querySelectorAll('strong'))
     .filter((strong) => strong.textContent?.includes('Måndag'))
     .map((item) => item.parentElement?.innerHTML)[0];
 
@@ -43,7 +47,7 @@ const augustasWebScraper = async () => {
       }
     }
   }
-
+  console.timeEnd('Fetching Mamma Augustas menu');
   return { lunchWeek, weeklySpecials };
 };
 

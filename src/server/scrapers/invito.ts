@@ -1,17 +1,15 @@
 import type { LunchMenu } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 
 const invitoWebScraper = async () => {
-  console.log('Fetching Invito menu!');
+  console.time('Fetching Invito menu');
 
-  const dom = await JSDOM.fromURL(RestaurantURL['Invito'], {
-    resources: 'usable',
-  });
-  const scrapedDocument = dom.window.document;
+  const html = await (await fetch(RestaurantURL['Invito'])).text();
+  const { document } = parseHTML(html);
 
   const lunchMenu = Array.from(
-    scrapedDocument.querySelectorAll('#meny-objekt-veckans-lunch-ul')
+    document.querySelectorAll('#meny-objekt-veckans-lunch-ul')
   )
     .flatMap((ul) => Array.from(ul.querySelectorAll('li')))
     .flatMap(
@@ -26,6 +24,7 @@ const invitoWebScraper = async () => {
         } as LunchMenu)
     );
 
+  console.timeEnd('Fetching Invito menu');
   return lunchMenu;
 };
 

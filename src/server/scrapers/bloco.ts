@@ -1,18 +1,17 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 
 const blocoWebScraper = async () => {
-  console.log('Fetching Bloco menu!');
+  console.time('Fetching Bloco menu');
 
-  const dom = await JSDOM.fromURL(RestaurantURL['Bloco'], {
-    resources: 'usable',
-  });
-  const scrapedDocument = dom.window.document;
+  const html = await (await fetch(RestaurantURL['Bloco'])).text();
+  const { document } = parseHTML(html);
+
   const lunchWeek = [];
   const weeklySpecials = [];
 
-  const scrapedMenu = Array.from(scrapedDocument.querySelectorAll('p'))
+  const scrapedMenu = Array.from(document.querySelectorAll('p'))
     .filter(
       (p) =>
         p.innerHTML.match(
@@ -37,7 +36,7 @@ const blocoWebScraper = async () => {
     }
   }
 
-  const scrapedWeekly = Array.from(scrapedDocument.querySelectorAll('p'))
+  const scrapedWeekly = Array.from(document.querySelectorAll('p'))
     .filter(
       (p) =>
         p.innerHTML.match(
@@ -62,6 +61,7 @@ const blocoWebScraper = async () => {
     }
   }
 
+  console.timeEnd('Fetching Bloco menu');
   return { lunchWeek, weeklySpecials };
 };
 
