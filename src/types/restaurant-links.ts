@@ -6,7 +6,7 @@ export const RestaurantURL = {
   Bloco: 'https://www.blocosundsvall.se/lunchmeny',
   Bryners: 'https://bryners.se/veckans-lunch-v-j/bryners-bistro.html',
   'E Street': 'https://www.estreet.nu',
-  Innegården: 'http://www.innergarden.se/#lunchmeny',
+  'Innergården 1891': 'http://www.innergarden.se/#lunchmeny',
   Invito: 'http://sundsvall.invitobar.se/mat/#veckans-lunch',
 } as const;
 
@@ -16,5 +16,5 @@ export type RestaurantType =
   | 'Bloco'
   | 'Bryners'
   | 'E Street'
-  | 'Innegården'
+  | 'Innergården 1891'
   | 'Invito';
