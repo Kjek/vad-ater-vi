@@ -6,9 +6,9 @@ import { decodeHtmlEntity } from '@util/html-utils';
 import { JSDOM } from 'jsdom';
 
 const innegardenWebScraper = async () => {
-  console.log('Fetching Innegården menu!');
+  console.time('Fetching Innergården 1891 menu');
 
-  const dom = await JSDOM.fromURL(RestaurantURL['Innegården'], {
+  const dom = await JSDOM.fromURL(RestaurantURL['Innergården 1891'], {
     resources: 'usable',
   });
   const scrapedDocument = dom.window.document;
@@ -34,6 +34,7 @@ const innegardenWebScraper = async () => {
     }
   }
 
+  console.timeEnd('Fetching Innergården 1891 menu');
   return lunchWeek;
 };
 

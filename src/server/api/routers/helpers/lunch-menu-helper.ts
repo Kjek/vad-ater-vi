@@ -17,7 +17,7 @@ const Restaurants = {
   bloco: 'Bloco',
   bryners: 'Bryners',
   estreet: 'E Street',
-  innegarden: 'Innegården',
+  innegarden: 'Innergården 1891',
   invito: 'Invito',
 };
 
