@@ -7,7 +7,7 @@ import { parseHTML } from 'linkedom';
 const brynersWebScraper = async () => {
   console.time('Fetching Bryners menu');
 
-  const html = await (await fetch(RestaurantURL['Bryners'])).text();
+  const html = await (await fetch(RestaurantURL['Bryners'].lunch)).text();
   const { document } = parseHTML(html);
 
   const lunchMenu = Array.from(document.querySelectorAll('ul'))

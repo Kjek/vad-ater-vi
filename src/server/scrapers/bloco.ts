@@ -5,7 +5,7 @@ import { parseHTML } from 'linkedom';
 const blocoWebScraper = async () => {
   console.time('Fetching Bloco menu');
 
-  const html = await (await fetch(RestaurantURL['Bloco'])).text();
+  const html = await (await fetch(RestaurantURL['Bloco'].lunch)).text();
   const { document } = parseHTML(html);
 
   const lunchWeek = [];
