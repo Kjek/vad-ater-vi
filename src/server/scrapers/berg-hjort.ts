@@ -7,7 +7,7 @@ import { parseHTML } from 'linkedom';
 const bergHjortWebScraper = async () => {
   console.time('Fetching Berg & Hjort menu');
 
-  const html = await (await fetch(RestaurantURL['Berg & Hjort'])).text();
+  const html = await (await fetch(RestaurantURL['Berg & Hjort'].lunch)).text();
   const { document } = parseHTML(html);
 
   const lunchMenuSeperated = Array.from(document.querySelectorAll('span'))

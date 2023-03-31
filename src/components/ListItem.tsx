@@ -19,7 +19,7 @@ const ListItem = (props: ListProps) => {
         <h2 className='pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0'>
           <a
             title='Gå till restaurangens hemsida'
-            href={RestaurantURL[restaurant.name as RestaurantType]}
+            href={RestaurantURL[restaurant.name as RestaurantType].home}
           >
             {restaurant.name}
           </a>
@@ -46,9 +46,9 @@ const ListItem = (props: ListProps) => {
                 </h3>
                 <a
                   className='text-2xl font-bold text-blue-700 underline hover:no-underline dark:text-gray-500'
-                  href={RestaurantURL[restaurant.name as RestaurantType]}
+                  href={RestaurantURL[restaurant.name as RestaurantType].home}
                 >
-                  {RestaurantURL[restaurant.name as RestaurantType]}
+                  {RestaurantURL[restaurant.name as RestaurantType].home}
                 </a>
               </li>
             )}

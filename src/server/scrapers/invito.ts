@@ -5,7 +5,7 @@ import { parseHTML } from 'linkedom';
 const invitoWebScraper = async () => {
   console.time('Fetching Invito menu');
 
-  const html = await (await fetch(RestaurantURL['Invito'])).text();
+  const html = await (await fetch(RestaurantURL['Invito'].lunch)).text();
   const { document } = parseHTML(html);
 
   const lunchMenu = Array.from(

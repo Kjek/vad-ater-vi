@@ -9,7 +9,7 @@ const augustasWebScraper = async () => {
   console.time('Fetching Mamma Augustas menu');
 
   const html = await (
-    await fetch(RestaurantURL['Augustas'], {
+    await fetch(RestaurantURL['Augustas'].lunch, {
       headers: {
         'Accept-Encoding': 'gzip',
       },
