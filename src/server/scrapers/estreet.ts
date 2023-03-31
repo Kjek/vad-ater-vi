@@ -6,7 +6,7 @@ import { parseHTML } from 'linkedom';
 const estreetWebScraper = async () => {
   console.time('Fetching E-Street menu');
 
-  const html = await (await fetch(RestaurantURL['E Street'])).text();
+  const html = await (await fetch(RestaurantURL['E Street'].lunch)).text();
   const { document } = parseHTML(html);
 
   const sweDaysCaps = sweDays.map((day) => day.toUpperCase());

@@ -8,7 +8,9 @@ import { parseHTML } from 'linkedom';
 const innergardenWebScraper = async () => {
   console.time('Fetching Innergården 1891 menu');
 
-  const html = await (await fetch(RestaurantURL['Innergården 1891'])).text();
+  const html = await (
+    await fetch(RestaurantURL['Innergården 1891'].lunch)
+  ).text();
   const { document } = parseHTML(html);
 
   const lunchMenu = document.querySelector('#lunchmeny')?.innerHTML;

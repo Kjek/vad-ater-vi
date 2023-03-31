@@ -9,6 +9,7 @@ import brynersWebScraper from './bryners';
 import estreetWebScraper from './estreet';
 import innergardenWebScraper from './innegarden';
 import invitoWebScraper from './invito';
+import steakhouseWebScraper from './steakhouse';
 
 const webScraper = async (
   prisma: PrismaType,
@@ -36,6 +37,9 @@ const webScraper = async (
       break;
     case 'Invito':
       scraper = invitoWebScraper;
+      break;
+    case 'Steakhouse':
+      scraper = steakhouseWebScraper;
       break;
   }
   return handleScraper(prisma, restaurantName, scraper);
