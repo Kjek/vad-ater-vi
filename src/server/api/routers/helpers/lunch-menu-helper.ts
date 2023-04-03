@@ -7,11 +7,13 @@ import { convertRestaurant } from '@util/restaurantUtils';
 import { searchRestaurantByName } from './db-helper';
 
 export const handleLunchScrapers = async (prisma: PrismaType) => {
-  return (await Promise.all(
-    Object.keys(RestaurantURL).map((restaurantName) =>
-      webScraper(prisma, restaurantName as RestaurantType)
-    )
-  )) as Restaurant[];
+  return (
+    (await Promise.all(
+      Object.keys(RestaurantURL).map((restaurantName) =>
+        webScraper(prisma, restaurantName as RestaurantType)
+      )
+    )) as Restaurant[]
+  ).filter((i) => i);
 };
 
 export const handleLunchSearch = async (
