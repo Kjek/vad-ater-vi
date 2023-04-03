@@ -3,7 +3,7 @@ export {};
 declare global {
   interface Date {
     getWeek(): number;
-    isPastNine(): boolean;
+    isPastSevenUTC(): boolean;
   }
 }
 
@@ -14,6 +14,6 @@ Date.prototype.getWeek = function () {
   );
 };
 
-Date.prototype.isPastNine = function () {
-  return this.getUTCHours() >= 9 + (this.getTimezoneOffset() % 59);
+Date.prototype.isPastSevenUTC = function () {
+  return this.getUTCHours() >= 7;
 };
