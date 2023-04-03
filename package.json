@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@next/env": "^13.2.4",
-    "@prisma/client": "^4.9.0",
+    "@prisma/client": "^4.12.0",
     "@tanstack/react-query": "^4.28.0",
     "@trpc/client": "^10.17.0",
     "@trpc/next": "^10.17.0",
