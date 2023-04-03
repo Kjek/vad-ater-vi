@@ -1,6 +1,6 @@
 import type { LunchMenu } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
-import { SwedishDay, sweDays } from '@type/swedish-days';
+import { sweDays } from '@type/swedish-days';
 import { parseHTML } from 'linkedom';
 
 const brandstationWebScraper = async () => {

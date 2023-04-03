@@ -1,4 +1,4 @@
-import type { Restaurant } from '@type/lunch-menu';
+import type { LunchMenu, Restaurant } from '@type/lunch-menu';
 import { isLunchMenus, isWeekMenu } from '@type/lunch-menu';
 import type { PrismaType } from '@type/prisma-custom';
 import type Scraper from '@type/scraper';
@@ -15,25 +15,29 @@ const scrapeNewData = async (
   name: string,
   scraper: Scraper
 ) => {
-  const menu = await scraper();
-
-  if (isLunchMenus(menu)) {
-    const restaurantModel = await createRestaurantIfNotExists(
-      prisma,
-      name,
-      menu
-    );
-    return convertRestaurant(restaurantModel);
-  } else if (isWeekMenu(menu)) {
-    const restaurantModel = await createRestaurantIfNotExists(
-      prisma,
-      name,
-      menu.lunchWeek,
-      menu.weeklySpecials
-    );
-    return convertRestaurant(restaurantModel);
+  try {
+    const menu = await scraper();
+    if (isLunchMenus(menu)) {
+      const restaurantModel = await createRestaurantIfNotExists(
+        prisma,
+        name,
+        menu
+      );
+      return convertRestaurant(restaurantModel);
+    } else if (isWeekMenu(menu)) {
+      const restaurantModel = await createRestaurantIfNotExists(
+        prisma,
+        name,
+        menu.lunchWeek,
+        menu.weeklySpecials
+      );
+      return convertRestaurant(restaurantModel);
+    }
+    return null;
+  } catch (error) {
+    console.error(name, error);
+    return { name: name, menu: [] as LunchMenu[] } as Restaurant;
   }
-  return null;
 };
 
 export const handleScraper = async (
