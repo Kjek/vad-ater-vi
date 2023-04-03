@@ -14,10 +14,11 @@ const innergardenWebScraper = async () => {
   const { document } = parseHTML(html);
 
   const lunchMenu = document.querySelector('#lunchmeny')?.innerHTML;
+  console.log(lunchMenu);
   const lunchWeek: LunchMenu[] = [];
   if (lunchMenu) {
     const match = decodeHtmlEntity(lunchMenu).matchAll(
-      /(?:\<\/?\w+\>)([a-öA-Ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*+\s+([a-öA-Ö\s<>*-\/&]+[^<>\w:])/gm
+      /(?:\<\/?\w+\>)([a-ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*+\s+([a-ö\s<>*-\/&;]+[^<>\w:])/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
