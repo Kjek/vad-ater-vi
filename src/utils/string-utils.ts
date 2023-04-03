@@ -5,6 +5,8 @@ export {};
 declare global {
   interface String {
     getShortDate(): string;
+    toSentenceCase(): string;
+    toFullSentenceCase(): string;
   }
 }
 
@@ -20,4 +22,40 @@ String.prototype.getShortDate = function () {
     month: '2-digit',
     day: '2-digit',
   });
+};
+
+String.prototype.toSentenceCase = function () {
+  if (!this) {
+    return '';
+  }
+  const trimmed = this.trim();
+  if (trimmed.length === 0) {
+    return '';
+  }
+  const firstChar = trimmed.charAt(0).toUpperCase();
+  const rest = trimmed.slice(1).toLowerCase();
+
+  return `${firstChar}${rest}`;
+};
+
+String.prototype.toFullSentenceCase = function () {
+  if (!this) {
+    return '';
+  }
+  const sentences = this.trim().split(/[.?!]/g);
+  const sentenceCase = sentences.map((sentence) => {
+    if (!sentence) {
+      return '';
+    }
+    const trimmed = sentence.trim();
+    if (trimmed.length === 0) {
+      return '';
+    }
+    const firstChar = trimmed.charAt(0).toUpperCase();
+    const rest = trimmed.slice(1).toLowerCase();
+
+    return `${firstChar}${rest}`;
+  });
+
+  return sentenceCase.join('. ') + '.';
 };

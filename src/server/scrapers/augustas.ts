@@ -24,7 +24,6 @@ const augustasWebScraper = async () => {
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
 
-  // Backup /\>([a-ö]+)(?:\<\w+\>+)+([a-ö\s,]+)+/gim
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
       /\>([a-ö]+(?:\s{2,})?[a-ö\s]+)\:?(?:\<\w+\>)+?(?:\&\w+\;)?([a-ö,\s]+)/gim
