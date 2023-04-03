@@ -35,7 +35,6 @@ const innergardenWebScraper = async () => {
       }
     }
   }
-  console.log(lunchWeek);
   console.timeEnd('Fetching Innergården 1891 menu');
   return lunchWeek;
 };
