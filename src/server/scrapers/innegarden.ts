@@ -24,17 +24,18 @@ const innergardenWebScraper = async () => {
         lunchWeek.push({
           day: lu[1].trim(),
           food: decodeHtmlEntity(lu[2])
-            .replaceAll(/\<\/?\w+\>\*/g, '\n')
+            .replaceAll(/\<\/?\w+\>\*/g, '. ')
             .replaceAll(/\<\/?\w+\>/g, '')
             .replaceAll('Går även bra att ta Take Away', '')
             .replaceAll(/<\/?[^>]+>|$/gim, '')
             .replaceAll(/\s?\|+\s?/gm, ', ')
-            .trim(),
+            .toFullSentenceCase()
+            .replaceAll(/\s?\.\s/g, '.\n'),
         } as LunchMenu);
       }
     }
   }
-
+  console.log(lunchWeek);
   console.timeEnd('Fetching Innergården 1891 menu');
   return lunchWeek;
 };

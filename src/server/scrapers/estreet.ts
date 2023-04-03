@@ -16,9 +16,7 @@ const estreetWebScraper = async () => {
     .map(
       (item) =>
         ({
-          day: item.textContent
-            ?.charAt(0)
-            .concat(item.textContent?.slice(1).toLocaleLowerCase()),
+          day: item.textContent?.toSentenceCase(),
           food: item.nextElementSibling?.textContent
             ?.replace(/^\s?\W\s?/gm, '')
             .replace(/\s+\W\s?[^\w]/gm, '\n')
@@ -34,10 +32,7 @@ const estreetWebScraper = async () => {
     .map(
       (item) =>
         ({
-          type: item.textContent
-            ?.charAt(0)
-            .concat(item.textContent?.slice(1).toLocaleLowerCase())
-            .trim(),
+          type: item.textContent?.toSentenceCase(),
           food: item.nextElementSibling?.textContent
             ?.replace(/^\s?\W\s?/gm, '')
             .replace(/\s+\W\s?[^\w]/gm, '\n')
