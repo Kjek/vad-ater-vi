@@ -17,17 +17,18 @@ const innergardenWebScraper = async () => {
   const lunchWeek: LunchMenu[] = [];
   if (lunchMenu) {
     const match = decodeHtmlEntity(lunchMenu).matchAll(
-      /\>([a-ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*?\s?(?!\<\w+\>)(.*?)(?=\>[a-ö]+\:| ?<br><br>)/gim
+      /\>([a-ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*?\s?(?!\<\w+\>)(.*?)(?=\<\w+\>[a-ö]+\:| ?<br><br>)/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
         lunchWeek.push({
           day: lu[1].trim(),
           food: decodeHtmlEntity(lu[2])
-            .replaceAll('<br>*', '\n')
+            .replaceAll(/\<\/?\w+\>\*/g, '\n')
+            .replaceAll(/\<\/?\w+\>/g, '')
             .replaceAll('Går även bra att ta Take Away', '')
             .replaceAll(/<\/?[^>]+>|$/gim, '')
-            .replaceAll(/\s?\|+\s/gm, ', ')
+            .replaceAll(/\s?\|+\s?/gm, ', ')
             .trim(),
         } as LunchMenu);
       }
