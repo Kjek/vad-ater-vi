@@ -49,12 +49,12 @@ export const handleScraper = async (
   const today = new Date();
   if (
     !restaurantId ||
-    (updatedAt?.getUTCDay() !== today.getUTCDay() && today.isPastNine())
+    (updatedAt?.getUTCDay() !== today.getUTCDay() && today.isPastSevenUTC())
   ) {
     if (
       restaurantId &&
       updatedAt?.getUTCDay() !== today.getUTCDay() &&
-      today.isPastNine()
+      today.isPastSevenUTC()
     ) {
       await deleteMenuAndWeekly(prisma, restaurantId);
     }
