@@ -12,6 +12,10 @@ export const RestaurantURL = {
     lunch: 'https://www.blocosundsvall.se/lunchmeny',
     home: 'https://www.blocosundsvall.se/',
   },
+  Brandstation: {
+    lunch: 'https://astar.se/restaurang-brandstation-lunchmeny',
+    home: 'https://astar.se/restaurang-brandstation',
+  },
   Bryners: {
     lunch: 'https://bryners.se/veckans-lunch-v-j/bryners-bistro.html',
     home: 'https://bryners.se/',
@@ -39,6 +43,7 @@ export type RestaurantType =
   | 'Augustas'
   | 'Berg & Hjort'
   | 'Bloco'
+  | 'Brandstation'
   | 'Bryners'
   | 'E Street'
   | 'Innergården 1891'
