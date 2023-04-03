@@ -10,6 +10,7 @@ import estreetWebScraper from './estreet';
 import innergardenWebScraper from './innegarden';
 import invitoWebScraper from './invito';
 import steakhouseWebScraper from './steakhouse';
+import brandstationWebScraper from './brandstation';
 
 const webScraper = async (
   prisma: PrismaType,
@@ -25,6 +26,9 @@ const webScraper = async (
       break;
     case 'Bloco':
       scraper = blocoWebScraper;
+      break;
+    case 'Brandstation':
+      scraper = brandstationWebScraper;
       break;
     case 'Bryners':
       scraper = brynersWebScraper;
