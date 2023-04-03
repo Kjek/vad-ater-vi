@@ -2,6 +2,7 @@ import { useGlobalState } from '@hook/useGlobalState';
 import type { Restaurant } from '@type/lunch-menu';
 import type { RestaurantType } from '@type/restaurant-links';
 import { RestaurantURL } from '@type/restaurant-links';
+import ErrorListItem from './ErrorListItem';
 
 interface ListProps {
   restaurant: Restaurant;
@@ -26,7 +27,7 @@ const ListItem = (props: ListProps) => {
         </h2>
         <div className='sm:w-2/3 sm:grow'>
           <ul>
-            {restaurant.menu.length === 5 ? (
+            {menuToShow.length > 0 ? (
               menuToShow.map((lunch) => (
                 <li key={lunch.day} className='pb-6 last:pb-0'>
                   <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
@@ -38,19 +39,10 @@ const ListItem = (props: ListProps) => {
                 </li>
               ))
             ) : (
-              <li key='error-message'>
-                <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
-                  {
-                    'Fel vid hämtning av menyer gå till restaurangens hemsida istället: '
-                  }
-                </h3>
-                <a
-                  className='text-2xl font-bold text-blue-700 underline hover:no-underline dark:text-gray-500'
-                  href={RestaurantURL[restaurant.name as RestaurantType].home}
-                >
-                  {RestaurantURL[restaurant.name as RestaurantType].home}
-                </a>
-              </li>
+              <ErrorListItem
+                key='error-message'
+                restaurantName={restaurant.name}
+              />
             )}
           </ul>
           {restaurant.weeklySpecials && restaurant.weeklySpecials.length > 0 ? (
