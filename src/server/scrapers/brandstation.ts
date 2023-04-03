@@ -24,7 +24,7 @@ const brandstationWebScraper = async () => {
     for (const groups of match) {
       lunchWeek.push({
         day: groups[1]?.trim(),
-        food: groups[2]?.replaceAll(/\<\/?\w+\>/g, '').trim(),
+        food: groups[2]?.replaceAll(/\<\/?\w+\>?/g, '').trim(),
       } as LunchMenu);
     }
   }
