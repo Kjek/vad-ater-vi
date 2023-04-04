@@ -26,7 +26,7 @@ const augustasWebScraper = async () => {
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /\>([a-ö]+(?:\s{2,})?[a-ö\s]+)\:?(?:\<\w+\>)+?(?:\&\w+\;)?([a-ö,\s]+)/gim
+      /\>([a-ö]+(?:\s{2,})?[a-ö\s]+)\:?(?:\<\w+\>)(?:\&\w+\;)?([a-ö,\s]+)/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
