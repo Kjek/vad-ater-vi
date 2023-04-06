@@ -25,7 +25,9 @@ const bergHjortWebScraper = async () => {
             ' '
           )[0],
           food: span.textContent
-            ?.concat(span.parentElement?.nextElementSibling?.textContent ?? '')
+            ?.concat(
+              ` ${span.parentElement?.nextElementSibling?.textContent ?? ''}`
+            )
             .concat('\n'),
         } as LunchMenu)
     );
