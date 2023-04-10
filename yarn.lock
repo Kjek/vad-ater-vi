@@ -1023,10 +1023,15 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@next/env@13.2.4", "@next/env@^13.2.4":
+"@next/env@13.2.4":
   version "13.2.4"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-13.2.4.tgz#8b763700262b2445140a44a8c8d088cef676dbae"
   integrity sha512-+Mq3TtpkeeKFZanPturjcXt+KHfKYnLlX6jMLyCrmpq6OOs4i1GqBOAauSkii9QeKCMTYzGppar21JU57b/GEA==
+
+"@next/env@^13.3.0":
+  version "13.3.0"
+  resolved "https://registry.yarnpkg.com/@next/env/-/env-13.3.0.tgz#cc2e49f03060a4684ce7ec7fd617a21bc5b9edba"
+  integrity sha512-AjppRV4uG3No7L1plinoTQETH+j2F10TEnrMfzbTUYwze5sBUPveeeBAPZPm8OkJZ1epq9OyYKhZrvbD6/9HCQ==
 
 "@next/eslint-plugin-next@13.2.4":
   version "13.2.4"
