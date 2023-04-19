@@ -22,10 +22,12 @@ const brandstationWebScraper = async () => {
       /\>|\s?([a-ö]+)+(?:\<\/?\w+\>\s?)+([a-ö\s<>]+(?=\>[a-ö]+\<|$))/gim
     );
     for (const groups of match) {
-      lunchWeek.push({
-        day: groups[1]?.trim(),
-        food: groups[2]?.replaceAll(/\<\/?\w+\>?/g, '').trim(),
-      } as LunchMenu);
+      if (groups[1] && groups[2]) {
+        lunchWeek.push({
+          day: groups[1]?.trim(),
+          food: groups[2]?.replaceAll(/\<\/?\w+\>?/g, '').trim(),
+        } as LunchMenu);
+      }
     }
   }
 
