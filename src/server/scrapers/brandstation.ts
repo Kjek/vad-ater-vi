@@ -19,7 +19,7 @@ const brandstationWebScraper = async () => {
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /\>([a-ö]+)(?:\<\/?\w+\>\s?)+([a-ö\s<>]+(?=\>[a-ö]+\<|$))/gim
+      /\>|\s?([a-ö]+)+(?:\<\/?\w+\>\s?)+([a-ö\s<>]+(?=\>[a-ö]+\<|$))/gim
     );
     for (const groups of match) {
       lunchWeek.push({
