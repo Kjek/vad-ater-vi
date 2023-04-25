@@ -19,14 +19,18 @@ const augustasWebScraper = async () => {
 
   const lunchMenu = Array.from(document.querySelectorAll('strong'))
     .filter((strong) => strong.textContent?.includes('Måndag'))
-    .map((item) => item.parentElement?.innerHTML)[0];
+    .map((item) =>
+      item.parentElement?.innerHTML
+        .replaceAll(/\<\/?\w+\>/gm, '\n')
+        .replaceAll(/\s{2,}/gm, ' ')
+    )[0];
 
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /\>([a-ö]+(?:\s{2,})?[a-ö\s]+)\:?(?:\<\w+\>)(?:\&\w+\;)?([a-ö,\s]+)/gim
+      /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+(.*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,}|$)/gm
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
