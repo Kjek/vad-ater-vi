@@ -1,6 +1,6 @@
 import resetRouter from '@router/reset-router';
 import { createTRPCRouter } from '@server/api/trpc';
-import {} from '@util/date-utils'; // To inizialize the functions
+import {} from '@util/init-utils';
 import { lunchRouter } from './routers/lunch-router';
 
 /**
