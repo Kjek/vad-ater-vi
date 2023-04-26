@@ -6,8 +6,7 @@ import '../styles/globals.css';
 
 import { StateProvider } from '@hook/useGlobalState';
 import { ThemeProvider } from '@hook/useTheme';
-import {} from '@util/date-utils'; // To inizialize the functions
-import {} from '@util/string-utils'; // To inizialize the functions
+import {} from '@util/init-utils';
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
