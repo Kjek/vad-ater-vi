@@ -18,7 +18,7 @@ const estreetWebScraper = async () => {
         ({
           day: item.textContent?.toSentenceCase(),
           food: item.nextElementSibling?.textContent
-            ?.replace(/^\s?\W\s?/gm, '')
+            ?.replace(/^(?:\s+)?\W(?:\s+)?/gm, '')
             .replace(/\s+\W\s?[^\w]/gm, '\n')
             .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n'),
         } as LunchMenu)
@@ -34,7 +34,7 @@ const estreetWebScraper = async () => {
         ({
           type: item.textContent?.toSentenceCase(),
           food: item.nextElementSibling?.textContent
-            ?.replace(/^\s?\W\s?/gm, '')
+            ?.replace(/^(?:\s+)?\W(?:\s+)?/gm, '')
             .replace(/\s+\W\s?[^\w]/gm, '\n')
             .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n')
             .trim(),
