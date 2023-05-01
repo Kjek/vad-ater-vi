@@ -17,14 +17,22 @@ const augustasWebScraper = async () => {
   ).text();
   const { document } = parseHTML(html);
 
-  const lunchMenu = Array.from(document.querySelectorAll('strong'))
-    .filter((strong) => strong.textContent?.includes('Måndag'))
-    .map((item) =>
-      item.parentElement?.innerHTML
-        .replaceAll(/\<\/?\w+\>/gm, '\n')
-        .replaceAll(/\s{2,}/gm, ' ')
-    )[0];
-
+  const lunchMenu =
+    Array.from(document.querySelectorAll('strong'))
+      .filter((strong) => strong.textContent?.includes('Måndag'))
+      .map((item) =>
+        item.parentElement?.innerHTML
+          .replaceAll(/\<\/?\w+\>/gm, '\n')
+          .replaceAll(/\s{2,}/gm, ' ')
+      )[0] ??
+    Array.from(document.querySelectorAll('div'))
+      .filter((strong) => strong.textContent?.includes('Måndag'))
+      .map((item) =>
+        item.parentElement?.innerHTML
+          .replaceAll(/\<\/?\w+\>/gm, '\n')
+          .replaceAll(/\s{2,}/gm, ' ')
+      )[0];
+  console.log(lunchMenu);
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
 
