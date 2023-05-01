@@ -18,7 +18,7 @@
     "@trpc/next": "^10.17.0",
     "@trpc/react-query": "^10.17.0",
     "@trpc/server": "^10.17.0",
-    "linkedom": "^0.14.25",
+    "linkedom": "^0.14.26",
     "next": "13.3.1",
     "next-pwa": "^5.6.0",
     "next-sitemap": "^4.0.8",
