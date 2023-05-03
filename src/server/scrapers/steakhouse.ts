@@ -25,7 +25,7 @@ const steakhouseWebScraper = async () => {
   const weeklySpecials: WeeklySpecial[] = [];
   if (scrapedHtml) {
     const matchDaily = scrapedHtml?.matchAll(
-      /\<\w+\>([a-ö]+)\s+([a-ö\s,.;&]+)/gim
+      /\<\w+\>([a-ö]+)\s?(?:\<\/?\w+\>|\s)+(.*)/gim
     );
     for (const group of matchDaily) {
       if (sweDays.includes(group[1] as SwedishDay) && group[2]) {
