@@ -32,7 +32,7 @@ const augustasWebScraper = async () => {
           .replaceAll(/\<\/?\w+\>/gm, '\n')
           .replaceAll(/\s{2,}/gm, ' ')
       )[0];
-  console.log(lunchMenu);
+
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
 
