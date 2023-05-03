@@ -10,8 +10,8 @@ const LunchList = (props: LunchListProps) => {
 
   return (
     <div className='flex justify-center pb-8'>
-      <div className='container flex justify-center px-4'>
-        <div id='restaurant-list' className='flex grow'>
+      <div className='container px-4'>
+        <div id='restaurant-list'>
           <ul id='restaurant-list-ul' className='flex grow flex-col'>
             {restaurants
               ? restaurants.map((restaurant) => (

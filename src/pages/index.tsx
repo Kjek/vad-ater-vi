@@ -25,7 +25,7 @@ const Home: NextPage = () => {
   return (
     <>
       {!isFirstRender ? (
-        <div className='min-h-screen bg-neutral-100 transition duration-500 dark:bg-gray-900'>
+        <div className='min-h-screen overflow-hidden bg-neutral-100 transition duration-500 dark:bg-gray-900'>
           <MetaHeader />
           <Header />
           <main>
