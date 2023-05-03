@@ -3,7 +3,6 @@ import type { PrismaType } from '@type/prisma-custom';
 import type { RestaurantType } from '@type/restaurant-links';
 import type Scraper from '@type/scraper';
 import augustasWebScraper from './augustas';
-import bergHjortWebScraper from './berg-hjort';
 import blocoWebScraper from './bloco';
 import brynersWebScraper from './bryners';
 import estreetWebScraper from './estreet';
@@ -20,9 +19,6 @@ const webScraper = async (
   switch (restaurantName) {
     case 'Augustas':
       scraper = augustasWebScraper;
-      break;
-    case 'Berg & Hjort':
-      scraper = bergHjortWebScraper;
       break;
     case 'Bloco':
       scraper = blocoWebScraper;

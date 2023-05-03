@@ -4,10 +4,6 @@ export const RestaurantURL = {
       'https://www.baltichotell.com/mamma-augustas-kok-restaurang-sundsvall/lunch',
     home: 'https://www.baltichotell.com/mamma-augustas-kok-restaurang-sundsvall',
   },
-  'Berg & Hjort': {
-    lunch: 'https://www.matochmat.se/lunch/sundsvall/berg-och-hjort-foajen',
-    home: 'https://bergochhjort.se/',
-  },
   Bloco: {
     lunch: 'https://www.blocosundsvall.se/lunchmeny',
     home: 'https://www.blocosundsvall.se/',
@@ -41,7 +37,6 @@ export const RestaurantURL = {
 
 export type RestaurantType =
   | 'Augustas'
-  | 'Berg & Hjort'
   | 'Bloco'
   | 'Brandstation'
   | 'Bryners'
