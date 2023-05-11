@@ -1,13 +1,13 @@
-import { z } from 'zod';
 import { createTRPCRouter, publicProcedure } from '@server/api/trpc';
+import { z } from 'zod';
 import {
-  handleLunchScrapers,
+  handleGetRestaurants,
   handleLunchSearch,
 } from './helpers/lunch-menu-helper';
 
 export const lunchRouter = createTRPCRouter({
   menu: publicProcedure.query(async ({ ctx }) => {
-    return await handleLunchScrapers(ctx.prisma);
+    return await handleGetRestaurants(ctx.prisma);
   }),
   menuSearch: publicProcedure
     .input(
