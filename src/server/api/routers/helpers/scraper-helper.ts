@@ -1,12 +1,14 @@
+import webScraper from '@scraper/webscraper';
 import type { LunchMenu, Restaurant } from '@type/lunch-menu';
 import { isLunchMenus, isWeekMenu } from '@type/lunch-menu';
 import type { PrismaType } from '@type/prisma-custom';
+import type { RestaurantType } from '@type/restaurant-links';
+import { RestaurantURL } from '@type/restaurant-links';
 import type Scraper from '@type/scraper';
 import { convertRestaurant } from '@util/restaurantUtils';
 import {
   createRestaurantIfNotExists,
   deleteMenuAndWeekly,
-  findRestaurantByName,
   getRestaurantNeedsUpdating,
 } from './db-helper';
 
@@ -45,32 +47,19 @@ export const handleScraper = async (
   name: string,
   scraper: Scraper
 ) => {
-  const { restaurantId, updatedAt } = await getRestaurantNeedsUpdating(
-    prisma,
-    name
-  );
-  let restaurant: Restaurant | null = null;
-  const today = new Date();
-  if (
-    !restaurantId ||
-    (updatedAt?.getUTCDay() !== today.getUTCDay() && today.isPastSevenUTC())
-  ) {
-    if (
-      restaurantId &&
-      updatedAt?.getUTCDay() !== today.getUTCDay() &&
-      today.isPastSevenUTC()
-    ) {
-      await deleteMenuAndWeekly(prisma, restaurantId);
-    }
-    restaurant = await scrapeNewData(prisma, name, scraper);
-  } else {
-    const restaurantModel = await findRestaurantByName(prisma, name);
-    restaurant = restaurantModel && convertRestaurant(restaurantModel);
-  }
-
+  const restaurant = await scrapeNewData(prisma, name, scraper);
+  const { restaurantId } = await getRestaurantNeedsUpdating(prisma, name);
   if (restaurant && restaurant.menu.length < 5 && restaurantId) {
     await deleteMenuAndWeekly(prisma, restaurantId);
-    restaurant = await scrapeNewData(prisma, name, scraper);
+    await scrapeNewData(prisma, name, scraper);
   }
-  return restaurant;
+};
+
+export const handleLunchScrapers = async (prisma: PrismaType) => {
+  await Promise.all(
+    Object.keys(RestaurantURL).map((restaurantName) =>
+      webScraper(prisma, restaurantName as RestaurantType)
+    )
+  );
+  return;
 };

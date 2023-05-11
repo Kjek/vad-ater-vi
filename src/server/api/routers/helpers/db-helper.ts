@@ -134,6 +134,18 @@ export const createRestaurantIfNotExists = async (
   });
 };
 
+export const getAllRestaurants = async (prisma: PrismaType) => {
+  return await prisma.restaurant.findMany({
+    include: {
+      menu: true,
+      weeklySpecial: true,
+    },
+    orderBy: {
+      name: 'asc',
+    },
+  });
+};
+
 export const findRestaurantByName = async (
   prisma: PrismaType,
   name: string
