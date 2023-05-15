@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/trpc/scrape.restaurants?batch=1&input={}",
-      "schedule": "0 8 * * 1"
+      "schedule": "0 7 * * 1"
     },
     {
       "path": "/api/trpc/scrape.restaurants?batch=1&input={}",
