@@ -25,12 +25,19 @@ const augustasWebScraper = async () => {
           .replaceAll(/\<\/?\w+\>/gm, '\n')
           .replaceAll(/\s{2,}/gm, ' ')
       )[0] ??
+    Array.from(document.querySelectorAll('div.articleTemplate_Content'))
+      .filter(
+        ({ textContent }) => textContent && textContent?.includes('Tisdag')
+      )
+      .map(({ innerHTML }) =>
+        innerHTML.replaceAll(/\<\/?\w+\>/gm, '\n').replaceAll(/\s{2,}/gm, ' ')
+      )[0] ??
     Array.from(document.querySelectorAll('div'))
-      .filter((strong) => strong.textContent?.includes('Måndag'))
-      .map((item) =>
-        item.parentElement?.innerHTML
-          .replaceAll(/\<\/?\w+\>/gm, '\n')
-          .replaceAll(/\s{2,}/gm, ' ')
+      .filter(
+        ({ textContent }) => textContent && textContent?.includes('Tisdag')
+      )
+      .map(({ innerHTML }) =>
+        innerHTML.replaceAll(/\<\/?\w+\>/gm, '\n').replaceAll(/\s{2,}/gm, ' ')
       )[0];
 
   const lunchWeek = [];
@@ -38,7 +45,7 @@ const augustasWebScraper = async () => {
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+(.*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,}|$)/gm
+      /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+([\wåäömé,. \n]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,})/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
@@ -46,6 +53,7 @@ const augustasWebScraper = async () => {
           day: lu[1].trim(),
           food: decodeHtmlEntity(lu[2])
             .replaceAll(/\s{2,}/gm, ' ')
+            .replaceAll('\n', ' ')
             .trim(),
         } as LunchMenu);
       } else if (lu[1] && lu[2] && lu[1].includes('Veckans')) {
@@ -53,6 +61,7 @@ const augustasWebScraper = async () => {
           type: lu[1].replaceAll(/\s{2,}/gm, ' ').trim(),
           food: decodeHtmlEntity(lu[2])
             .replaceAll(/\s{2,}/gm, ' ')
+            .replaceAll('\n', ' ')
             .trim(),
         } as WeeklySpecial);
       }
