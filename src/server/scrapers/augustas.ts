@@ -25,6 +25,13 @@ const augustasWebScraper = async () => {
           .replaceAll(/\<\/?\w+\>/gm, '\n')
           .replaceAll(/\s{2,}/gm, ' ')
       )[0] ??
+    Array.from(document.querySelectorAll('p'))
+      .filter((strong) => strong.textContent?.includes('Måndag'))
+      .map((item) =>
+        item.parentElement?.innerHTML
+          .replaceAll(/\<\/?\w+\>/gm, '\n')
+          .replaceAll(/\s{2,}/gm, ' ')
+      )[0] ??
     Array.from(document.querySelectorAll('div.articleTemplate_Content'))
       .filter(
         ({ textContent }) => textContent && textContent?.includes('Tisdag')
