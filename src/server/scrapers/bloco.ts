@@ -12,24 +12,20 @@ const blocoWebScraper = async () => {
   const weeklySpecials = [];
 
   const scrapedMenu = Array.from(document.querySelectorAll('p'))
-    .filter(
-      (p) =>
-        p.innerHTML.match(
-          /\<\w\>([a-ö]{3,4})(?:\<+\/?\w+\>+)+([a-ö\s\”",]+)/gim
-        ) &&
-        (p.innerHTML.includes('Mån') || p.innerHTML.includes('Fre'))
+    .filter((p) =>
+      p.innerHTML.match(/\<\w\>([a-ö]{3,7})(?:\<+\/?\w+\>+)+([a-ö\s\”",]+)/gim)
     )
     .map((p) => p.innerHTML)
     .join(' ');
 
   if (scrapedMenu) {
     const match = scrapedMenu.matchAll(
-      /\<\w\>([a-ö]{3,4})(?:\<+\/?\w+\>+)+([a-ö\s\”\",]+)/gim
+      /\<\w\>([a-ö]{3,7})(?:\<+\/?\w+\>+)+([a-ö\s\”\",]+)/gim
     );
     for (const text of match) {
       if (text[1] && text[2]) {
         lunchWeek.push({
-          day: text[1].concat('dag').trim(),
+          day: text[1].trim(),
           food: text[2].trim(),
         } as LunchMenu);
       }
@@ -60,7 +56,6 @@ const blocoWebScraper = async () => {
       }
     }
   }
-
   console.timeEnd('Fetching Bloco menu');
   return { lunchWeek, weeklySpecials };
 };
