@@ -19,14 +19,14 @@ const augustasWebScraper = async () => {
 
   const lunchMenu =
     Array.from(document.querySelectorAll('strong'))
-      .filter((strong) => strong.textContent?.includes('Måndag'))
+      .filter((strong) => strong.textContent?.includes('Tisdag'))
       .map((item) =>
         item.parentElement?.innerHTML
           .replaceAll(/\<\/?\w+\>/gm, '\n')
           .replaceAll(/\s{2,}/gm, ' ')
       )[0] ??
     Array.from(document.querySelectorAll('p'))
-      .filter((strong) => strong.textContent?.includes('Måndag'))
+      .filter((strong) => strong.textContent?.includes('Tisdag'))
       .map((item) =>
         item.parentElement?.innerHTML
           .replaceAll(/\<\/?\w+\>/gm, '\n')
@@ -52,7 +52,7 @@ const augustasWebScraper = async () => {
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+([\wåäömé,. \n]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,})/gim
+      /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+([\wåäömé,. \n\–]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,})/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
