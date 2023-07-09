@@ -1,6 +1,5 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
 import type { PrismaType } from '@type/prisma-custom';
-import type { MenuProps, WeeklySpecialProps } from '@type/restaurant-props';
 
 export const getRestaurantNeedsUpdating = async (
   prisma: PrismaType,
@@ -72,63 +71,53 @@ export const createRestaurantIfNotExists = async (
     create: {
       name: name,
       menu: {
-        connectOrCreate: menu.map(
-          (item) =>
-            ({
-              create: { day: item.day, food: item.food },
-              where: {
-                restaurantId_day: {
-                  restaurantId: restaurant?.id,
-                  day: item.day,
-                },
-              },
-            } as MenuProps)
-        ),
+        createMany: {
+          data: menu.map((item) => {
+            return {
+              day: item.day,
+              food: item.food,
+            };
+          }),
+        },
       },
       weeklySpecial: {
-        connectOrCreate: weeklySpecials.map(
-          (item) =>
-            ({
-              create: { type: item.type, food: item.food },
-              where: {
-                restaurantId_type: {
-                  restaurantId: restaurant?.id,
-                  type: item.type,
-                },
-              },
-            } as WeeklySpecialProps)
-        ),
+        createMany: {
+          data: weeklySpecials.map((item) => {
+            return {
+              type: item.type,
+              food: item.food,
+            };
+          }),
+        },
       },
     },
     update: {
       updatedAt: new Date(),
       menu: {
-        connectOrCreate: menu.map(
-          (item) =>
-            ({
-              create: { day: item.day, food: item.food },
-              where: {
-                restaurantId_day: {
-                  restaurantId: restaurant?.id,
-                  day: item.day,
-                },
-              },
-            } as MenuProps)
-        ),
+        deleteMany: {
+          restaurantId: restaurant.id,
+        },
+        createMany: {
+          data: menu.map((item) => {
+            return {
+              day: item.day,
+              food: item.food,
+            };
+          }),
+        },
       },
       weeklySpecial: {
-        connectOrCreate: weeklySpecials.map(
-          (item) =>
-            ({
-              create: { type: item.type, food: item.food },
-              where: {
-                restaurantId_type: {
-                  restaurantId: restaurant?.id,
-                  type: item.type,
-                },
-              },
-            } as WeeklySpecialProps)
-        ),
+        deleteMany: {
+          restaurantId: restaurant.id,
+        },
+        createMany: {
+          data: weeklySpecials.map((item) => {
+            return {
+              type: item.type,
+              food: item.food,
+            };
+          }),
+        },
       },
     },
   });
@@ -179,4 +168,25 @@ export const searchRestaurantByName = async (
     },
     take: limit ?? 100,
   });
+};
+
+export const getRestaurantRegexByName = async (
+  prisma: PrismaType,
+  name: string
+) => {
+  const restaurant = await prisma.restaurant.findUnique({
+    where: {
+      name: name,
+    },
+    select: {
+      restaurantRegex: {
+        select: {
+          regex: true,
+        },
+      },
+    },
+  });
+  return restaurant?.restaurantRegex?.regex
+    ? new RegExp(restaurant.restaurantRegex.regex)
+    : undefined;
 };

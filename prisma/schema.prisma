@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
@@ -8,18 +5,21 @@ generator client {
 
 datasource db {
   provider          = "postgresql"
-  url               = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl         = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING") // used for migrations
+  url               = env("POSTGRES_PRISMA_URL")
+  directUrl         = env("POSTGRES_URL_NON_POOLING")
+  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Restaurant {
-  id            String          @id @default(cuid())
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  name          String          @unique
-  menu          Menu[]
-  weeklySpecial WeeklySpecial[]
+  id                String           @id @default(cuid())
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  name              String           @unique
+  menu              Menu[]
+  weeklySpecial     WeeklySpecial[]
+  restaurantRegex   RestaurantRegex?
+
+  @@map("restaurant")
 }
 
 model Menu {
@@ -28,10 +28,11 @@ model Menu {
   updatedAt    DateTime   @updatedAt
   day          String
   food         String
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@unique([restaurantId, day])
+  @@map("menu")
 }
 
 model WeeklySpecial {
@@ -40,8 +41,37 @@ model WeeklySpecial {
   updatedAt    DateTime   @updatedAt
   type         String
   food         String
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
   restaurantId String
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@unique([restaurantId, type])
+  @@map("weekly_special")
+}
+
+model RestaurantRegex {
+  id           String     @id @default(cuid())
+  regex        String?
+  restaurantId String     @unique
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("restaurant_regex")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model User {
+  id       String    @id @default(cuid())
+  username String    @unique
+  password String
+  sessions Session[]
+
+  @@map("user")
 }

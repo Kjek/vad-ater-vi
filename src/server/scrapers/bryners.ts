@@ -1,10 +1,11 @@
 import type { LunchMenu } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
+import type Scraper from '@type/scraper';
 import type { SwedishDay } from '@type/swedish-days';
 import { sweDays } from '@type/swedish-days';
 import { parseHTML } from 'linkedom';
 
-const brynersWebScraper = async () => {
+const brynersWebScraper: Scraper = async () => {
   console.time('Fetching Bryners menu');
 
   const html = await (await fetch(RestaurantURL['Bryners'].lunch)).text();

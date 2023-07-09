@@ -10,6 +10,7 @@ import {
   createRestaurantIfNotExists,
   deleteMenuAndWeekly,
   getRestaurantNeedsUpdating,
+  getRestaurantRegexByName,
 } from './db-helper';
 
 const scrapeNewData = async (
@@ -18,7 +19,8 @@ const scrapeNewData = async (
   scraper: Scraper
 ) => {
   try {
-    const menu = await scraper();
+    const regex = await getRestaurantRegexByName(prisma, name);
+    const menu = await scraper(regex);
     if (isLunchMenus(menu)) {
       const restaurantModel = await createRestaurantIfNotExists(
         prisma,

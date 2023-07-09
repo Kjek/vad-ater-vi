@@ -1,8 +1,9 @@
 import type { LunchMenu } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
+import type Scraper from '@type/scraper';
 import { parseHTML } from 'linkedom';
 
-const invitoWebScraper = async () => {
+const invitoWebScraper: Scraper = async () => {
   console.time('Fetching Invito menu');
 
   const html = await (await fetch(RestaurantURL['Invito'].lunch)).text();

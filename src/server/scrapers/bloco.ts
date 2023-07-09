@@ -1,8 +1,9 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
 import { RestaurantURL } from '@type/restaurant-links';
+import type Scraper from '@type/scraper';
 import { parseHTML } from 'linkedom';
 
-const blocoWebScraper = async () => {
+const blocoWebScraper: Scraper = async (regex) => {
   console.time('Fetching Bloco menu');
 
   const html = await (await fetch(RestaurantURL['Bloco'].lunch)).text();
