@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.22.5",
-    "@types/eslint": "^8.40.2",
+    "@types/eslint": "^8.44.0",
     "@types/next-pwa": "^5.6.4",
     "@types/node": "^20.3.3",
     "@types/prettier": "^2.7.3",
