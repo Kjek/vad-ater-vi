@@ -1,7 +1,5 @@
 import { useGlobalState } from '@hook/useGlobalState';
 import type { Restaurant } from '@type/lunch-menu';
-import type { RestaurantType } from '@type/restaurant-links';
-import { RestaurantURL } from '@type/restaurant-links';
 import ErrorListItem from './ErrorListItem';
 
 interface ListProps {
@@ -18,10 +16,7 @@ const ListItem = (props: ListProps) => {
     <>
       <li className='dark:bg-gray-custom whitespace-pre-line break-words border-b bg-white p-6 shadow-md transition-all duration-500 last:border-none dark:border-gray-700 dark:shadow-none sm:flex'>
         <h2 className='pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0'>
-          <a
-            title='Gå till restaurangens hemsida'
-            href={RestaurantURL[restaurant.name as RestaurantType].home}
-          >
+          <a title='Gå till restaurangens hemsida' href={restaurant.homeUrl}>
             {restaurant.name}
           </a>
         </h2>
@@ -41,7 +36,7 @@ const ListItem = (props: ListProps) => {
             ) : (
               <ErrorListItem
                 key='error-message'
-                restaurantName={restaurant.name}
+                restaurantHomeUrl={restaurant.homeUrl}
               />
             )}
           </ul>

@@ -1,12 +1,9 @@
-import type { RestaurantType } from '@type/restaurant-links';
-import { RestaurantURL } from '@type/restaurant-links';
-
 interface ErrorListItemProps {
-  restaurantName: string;
+  restaurantHomeUrl?: string;
 }
 
 const ErrorListItem = (props: ErrorListItemProps) => {
-  const { restaurantName } = props;
+  const { restaurantHomeUrl } = props;
   return (
     <>
       <li key='error-message'>
@@ -17,9 +14,9 @@ const ErrorListItem = (props: ErrorListItemProps) => {
         </h3>
         <a
           className='text-2xl font-bold text-blue-700 underline hover:no-underline dark:text-gray-500'
-          href={RestaurantURL[restaurantName as RestaurantType].home}
+          href={restaurantHomeUrl}
         >
-          {RestaurantURL[restaurantName as RestaurantType].home}
+          {restaurantHomeUrl}
         </a>
       </li>
     </>

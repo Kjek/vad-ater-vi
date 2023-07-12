@@ -1,6 +1,8 @@
 # *
 User-agent: *
-Allow: /
+Disallow: /admin
+Disallow: /login
+Disallow: /api/*
 
 # Host
 Host: https://www.xn--vadtervi-2za.nu/

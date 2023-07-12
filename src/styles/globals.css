@@ -8,3 +8,9 @@
     background-color: rgb(24 32.5 47 / var(--tw-bg-opacity));
   }
 }
+
+@layer base {
+  body {
+    @apply bg-neutral-100 dark:bg-gray-900;
+  }
+}

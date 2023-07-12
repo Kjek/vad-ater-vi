@@ -1,23 +1,22 @@
 import type { LunchMenu } from '@type/lunch-menu';
-import { RestaurantURL } from '@type/restaurant-links';
+import type Scraper from '@type/scraper';
 import type { SwedishDay } from '@type/swedish-days';
 import { sweDays } from '@type/swedish-days';
 import { decodeHtmlEntity } from '@util/html-utils';
 import { parseHTML } from 'linkedom';
 
-const innergardenWebScraper = async () => {
+const innergardenWebScraper: Scraper = async (lunchUrl, regex) => {
   console.time('Fetching Innergården 1891 menu');
 
-  const html = await (
-    await fetch(RestaurantURL['Innergården 1891'].lunch)
-  ).text();
+  const html = await (await fetch(lunchUrl)).text();
   const { document } = parseHTML(html);
 
   const lunchMenu = document.querySelector('#lunchmeny')?.innerHTML;
   const lunchWeek: LunchMenu[] = [];
   if (lunchMenu) {
     const match = decodeHtmlEntity(lunchMenu).matchAll(
-      /\>([a-ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*?\s?(?!\<\w+\>)(.*?)(?=\<\w+\>[a-ö]+\:| ?<br><br>)/gim
+      regex ||
+        /\>([a-ö]+)\:(?:\s?\<\/?\w+\>\s?)+\*?\s?(?!\<\w+\>)(.*?)(?=\<\w+\>[a-ö]+\:| ?<br><br>)/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {

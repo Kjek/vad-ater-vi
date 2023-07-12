@@ -1,15 +1,15 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
-import { RestaurantURL } from '@type/restaurant-links';
+import type Scraper from '@type/scraper';
 import type { SwedishDay } from '@type/swedish-days';
 import { sweDays } from '@type/swedish-days';
 import { decodeHtmlEntity } from '@util/html-utils';
 import { parseHTML } from 'linkedom';
 
-const augustasWebScraper = async () => {
+const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
   console.time('Fetching Mamma Augustas menu');
 
   const html = await (
-    await fetch(RestaurantURL['Augustas'].lunch, {
+    await fetch(lunchUrl, {
       headers: {
         'Accept-Encoding': 'gzip',
       },
@@ -52,7 +52,8 @@ const augustasWebScraper = async () => {
 
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
-      /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+([\wåäömé,. \n\–]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,})/gim
+      regex ||
+        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+([\wåäömé,. \n\–]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,})/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
