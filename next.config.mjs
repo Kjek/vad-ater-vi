@@ -15,6 +15,7 @@ const withPWA = nextPWA({
   register: true,
   skipWaiting: true,
   runtimeCaching: runtimeCaching,
+  disable: process.env.NODE_ENV === 'development',
 });
 
 /** @type {import("next").NextConfig} */
