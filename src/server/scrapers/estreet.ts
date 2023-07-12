@@ -1,13 +1,12 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
-import { RestaurantURL } from '@type/restaurant-links';
 import type Scraper from '@type/scraper';
 import { sweDays } from '@type/swedish-days';
 import { parseHTML } from 'linkedom';
 
-const estreetWebScraper: Scraper = async () => {
+const estreetWebScraper: Scraper = async (lunchUrl, regex) => {
   console.time('Fetching E-Street menu');
 
-  const html = await (await fetch(RestaurantURL['E Street'].lunch)).text();
+  const html = await (await fetch(lunchUrl)).text();
   const { document } = parseHTML(html);
 
   const sweDaysCaps = sweDays.map((day) => day.toUpperCase());

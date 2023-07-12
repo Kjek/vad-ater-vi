@@ -1,16 +1,15 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
-import { RestaurantURL } from '@type/restaurant-links';
 import type Scraper from '@type/scraper';
 import type { SwedishDay } from '@type/swedish-days';
 import { sweDays } from '@type/swedish-days';
 import { decodeHtmlEntity } from '@util/html-utils';
 import { parseHTML } from 'linkedom';
 
-const augustasWebScraper: Scraper = async (regex) => {
+const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
   console.time('Fetching Mamma Augustas menu');
 
   const html = await (
-    await fetch(RestaurantURL['Augustas'].lunch, {
+    await fetch(lunchUrl, {
       headers: {
         'Accept-Encoding': 'gzip',
       },

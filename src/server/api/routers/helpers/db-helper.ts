@@ -169,24 +169,3 @@ export const searchRestaurantByName = async (
     take: limit ?? 100,
   });
 };
-
-export const getRestaurantRegexByName = async (
-  prisma: PrismaType,
-  name: string
-) => {
-  const restaurant = await prisma.restaurant.findUnique({
-    where: {
-      name: name,
-    },
-    select: {
-      restaurantRegex: {
-        select: {
-          regex: true,
-        },
-      },
-    },
-  });
-  return restaurant?.restaurantRegex?.regex
-    ? new RegExp(restaurant.restaurantRegex.regex)
-    : undefined;
-};

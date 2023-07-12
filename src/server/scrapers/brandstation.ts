@@ -1,13 +1,12 @@
 import type { LunchMenu } from '@type/lunch-menu';
-import { RestaurantURL } from '@type/restaurant-links';
 import type Scraper from '@type/scraper';
 import { sweDays } from '@type/swedish-days';
 import { parseHTML } from 'linkedom';
 
-const brandstationWebScraper: Scraper = async (regex) => {
+const brandstationWebScraper: Scraper = async (lunchUrl, regex) => {
   console.time('Fetching Restaturang Brandstation menu');
 
-  const html = await (await fetch(RestaurantURL['Brandstation'].lunch)).text();
+  const html = await (await fetch(lunchUrl)).text();
 
   const { document } = parseHTML(html);
 

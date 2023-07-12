@@ -3,7 +3,7 @@ import { useTheme } from '@hook/useTheme';
 import type { Dispatch, SetStateAction } from 'react';
 import { useCallback } from 'react';
 import CalendarIcon from './assets/CalendarIcon';
-import CloseIcon from './assets/CloseIcon';
+import CancelIcon from './assets/CancelIcon';
 
 export interface AllWeekButtonProps {
   isAllSelected?: boolean;
@@ -22,7 +22,7 @@ const AllWeekButton = (props: AllWeekButtonProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAllSelected]);
 
-  const icon = isAllSelected ? <CloseIcon /> : <CalendarIcon theme={theme} />;
+  const icon = isAllSelected ? <CancelIcon /> : <CalendarIcon theme={theme} />;
 
   const selectedClasses = isAllSelected
     ? 'ring-2 ring-gray-700 duration-75 bg-white dark:ring-gray-400 dark:bg-gray-800'
@@ -30,7 +30,7 @@ const AllWeekButton = (props: AllWeekButtonProps) => {
 
   return (
     <span
-      className={`flex cursor-pointer rounded-md border border-gray-300 py-2.5 px-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 ${selectedClasses}`}
+      className={`flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 ${selectedClasses}`}
       onClick={onClick}
     >
       {icon}

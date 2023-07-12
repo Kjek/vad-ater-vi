@@ -5,64 +5,87 @@ import webScraper from '@scraper/webscraper';
 import type { RestaurantType } from '@type/restaurant-links';
 
 export const adminRouter = createTRPCRouter({
-  regex: protectedProcedure
+  updateRegex: protectedProcedure
     .input(
       z.object({
-        restaurantId: z.string().nonempty(),
+        name: z.string().nonempty(),
         regex: z.string().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      console.log('Updating regex', input.restaurantId, input.regex);
-      await ctx.prisma.restaurant.update({
+      console.log('Updating regex', input.name, input.regex);
+      await ctx.prisma.restaurantSetting.update({
         where: {
-          id: input.restaurantId,
+          name: input.name,
         },
         data: {
-          restaurantRegex: {
-            upsert: {
-              create: {
-                regex: input.regex || null,
-              },
-              update: {
-                regex: input.regex || null,
-              },
-            },
-          },
+          regex: input.regex || null,
         },
       });
     }),
-  restaurants: protectedProcedure.query(({ ctx }) => {
-    return ctx.prisma.restaurant.findMany({
+  getRestaurantSettings: protectedProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.restaurantSetting.findMany({
       select: {
         id: true,
         name: true,
-        restaurantRegex: {
-          select: {
-            regex: true,
-          },
-        },
+        regex: true,
+        enabled: true,
       },
     });
   }),
-  reScrape: protectedProcedure
+  createRestaurantSetting: protectedProcedure
     .input(
       z.object({
-        restaurantId: z.string().nonempty(),
+        name: z.string().nonempty(),
+        homeUrl: z.string().nonempty(),
+        lunchUrl: z.string().nonempty(),
+        regex: z.string().optional(),
+        enabled: z.boolean().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const restaurant = await ctx.prisma.restaurant.findUnique({
-        where: {
-          id: input.restaurantId,
-        },
-        select: {
-          name: true,
+      return await ctx.prisma.restaurantSetting.create({
+        data: {
+          name: input.name,
+          homeUrl: input.homeUrl,
+          lunchUrl: input.lunchUrl,
+          regex: input.regex,
+          enabled: input.enabled,
         },
       });
-      if (restaurant) {
-        await webScraper(ctx.prisma, restaurant.name as RestaurantType);
-      }
+    }),
+  updateRestaurantSetting: protectedProcedure
+    .input(
+      z.object({
+        name: z.string().nonempty(),
+        homeUrl: z.string().optional(),
+        lunchUrl: z.string().optional(),
+        regex: z.string().optional(),
+        enabled: z.boolean().optional(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.prisma.restaurantSetting.update({
+        where: {
+          name: input.name,
+        },
+        data: {
+          name: input.name,
+          homeUrl: input.homeUrl,
+          lunchUrl: input.lunchUrl,
+          regex: input.regex,
+          enabled: input.enabled,
+        },
+      });
+    }),
+  reScrape: protectedProcedure
+    .input(
+      z.object({
+        name: z.string().nonempty(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      await webScraper(ctx.prisma, input.name as RestaurantType);
     }),
   reScrapeAll: protectedProcedure.mutation(async ({ ctx }) => {
     await handleLunchScrapers(ctx.prisma);

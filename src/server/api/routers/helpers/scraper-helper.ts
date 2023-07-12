@@ -10,8 +10,8 @@ import {
   createRestaurantIfNotExists,
   deleteMenuAndWeekly,
   getRestaurantNeedsUpdating,
-  getRestaurantRegexByName,
 } from './db-helper';
+import { getRestaurantSetting } from './admin-db-helper';
 
 const scrapeNewData = async (
   prisma: PrismaType,
@@ -19,23 +19,28 @@ const scrapeNewData = async (
   scraper: Scraper
 ) => {
   try {
-    const regex = await getRestaurantRegexByName(prisma, name);
-    const menu = await scraper(regex);
-    if (isLunchMenus(menu)) {
-      const restaurantModel = await createRestaurantIfNotExists(
-        prisma,
-        name,
-        menu
-      );
-      return convertRestaurant(restaurantModel);
-    } else if (isWeekMenu(menu)) {
-      const restaurantModel = await createRestaurantIfNotExists(
-        prisma,
-        name,
-        menu.lunchWeek,
-        menu.weeklySpecials
-      );
-      return convertRestaurant(restaurantModel);
+    const { lunchUrl, regex, enabled } = await getRestaurantSetting(
+      prisma,
+      name
+    );
+    if (enabled && lunchUrl) {
+      const menu = await scraper(lunchUrl, regex);
+      if (isLunchMenus(menu)) {
+        const restaurantModel = await createRestaurantIfNotExists(
+          prisma,
+          name,
+          menu
+        );
+        return convertRestaurant(restaurantModel);
+      } else if (isWeekMenu(menu)) {
+        const restaurantModel = await createRestaurantIfNotExists(
+          prisma,
+          name,
+          menu.lunchWeek,
+          menu.weeklySpecials
+        );
+        return convertRestaurant(restaurantModel);
+      }
     }
     return null;
   } catch (error) {

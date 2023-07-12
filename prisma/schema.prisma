@@ -11,13 +11,12 @@ datasource db {
 }
 
 model Restaurant {
-  id                String           @id @default(cuid())
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-  name              String           @unique
-  menu              Menu[]
-  weeklySpecial     WeeklySpecial[]
-  restaurantRegex   RestaurantRegex?
+  id            String          @id @default(cuid())
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  name          String          @unique
+  menu          Menu[]
+  weeklySpecial WeeklySpecial[]
 
   @@map("restaurant")
 }
@@ -48,15 +47,6 @@ model WeeklySpecial {
   @@map("weekly_special")
 }
 
-model RestaurantRegex {
-  id           String     @id @default(cuid())
-  regex        String?
-  restaurantId String     @unique
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-
-  @@map("restaurant_regex")
-}
-
 model Session {
   id           String   @id @default(cuid())
   sessionToken String   @unique
@@ -74,4 +64,15 @@ model User {
   sessions Session[]
 
   @@map("user")
+}
+
+model RestaurantSetting {
+  id       String  @id @default(cuid())
+  name     String  @unique
+  enabled  Boolean @default(false)
+  homeUrl  String
+  lunchUrl String
+  regex    String?
+
+  @@map("restaurant_setting")
 }
