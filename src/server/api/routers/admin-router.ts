@@ -2,35 +2,28 @@ import { createTRPCRouter, protectedProcedure } from '@server/api/trpc';
 import { z } from 'zod';
 import { handleLunchScrapers } from './helpers/scraper-helper';
 import webScraper from '@scraper/webscraper';
-import type { RestaurantType } from '@type/restaurant-links';
 
 export const adminRouter = createTRPCRouter({
-  updateRegex: protectedProcedure
-    .input(
-      z.object({
-        name: z.string().nonempty(),
-        regex: z.string().optional(),
-      })
-    )
-    .mutation(async ({ ctx, input }) => {
-      console.log('Updating regex', input.name, input.regex);
-      await ctx.prisma.restaurantSetting.update({
-        where: {
-          name: input.name,
-        },
-        data: {
-          regex: input.regex || null,
-        },
-      });
-    }),
   getRestaurantSettings: protectedProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.restaurantSetting.findMany({
-      select: {
-        id: true,
-        name: true,
-        regex: true,
-        enabled: true,
-      },
+    return (
+      await ctx.prisma.restaurantSetting.findMany({
+        select: {
+          id: true,
+          name: true,
+          regex: true,
+          enabled: true,
+        },
+      })
+    ).sort((left, right) => {
+      const lName = left.name.toLowerCase(),
+        rName = right.name.toLocaleLowerCase();
+      if (lName > rName) {
+        return 1;
+      } else if (rName > lName) {
+        return -1;
+      } else {
+        return 0;
+      }
     });
   }),
   createRestaurantSetting: protectedProcedure
@@ -44,7 +37,7 @@ export const adminRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      return await ctx.prisma.restaurantSetting.create({
+      await ctx.prisma.restaurantSetting.create({
         data: {
           name: input.name,
           homeUrl: input.homeUrl,
@@ -53,6 +46,7 @@ export const adminRouter = createTRPCRouter({
           enabled: input.enabled,
         },
       });
+      await webScraper(ctx.prisma, input.name);
     }),
   updateRestaurantSetting: protectedProcedure
     .input(
@@ -85,7 +79,7 @@ export const adminRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      await webScraper(ctx.prisma, input.name as RestaurantType);
+      await webScraper(ctx.prisma, input.name);
     }),
   reScrapeAll: protectedProcedure.mutation(async ({ ctx }) => {
     await handleLunchScrapers(ctx.prisma);

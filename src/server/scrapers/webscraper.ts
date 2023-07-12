@@ -1,6 +1,5 @@
 import { handleScraper } from '@router/helpers/scraper-helper';
 import type { PrismaType } from '@type/prisma-custom';
-import type { RestaurantType } from '@type/restaurant-links';
 import type Scraper from '@type/scraper';
 import augustasWebScraper from './augustas';
 import blocoWebScraper from './bloco';
@@ -11,10 +10,7 @@ import invitoWebScraper from './invito';
 import steakhouseWebScraper from './steakhouse';
 import brandstationWebScraper from './brandstation';
 
-const webScraper = async (
-  prisma: PrismaType,
-  restaurantName: RestaurantType
-) => {
+const webScraper = async (prisma: PrismaType, restaurantName: string) => {
   let scraper: Scraper;
   switch (restaurantName) {
     case 'Augustas':
@@ -41,8 +37,10 @@ const webScraper = async (
     case 'Steakhouse':
       scraper = steakhouseWebScraper;
       break;
+    default:
+      return;
   }
-  return handleScraper(prisma, restaurantName, scraper);
+  await handleScraper(prisma, restaurantName, scraper);
 };
 
 export default webScraper;

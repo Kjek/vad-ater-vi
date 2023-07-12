@@ -1,5 +1,5 @@
 import { api } from '@util/api';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useToggle } from 'usehooks-ts';
 import InputButton from './Button';
 import TextBox from './TextBox';
@@ -12,8 +12,15 @@ const CreateRestaurantSettingModal = () => {
   const lunchUrl = useRef<string>();
   const regex = useRef<string>();
 
-  const { mutate: createRestaurantSetting } =
+  const { mutate: createRestaurantSetting, isSuccess } =
     api.admin.createRestaurantSetting.useMutation();
+
+  useEffect(() => {
+    if (isSuccess) {
+      toggleOpen();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   return (
     <>
@@ -40,6 +47,11 @@ const CreateRestaurantSettingModal = () => {
                 />
                 <InputButton
                   value={enabled ? 'Enabled' : 'Disabled'}
+                  className={
+                    enabled
+                      ? 'dark:text-green-800 dark:hover:text-green-600'
+                      : 'dark:text-red-800 dark:hover:text-red-600'
+                  }
                   onClick={toggleEnabled}
                 />
               </div>
@@ -69,7 +81,7 @@ const CreateRestaurantSettingModal = () => {
         </div>
       ) : (
         <div className='self-end'>
-          <InputButton value={'Create new restaurant'} onClick={toggleOpen} />
+          <InputButton value={'Add restaurant'} onClick={toggleOpen} />
         </div>
       )}
     </>

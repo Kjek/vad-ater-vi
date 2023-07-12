@@ -2,8 +2,6 @@ import webScraper from '@scraper/webscraper';
 import type { LunchMenu, Restaurant } from '@type/lunch-menu';
 import { isLunchMenus, isWeekMenu } from '@type/lunch-menu';
 import type { PrismaType } from '@type/prisma-custom';
-import type { RestaurantType } from '@type/restaurant-links';
-import { RestaurantURL } from '@type/restaurant-links';
 import type Scraper from '@type/scraper';
 import { convertRestaurant } from '@util/restaurantUtils';
 import {
@@ -63,10 +61,8 @@ export const handleScraper = async (
 };
 
 export const handleLunchScrapers = async (prisma: PrismaType) => {
-  await Promise.all(
-    Object.keys(RestaurantURL).map((restaurantName) =>
-      webScraper(prisma, restaurantName as RestaurantType)
-    )
-  );
-  return;
+  const restaurants = await prisma.restaurantSetting.findMany({
+    select: { name: true },
+  });
+  await Promise.all(restaurants.map(({ name }) => webScraper(prisma, name)));
 };

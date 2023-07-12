@@ -1,5 +1,5 @@
 import { api } from '@util/api';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import InputButton from './Button';
 import Text from './Text';
 import TextBox from './TextBox';
@@ -7,13 +7,15 @@ import TextBox from './TextBox';
 const AdminRestaurantSettingsList = () => {
   const regex = useRef<string>();
   const { mutate: reScrape } = api.admin.reScrape.useMutation();
-  const { mutate: saveRegex } = api.admin.updateRegex.useMutation();
-  const { data: restaurants } = api.admin.getRestaurantSettings.useQuery(
-    undefined,
-    {
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { mutate: updateSettings, isSuccess } =
+    api.admin.updateRestaurantSetting.useMutation();
+  const { data: restaurants, refetch: fetchRestaurants } =
+    api.admin.getRestaurantSettings.useQuery(undefined);
+
+  useEffect(() => {
+    void fetchRestaurants();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   return (
     <>
@@ -30,7 +32,7 @@ const AdminRestaurantSettingsList = () => {
           <InputButton
             value={'Save'}
             onClick={() =>
-              saveRegex({
+              updateSettings({
                 name: restaurant.name,
                 regex: regex.current,
               })
@@ -44,8 +46,16 @@ const AdminRestaurantSettingsList = () => {
           />
           <InputButton
             value={restaurant.enabled ? 'Disable' : 'Enable'}
+            className={
+              restaurant.enabled
+                ? 'dark:text-red-800 dark:hover:text-red-600'
+                : 'dark:text-green-800 dark:hover:text-green-600'
+            }
             onClick={() => {
-              reScrape({ name: restaurant.name });
+              void updateSettings({
+                name: restaurant.name,
+                enabled: !restaurant.enabled,
+              });
             }}
           />
         </div>

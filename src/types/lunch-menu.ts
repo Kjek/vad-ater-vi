@@ -7,6 +7,7 @@ export interface Restaurant {
   menu: LunchMenu[];
   name: string;
   weeklySpecials: WeeklySpecial[];
+  homeUrl?: string;
 }
 
 export interface Restaurants {

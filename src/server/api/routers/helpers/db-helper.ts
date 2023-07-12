@@ -169,3 +169,9 @@ export const searchRestaurantByName = async (
     take: limit ?? 100,
   });
 };
+
+export const getAllRestaurantSettings = async (prisma: PrismaType) => {
+  return await prisma.restaurantSetting.findMany({
+    select: { name: true, homeUrl: true, enabled: true },
+  });
+};
