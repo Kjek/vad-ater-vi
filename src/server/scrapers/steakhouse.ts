@@ -1,14 +1,14 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
-import { RestaurantURL } from '@type/restaurant-links';
+import type Scraper from '@type/scraper';
 import type { SwedishDay } from '@type/swedish-days';
 import { sweDays } from '@type/swedish-days';
 import { decodeHtmlEntity } from '@util/html-utils';
 import { parseHTML } from 'linkedom';
 
-const steakhouseWebScraper = async () => {
+const steakhouseWebScraper: Scraper = async (lunchUrl, regex) => {
   console.time('Fetching Steakhosue menu');
 
-  const html = await (await fetch(RestaurantURL['Steakhouse'].lunch)).text();
+  const html = await (await fetch(lunchUrl)).text();
 
   const { document } = parseHTML(html);
 
@@ -25,7 +25,7 @@ const steakhouseWebScraper = async () => {
   const weeklySpecials: WeeklySpecial[] = [];
   if (scrapedHtml) {
     const matchDaily = scrapedHtml?.matchAll(
-      /\<\w+\>([a-ö]+)\s?(?:\<\/?\w+\>|\s)+(.*)/gim
+      regex || /\<\w+\>([a-ö]+)\s?(?:\<\/?\w+\>|\s)+(.*)/gim
     );
     for (const group of matchDaily) {
       if (sweDays.includes(group[1] as SwedishDay) && group[2]) {

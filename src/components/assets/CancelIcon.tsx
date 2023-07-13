@@ -1,11 +1,13 @@
-const CloseIcon = () => {
+import type { SVGAttributes } from 'react';
+
+const CancelIcon = (props: SVGAttributes<SVGElement>) => {
   return (
     <>
       <svg
         xmlns='http://www.w3.org/2000/svg'
-        viewBox='0 0 24 24'
-        fill='red'
-        className='h-4 w-4'
+        viewBox={props.viewBox || '0 0 24 24'}
+        fill={props.fill || 'red'}
+        className={props.className || 'h-4 w-4'}
       >
         <path
           fillRule='evenodd'
@@ -17,4 +19,4 @@ const CloseIcon = () => {
   );
 };
 
-export default CloseIcon;
+export default CancelIcon;

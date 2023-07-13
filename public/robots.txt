@@ -1,5 +1,10 @@
 # *
 User-agent: *
+Disallow: /api/
+Disallow: /admin
+
+# *
+User-agent: *
 Allow: /
 
 # Host

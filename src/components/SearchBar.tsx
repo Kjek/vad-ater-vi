@@ -34,14 +34,14 @@ const SearchBar = (props: SearchBarProps) => {
             type='text'
             id='search-restaurant'
             ref={inputRef}
-            className='w-full self-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-800 transition duration-500 focus:border-gray-300 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:border-gray-600 dark:focus:ring-gray-600 md:w-auto'
+            className='w-full self-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-800 outline-none transition duration-500 focus:border-gray-300 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:border-gray-600 dark:focus:ring-gray-600 md:w-auto'
             placeholder='Sök restauranger...'
             onChange={(event) => setInputText(event.currentTarget.value)}
           />
           <button
             aria-label='rensa sökfältet'
             type='button'
-            className='absolute right-0 bottom-[5px] rounded-lg px-2 py-2 text-sm font-medium text-white sm:bottom-[55px] lg:bottom-[5px]'
+            className='absolute bottom-[5px] right-0 rounded-lg px-2 py-2 text-sm font-medium text-white sm:bottom-[55px] lg:bottom-[5px]'
             onClick={() => onClear()}
           >
             {inputText && (
