@@ -3,7 +3,7 @@ import InputButton from './Button';
 import Text from './Text';
 
 interface AdminOptionProps extends HTMLAttributes<HTMLElement> {
-  text: string;
+  text?: string;
   buttonValue: string;
   onClick: MouseEventHandler<HTMLInputElement>;
 }

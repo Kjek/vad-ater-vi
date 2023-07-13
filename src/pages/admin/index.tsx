@@ -4,7 +4,7 @@ import CreateRestaurantSettingModal from '@component/admin/CreateRestaurantSetti
 import LoginSection from '@component/admin/LoginSection';
 import { api } from '@util/api';
 import type { NextPage } from 'next';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
 const LoginPage: NextPage = () => {
   const { data: session } = useSession();
@@ -22,6 +22,7 @@ const LoginPage: NextPage = () => {
             />
             <AdminRestaurantSettingsList />
             <CreateRestaurantSettingModal />
+            <AdminOption buttonValue='Logout' onClick={() => void signOut()} />
           </div>
         </div>
       ) : (
