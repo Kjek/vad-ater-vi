@@ -23,13 +23,13 @@ const innergardenWebScraper: Scraper = async (lunchUrl, regex) => {
         lunchWeek.push({
           day: lu[1].trim(),
           food: decodeHtmlEntity(lu[2])
-            .replaceAll(/\<\/?\w+\>\*/g, '. ')
+            .replaceAll(/\<\/?\w+\>\*/g, '')
             .replaceAll(/\<\/?\w+\>/g, '')
             .replaceAll('Går även bra att ta Take Away', '')
             .replaceAll(/<\/?[^>]+>|$/gim, '')
             .replaceAll(/\s?\|+\s?/gm, ', ')
             .toFullSentenceCase()
-            .replaceAll(/\s?\.\s/g, '.\n'),
+            .replaceAll(/\s\.$/g, ''),
         } as LunchMenu);
       }
     }
