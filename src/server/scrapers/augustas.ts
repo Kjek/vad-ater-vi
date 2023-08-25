@@ -53,7 +53,7 @@ const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
       regex ||
-        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)\s+([\wåäömé,. \n\–]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?)|Är du allergisk\?|-{3,})/gim
+        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)\s+([\wåäömé,.;&\- \n]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)|Är du allergisk\?|-{3,})/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
