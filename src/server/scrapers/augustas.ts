@@ -49,11 +49,11 @@ const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
 
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
-
+  console.log(lunchMenu);
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
       regex ||
-        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)\s+([\wåäömé,.;&\- \n]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)|Är du allergisk\?|-{3,})/gim
+        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)\s+([\wåäömé,.;& \n-]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)|Är du allergisk\?|Alltid på lunchen|-{3,})/gim
     );
     for (const lu of match) {
       if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
@@ -75,6 +75,7 @@ const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
       }
     }
   }
+  console.log(lunchWeek);
   console.timeEnd('Fetching Mamma Augustas menu');
   return { lunchWeek, weeklySpecials };
 };
