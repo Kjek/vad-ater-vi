@@ -18,7 +18,12 @@ export const getRestaurantSetting = async (
   });
   return {
     ...restaurant,
-    regex: restaurant?.regex ? new RegExp(restaurant.regex) : undefined,
+    regex: restaurant?.regex
+      ? new RegExp(
+          restaurant.regex.replace('/', '').replace(/\/\w+?$/, ''),
+          restaurant.regex.split('/').slice(-1)[0]
+        )
+      : undefined,
   };
 };
 
