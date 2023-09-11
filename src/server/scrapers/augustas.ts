@@ -49,7 +49,6 @@ const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
 
   const lunchWeek = [];
   const weeklySpecials: WeeklySpecial[] = [];
-  console.log(lunchMenu);
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
       regex ||
@@ -75,7 +74,6 @@ const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
       }
     }
   }
-  console.log(lunchWeek);
   console.timeEnd('Fetching Mamma Augustas menu');
   return { lunchWeek, weeklySpecials };
 };
