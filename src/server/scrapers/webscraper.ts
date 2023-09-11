@@ -9,6 +9,7 @@ import innergardenWebScraper from './innegarden';
 import invitoWebScraper from './invito';
 import steakhouseWebScraper from './steakhouse';
 import brandstationWebScraper from './brandstation';
+import opusWebScraper from './opus';
 
 const webScraper = async (prisma: PrismaType, restaurantName: string) => {
   let scraper: Scraper;
@@ -33,6 +34,9 @@ const webScraper = async (prisma: PrismaType, restaurantName: string) => {
       break;
     case 'Invito':
       scraper = invitoWebScraper;
+      break;
+    case 'Opus':
+      scraper = opusWebScraper;
       break;
     case 'Steakhouse':
       scraper = steakhouseWebScraper;
