@@ -1,15 +1,13 @@
-import { type AppType } from 'next/app';
-
-import { api } from '@util/api';
-
-import '../styles/globals.css';
-
+import useDarkMode from '@hook/useDarkMode';
 import { StateProvider } from '@hook/useGlobalState';
 import { ThemeProvider } from '@hook/useTheme';
+import { api } from '@util/api';
 import {} from '@util/init-utils';
-import useDarkMode from '@hook/useDarkMode';
-import { SessionProvider } from 'next-auth/react';
+import { Analytics } from '@vercel/analytics/react';
 import type { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
+import { type AppType } from 'next/app';
+import '../styles/globals.css';
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -21,6 +19,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <SessionProvider session={pageProps.session}>
         <ThemeProvider>
           <Component {...pageProps} />
+          <Analytics />
         </ThemeProvider>
       </SessionProvider>
     </StateProvider>
