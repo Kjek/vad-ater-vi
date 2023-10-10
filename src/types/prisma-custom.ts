@@ -6,6 +6,5 @@ export interface PrismaInterface {
 
 export type PrismaType = PrismaClient<
   Prisma.PrismaClientOptions,
-  never,
-  Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  never | undefined
 >;
