@@ -1369,10 +1369,10 @@
   dependencies:
     next-auth "*"
 
-"@types/next-pwa@^5.6.4":
-  version "5.6.4"
-  resolved "https://registry.yarnpkg.com/@types/next-pwa/-/next-pwa-5.6.4.tgz#4a53bf84ae58a50af4c5bdfee2a138ea1fecdf1b"
-  integrity sha512-ysfWc9FO0yFih1qr84kU+3svvUXPdQA9qi4GYJhFWr3Jx+x/TpH0c2cEBcUiUHLdi+pWnotFbpRguReS0Lb+dg==
+"@types/next-pwa@^5.6.6":
+  version "5.6.6"
+  resolved "https://registry.yarnpkg.com/@types/next-pwa/-/next-pwa-5.6.6.tgz#50e1e5579f96bc9d670d88924e645a74f2256d3f"
+  integrity sha512-gbIHrLsiyCvrhHcDgicGoZcva2xf9xUiEGfbDOaObp34HPn8Wsj8FLrQvkLEYIYYUJNKP9BoHj45MGk63K6xnw==
   dependencies:
     "@types/react" "*"
     next "^12.2.5 || ^13.0.0"
