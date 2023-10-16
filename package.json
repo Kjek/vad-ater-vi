@@ -21,7 +21,7 @@
     "@trpc/next": "^10.17.0",
     "@trpc/react-query": "^10.17.0",
     "@trpc/server": "^10.17.0",
-    "@vercel/analytics": "^1.1.0",
+    "@vercel/analytics": "^1.1.1",
     "bcrypt": "^5.1.1",
     "linkedom": "^0.15.4",
     "next": "13.4.9",
