@@ -20,17 +20,19 @@ const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
   const lunchMenu =
     Array.from(document.querySelectorAll('strong'))
       .filter((strong) => strong.textContent?.includes('Tisdag'))
-      .map((item) =>
-        item.parentElement?.innerHTML
-          .replaceAll(/\<\/?\w+\>/gm, '\n')
-          .replaceAll(/\s{2,}/gm, ' ')
+      .map(
+        (item) =>
+          item.parentElement?.innerHTML
+            .replaceAll(/\<\/?\w+\>/gm, '\n')
+            .replaceAll(/\s{2,}/gm, ' ')
       )[0] ??
     Array.from(document.querySelectorAll('p'))
       .filter((strong) => strong.textContent?.includes('Tisdag'))
-      .map((item) =>
-        item.parentElement?.innerHTML
-          .replaceAll(/\<\/?\w+\>/gm, '\n')
-          .replaceAll(/\s{2,}/gm, ' ')
+      .map(
+        (item) =>
+          item.parentElement?.innerHTML
+            .replaceAll(/\<\/?\w+\>/gm, '\n')
+            .replaceAll(/\s{2,}/gm, ' ')
       )[0] ??
     Array.from(document.querySelectorAll('div.articleTemplate_Content'))
       .filter(
@@ -52,10 +54,15 @@ const augustasWebScraper: Scraper = async (lunchUrl, regex) => {
   if (lunchMenu) {
     const match = lunchMenu.matchAll(
       regex ||
-        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)\s+([\wåäömé,.;& \n-]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)|Är du allergisk\?|Alltid på lunchen|-{3,})/gim
+        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)\s?([\W\w]*?)(?=Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?|Är du allergisk?|-{3,})/gim
     );
     for (const lu of match) {
-      if (lu[1] && lu[2] && sweDays.includes(lu[1] as SwedishDay)) {
+      if (
+        lu[1] &&
+        lu[2] &&
+        sweDays.includes(lu[1] as SwedishDay) &&
+        !/^\W*$/gm.test(lu[2]) // Checks if group contains more than non-word characters
+      ) {
         lunchWeek.push({
           day: lu[1].trim(),
           food: decodeHtmlEntity(lu[2])
