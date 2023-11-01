@@ -14,18 +14,20 @@ const steakhouseWebScraper: Scraper = async (lunchUrl, regex) => {
 
   const scrapedHtml = Array.from(document.querySelectorAll('strong'))
     .filter((strong) => strong.textContent?.includes('Måndag'))
-    .map((strong) =>
-      strong.parentElement?.parentElement?.innerHTML
-        .trim()
-        .replaceAll(/\<\w+\>\<\/\w+\>/gm, '\n')
-        .replaceAll(/\<\/\w\>\s+\<[a-ö\s=";:\-]+\>/gim, '\n')
+    .map(
+      (strong) =>
+        strong.parentElement?.parentElement?.innerText
+          .trim()
+          .replaceAll(/\<\w+\>\<\/\w+\>/gm, '\n')
+          .replaceAll(/\<\/\w\>\s+\<[a-ö\s=";:\-]+\>/gim, '\n')
     )[0];
 
   const lunchWeek: LunchMenu[] = [];
   const weeklySpecials: WeeklySpecial[] = [];
   if (scrapedHtml) {
     const matchDaily = scrapedHtml?.matchAll(
-      regex || /\<\w+\>([a-ö]+)\s?(?:\<\/?\w+\>|\s)+(.*)/gim
+      regex ||
+        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans)\s?([\W\w]*?)(?=Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans)/gim
     );
     for (const group of matchDaily) {
       if (sweDays.includes(group[1] as SwedishDay) && group[2]) {

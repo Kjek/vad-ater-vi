@@ -20,8 +20,11 @@ const estreetWebScraper: Scraper = async (lunchUrl, regex) => {
           food: item.nextElementSibling?.textContent
             ?.replace(/^(?:\s+)?\W(?:\s+)?/gm, '')
             .replace(/\s+\W\s?[^\w]/gm, '\n')
-            .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n'),
-        } as LunchMenu)
+            .replace(/^\d.\s{1}/gim, '')
+            .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n')
+            .replace(/\.{2,}/gm, '.')
+            .trim(),
+        }) as LunchMenu
     );
 
   const weeklySpecials = Array.from(document.querySelectorAll('div'))
@@ -35,11 +38,11 @@ const estreetWebScraper: Scraper = async (lunchUrl, regex) => {
           type: item.textContent?.toSentenceCase(),
           food: item.nextElementSibling?.textContent
             ?.replace(/^(?:\s+)?\W(?:\s+)?/gm, '')
-            .replace(/\s+\W\s?[^\w]/gm, '\n')
-            .replace(/[^a-öA-Ö]\W\s*[^a-öA-Ö]/gm, '.\n')
+            .replace(/\d.\s{1}/gim, '\n')
             .trim(),
-        } as WeeklySpecial)
+        }) as WeeklySpecial
     );
+
   const lunchMenu = { lunchWeek, weeklySpecials };
 
   console.timeEnd('Fetching E-Street menu');

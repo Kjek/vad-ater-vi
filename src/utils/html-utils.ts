@@ -10,8 +10,9 @@ export const decodeHtmlEntity = (text: string) => {
     lt: '<',
     quot: '"',
     nbsp: ' ',
+    '#160': ' ',
   };
-  return text.replaceAll(/&(\w+);/gi, (match, entity: string) => {
+  return text.replaceAll(/&(\#?\w+);/gi, (match, entity: string) => {
     return entityMap[entity] || match;
   });
 };

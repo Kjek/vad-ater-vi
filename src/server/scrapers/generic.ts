@@ -25,7 +25,7 @@ const genericWebScraper: Scraper = async (lunchUrl, regex) => {
   if (lunchMenu) {
     const match = lunchMenu?.matchAll(
       regex ||
-        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag)\n+([\wåäömé,.;& \n-]*?)(?=(Måndag|Tisdag|Onsdag|Torsdag|Fredag)\n+|$)/gim
+        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans)\s?([\W\w]*?)(?=Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans)/gim
     );
     for (const lu of match) {
       if (
