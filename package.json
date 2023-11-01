@@ -24,7 +24,7 @@
     "@vercel/analytics": "^1.1.1",
     "bcrypt": "^5.1.1",
     "linkedom": "^0.15.6",
-    "next": "13.4.9",
+    "next": "13.5.0",
     "next-auth": "^4.23.2",
     "next-pwa": "^5.6.0",
     "next-sitemap": "^4.2.3",
