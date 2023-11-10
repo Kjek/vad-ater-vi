@@ -39,7 +39,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/eslint": "^8.44.6",
     "@types/next-auth": "^3.15.0",
-    "@types/next-pwa": "^5.6.6",
+    "@types/next-pwa": "^5.6.9",
     "@types/node": "^20.8.7",
     "@types/prettier": "^3.0.0",
     "@types/react": "^18.2.37",
