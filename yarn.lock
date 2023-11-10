@@ -1400,12 +1400,14 @@
   dependencies:
     next-auth "*"
 
-"@types/next-pwa@^5.6.6":
-  version "5.6.6"
-  resolved "https://registry.yarnpkg.com/@types/next-pwa/-/next-pwa-5.6.6.tgz#50e1e5579f96bc9d670d88924e645a74f2256d3f"
-  integrity sha512-gbIHrLsiyCvrhHcDgicGoZcva2xf9xUiEGfbDOaObp34HPn8Wsj8FLrQvkLEYIYYUJNKP9BoHj45MGk63K6xnw==
+"@types/next-pwa@^5.6.9":
+  version "5.6.9"
+  resolved "https://registry.yarnpkg.com/@types/next-pwa/-/next-pwa-5.6.9.tgz#b9e14ae3d2c6d82585c34d94faa3373cad64695d"
+  integrity sha512-KcymH+MtFYB5KVKIOH1DMqd0wUb8VLCxzHtsaRQQ7S8sGOaTH24Lo2vGZf6/0Ok9e+xWCKhqsSt6cgDJTk91Iw==
   dependencies:
+    "@types/node" "*"
     "@types/react" "*"
+    "@types/react-dom" "*"
     next "^12.2.5 || ^13.0.0"
     workbox-build "^6.5.4"
 
@@ -1428,10 +1430,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
-"@types/react-dom@^18.2.13":
-  version "18.2.13"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.13.tgz#89cd7f9ec8b28c8b6f0392b9591671fb4a9e96b7"
-  integrity sha512-eJIUv7rPP+EC45uNYp/ThhSpE16k22VJUknt5OLoH9tbXoi8bMhwLf5xRuWMywamNbWzhrSmU7IBJfPup1+3fw==
+"@types/react-dom@*", "@types/react-dom@^18.2.13":
+  version "18.2.15"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.15.tgz#921af67f9ee023ac37ea84b1bc0cc40b898ea522"
+  integrity sha512-HWMdW+7r7MR5+PZqJF6YFNSCtjz1T0dsvo/f1BV6HkV+6erD/nA7wd9NM00KVG83zf2nJ7uATPO9ttdIPvi3gg==
   dependencies:
     "@types/react" "*"
 
