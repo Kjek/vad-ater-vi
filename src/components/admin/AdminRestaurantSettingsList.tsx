@@ -1,7 +1,7 @@
 import SettingsModal from '@component/organisms/SettingsModal';
 import { api } from '@util/api';
 import { toastError, toastSuccessful } from '@util/toast-utils';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import type { Id } from 'react-toastify';
 import { toast } from 'react-toastify';
 import InputButton from './Button';
