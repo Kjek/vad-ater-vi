@@ -1,45 +1,47 @@
+import SettingsModal from '@component/organisms/SettingsModal';
 import { api } from '@util/api';
-import { useEffect, useRef } from 'react';
+import { toastError, toastSuccessful } from '@util/toast-utils';
+import { useRef } from 'react';
+import type { Id } from 'react-toastify';
+import { toast } from 'react-toastify';
 import InputButton from './Button';
-import Text from './Text';
-import TextBox from './TextBox';
 
 const AdminRestaurantSettingsList = () => {
-  const regex = useRef<string>();
-  const { mutate: reScrape } = api.admin.reScrape.useMutation();
-  const { mutate: updateSettings, isSuccess } =
-    api.admin.updateRestaurantSetting.useMutation();
+  const toastId = useRef<Id>(0);
   const { data: restaurants, refetch: fetchRestaurants } =
     api.admin.getRestaurantSettings.useQuery(undefined);
-
-  useEffect(() => {
-    void fetchRestaurants();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess]);
+  const { mutate: reScrape } = api.admin.reScrape.useMutation({
+    onSuccess() {
+      toastSuccessful(toastId.current);
+    },
+    onError(error) {
+      toastError(toastId.current, error);
+    },
+    onMutate() {
+      toastId.current = toast.loading('Scraping in progress...');
+    },
+  });
+  const { mutate: updateSettings } =
+    api.admin.updateRestaurantSetting.useMutation({
+      onSuccess() {
+        toastSuccessful(toastId.current);
+        void fetchRestaurants();
+      },
+      onError(error) {
+        toastError(toastId.current, error);
+      },
+      onMutate() {
+        toastId.current = toast.loading('Updating in progress...');
+      },
+    });
 
   return (
     <>
       {restaurants?.map((restaurant) => (
         <div key={restaurant.name} className='flex w-full gap-4'>
-          <Text className='flex-1 self-center'>{restaurant.name}</Text>
-          <TextBox
-            placeholder='Insert regex'
-            defaultValue={restaurant.regex || undefined}
-            onChange={(event) => {
-              regex.current = event.target.value;
-            }}
-          />
+          <SettingsModal restaurant={restaurant}></SettingsModal>
           <InputButton
-            value={'Save'}
-            onClick={() =>
-              updateSettings({
-                name: restaurant.name,
-                regex: regex.current,
-              })
-            }
-          />
-          <InputButton
-            value={'Re-scrape'}
+            value='Re-scrape'
             onClick={() => {
               reScrape({ name: restaurant.name });
             }}
@@ -53,7 +55,7 @@ const AdminRestaurantSettingsList = () => {
             }
             onClick={() => {
               void updateSettings({
-                name: restaurant.name,
+                id: restaurant.id,
                 enabled: !restaurant.enabled,
               });
             }}

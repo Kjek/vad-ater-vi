@@ -1,6 +1,6 @@
 import type { HTMLAttributes, MouseEventHandler } from 'react';
 import InputButton from './Button';
-import Text from './Text';
+import Text from '../atoms/Text';
 
 interface AdminOptionProps extends HTMLAttributes<HTMLElement> {
   text?: string;

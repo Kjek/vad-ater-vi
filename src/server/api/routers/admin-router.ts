@@ -1,7 +1,13 @@
-import { createTRPCRouter, protectedProcedure } from '@server/api/trpc';
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from '@server/api/trpc';
 import { z } from 'zod';
 import { handleLunchScrapers } from './helpers/scraper-helper';
 import webScraper from '@scraper/webscraper';
+import bcrypt from 'bcrypt';
+import { TRPCError } from '@trpc/server';
 
 export const adminRouter = createTRPCRouter({
   getRestaurantSettings: protectedProcedure.query(async ({ ctx }) => {
@@ -10,6 +16,8 @@ export const adminRouter = createTRPCRouter({
         select: {
           id: true,
           name: true,
+          homeUrl: true,
+          lunchUrl: true,
           regex: true,
           enabled: true,
         },
@@ -29,9 +37,9 @@ export const adminRouter = createTRPCRouter({
   createRestaurantSetting: protectedProcedure
     .input(
       z.object({
-        name: z.string().nonempty(),
-        homeUrl: z.string().nonempty(),
-        lunchUrl: z.string().nonempty(),
+        name: z.string().min(1),
+        homeUrl: z.string().min(1),
+        lunchUrl: z.string().min(1),
         regex: z.string().optional(),
         enabled: z.boolean().optional(),
       })
@@ -51,7 +59,8 @@ export const adminRouter = createTRPCRouter({
   updateRestaurantSetting: protectedProcedure
     .input(
       z.object({
-        name: z.string().nonempty(),
+        id: z.string().min(1),
+        name: z.string().optional(),
         homeUrl: z.string().optional(),
         lunchUrl: z.string().optional(),
         regex: z.string().optional(),
@@ -61,7 +70,7 @@ export const adminRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       return await ctx.prisma.restaurantSetting.update({
         where: {
-          name: input.name,
+          id: input.id,
         },
         data: {
           name: input.name,
@@ -75,7 +84,7 @@ export const adminRouter = createTRPCRouter({
   reScrape: protectedProcedure
     .input(
       z.object({
-        name: z.string().nonempty(),
+        name: z.string().min(1),
       })
     )
     .mutation(async ({ ctx, input }) => {
@@ -84,4 +93,29 @@ export const adminRouter = createTRPCRouter({
   reScrapeAll: protectedProcedure.mutation(async ({ ctx }) => {
     await handleLunchScrapers(ctx.prisma);
   }),
+  createAdminAccount: publicProcedure
+    .input(
+      z.object({
+        username: z.string().min(1),
+        password: z.string().min(1),
+        secret: z.string().min(1),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      if (
+        process.env.ADMIN_SECRET &&
+        process.env.ADMIN_SECRET === input.secret
+      ) {
+        await ctx.prisma.user.create({
+          data: {
+            username: input.username,
+            password: bcrypt.hashSync(input.password, 10),
+          },
+        });
+      } else {
+        throw new TRPCError({
+          code: 'UNAUTHORIZED',
+        });
+      }
+    }),
 });

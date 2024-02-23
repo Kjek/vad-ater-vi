@@ -7,6 +7,7 @@ declare global {
     getShortDate(): string;
     toSentenceCase(): string;
     toFullSentenceCase(): string;
+    toDotNotation(): string;
   }
 }
 
@@ -58,4 +59,11 @@ String.prototype.toFullSentenceCase = function () {
   });
 
   return sentenceCase.join('. ') + '.';
+};
+
+String.prototype.toDotNotation = function () {
+  if (!this) {
+    return '';
+  }
+  return this.trim().replaceAll(/\s/g, '.').toLocaleLowerCase();
 };
