@@ -21,14 +21,11 @@ const blocoWebScraper: Scraper = async (lunchUrl, regex) => {
     .map((p) => p.innerHTML)
     .join(' ');
 
-  console.log(scrapedMenu);
-
   if (scrapedMenu) {
     const match = decodeHtmlEntity(scrapedMenu).matchAll(
       regex || /\<\w\>([a-ö]{3,7})(?:\<+\/?\w+\>+)+([a-ö\s\”\",&-]+)/gim
     );
     for (const text of match) {
-      console.log(text);
       if (text[1] && text[2]) {
         lunchWeek.push({
           day: text[1].trim(),
