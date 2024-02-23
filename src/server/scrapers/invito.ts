@@ -11,7 +11,10 @@ const invitoWebScraper: Scraper = async (lunchUrl, regex) => {
   const matched = document
     .querySelector('#lunchmeny')
     ?.nextElementSibling?.querySelector('div')
-    ?.textContent?.matchAll(regex ?? /^([a-öA-Ö]+) \n+(.*)/gm);
+    ?.innerText?.matchAll(
+      regex ??
+        /(Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?)\s+([\W\w]*?)(?=Måndag|Tisdag|Onsdag|Torsdag|Fredag|Veckans veg:?|Veckans vegetariska:?|Veckans fisk:?|Veckans sallad:?|Veckans soppa:?|Veckans pasta:?|Är du allergisk?)/gim
+    );
 
   const lunchMenu: LunchMenu[] = [];
 

@@ -1,5 +1,6 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
 import type Scraper from '@type/scraper';
+import { decodeHtmlEntity } from '@util/html-utils';
 import { parseHTML } from 'linkedom';
 
 const blocoWebScraper: Scraper = async (lunchUrl, regex) => {
@@ -13,14 +14,16 @@ const blocoWebScraper: Scraper = async (lunchUrl, regex) => {
 
   const scrapedMenu = Array.from(document.querySelectorAll('p'))
     .filter((p) =>
-      p.innerHTML.match(/\<\w\>([a-ö]{3,7})(?:\<+\/?\w+\>+)+([a-ö\s\”",]+)/gim)
+      p.innerHTML.match(
+        /\<\w\>([a-ö]{3,7})(?:\<+\/?\w+\>+)+([a-ö\s\”",&-]+)/gim
+      )
     )
     .map((p) => p.innerHTML)
     .join(' ');
 
   if (scrapedMenu) {
-    const match = scrapedMenu.matchAll(
-      /\<\w\>([a-ö]{3,7})(?:\<+\/?\w+\>+)+([a-ö\s\”\",]+)/gim
+    const match = decodeHtmlEntity(scrapedMenu).matchAll(
+      regex || /\<\w\>([a-ö]{3,7})(?:\<+\/?\w+\>+)+([a-ö\s\”\",&-]+)/gim
     );
     for (const text of match) {
       if (text[1] && text[2]) {
