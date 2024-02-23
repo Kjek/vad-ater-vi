@@ -3,12 +3,27 @@ import AdminRestaurantSettingsList from '@component/admin/AdminRestaurantSetting
 import CreateRestaurantSettingModal from '@component/admin/CreateRestaurantSettingModal';
 import LoginSection from '@component/admin/LoginSection';
 import { api } from '@util/api';
+import { toastError, toastSuccessful } from '@util/toast-utils';
 import type { NextPage } from 'next';
 import { signOut, useSession } from 'next-auth/react';
+import { useRef } from 'react';
+import type { Id } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const LoginPage: NextPage = () => {
   const { data: session } = useSession();
-  const { mutate: reScrapeAll } = api.admin.reScrapeAll.useMutation();
+  const toastId = useRef<Id>(0);
+  const { mutate: reScrapeAll } = api.admin.reScrapeAll.useMutation({
+    onSuccess() {
+      toastSuccessful(toastId.current);
+    },
+    onError(error) {
+      toastError(toastId.current, error);
+    },
+    onMutate() {
+      toastId.current = toast.loading('Scraping in progress...');
+    },
+  });
 
   return (
     <>

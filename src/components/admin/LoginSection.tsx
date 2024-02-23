@@ -2,18 +2,20 @@ import { signIn } from 'next-auth/react';
 import { useRef } from 'react';
 import InputButton from './Button';
 import TextBox from './TextBox';
+import { useToggle } from 'usehooks-ts';
+import CreateAdminAccountModal from './CreateAdminAccountModal';
 
 const LoginSection = () => {
+  const [isGenAdminAccOpen, toggleGenAdminAccOpen] = useToggle();
   const userName = useRef('');
   const pass = useRef('');
   const onSubmit = async () => {
-    const result = await signIn('credentials', {
+    await signIn('credentials', {
       username: userName.current,
       password: pass.current,
       redirect: true,
       callbackUrl: '/admin',
     });
-    console.log(result);
   };
   const keyDownEvent = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.code === 'Enter') {
@@ -43,6 +45,15 @@ const LoginSection = () => {
         />
         <InputButton value='Login' onClick={() => void onSubmit()} />
       </div>
+      <div className='dark:bg-gray-custom absolute bottom-0 right-0 mb-4 mr-4 bg-white'>
+        <InputButton
+          value='Generate admin account'
+          onClick={toggleGenAdminAccOpen}
+        />
+      </div>
+      {isGenAdminAccOpen ? (
+        <CreateAdminAccountModal toggleModal={toggleGenAdminAccOpen} />
+      ) : null}
     </div>
   );
 };

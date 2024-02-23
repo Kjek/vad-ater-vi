@@ -1,3 +1,5 @@
+import Text from '@component/atoms/Text';
+
 interface ErrorListItemProps {
   restaurantHomeUrl?: string;
 }
@@ -7,11 +9,11 @@ const ErrorListItem = (props: ErrorListItemProps) => {
   return (
     <>
       <li key='error-message'>
-        <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
+        <Text variant='h3'>
           {
             'Fel vid hämtning av menyer gå till restaurangens hemsida istället: '
           }
-        </h3>
+        </Text>
         <a
           className='text-2xl font-bold text-blue-700 underline hover:no-underline dark:text-gray-500'
           href={restaurantHomeUrl}

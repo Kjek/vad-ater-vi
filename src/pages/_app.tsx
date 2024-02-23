@@ -7,6 +7,7 @@ import { Analytics } from '@vercel/analytics/react';
 import type { Session } from 'next-auth';
 import { SessionProvider } from 'next-auth/react';
 import { type AppType } from 'next/app';
+import ToastProvider from '@provider/ToastProvider';
 import '../styles/globals.css';
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -18,7 +19,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <StateProvider>
       <SessionProvider session={pageProps.session}>
         <ThemeProvider>
-          <Component {...pageProps} />
+          <ToastProvider>
+            <Component {...pageProps} />
+          </ToastProvider>
           <Analytics />
         </ThemeProvider>
       </SessionProvider>

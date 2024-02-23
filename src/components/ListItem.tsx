@@ -1,3 +1,4 @@
+import Text from '@component/atoms/Text';
 import { useGlobalState } from '@hook/useGlobalState';
 import type { Restaurant } from '@type/lunch-menu';
 import ErrorListItem from './ErrorListItem';
@@ -15,22 +16,20 @@ const ListItem = (props: ListProps) => {
   return (
     <>
       <li className='dark:bg-gray-custom whitespace-pre-line break-words border-b bg-white p-6 shadow-md transition-all duration-500 last:border-none dark:border-gray-700 dark:shadow-none sm:flex'>
-        <h2 className='pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0'>
+        <Text variant='h2'>
           <a title='Gå till restaurangens hemsida' href={restaurant.homeUrl}>
             {restaurant.name}
           </a>
-        </h2>
+        </Text>
         <div className='sm:w-2/3 sm:grow'>
           <ul>
             {menuToShow.length > 0 ? (
               menuToShow.map((lunch) => (
                 <li key={lunch.day} className='pb-6 last:pb-0'>
-                  <h3 className='text-2xl font-bold text-gray-800 dark:text-gray-300'>
+                  <Text variant='h3'>
                     {lunch.day + ` ${lunch.day.getShortDate()}`}
-                  </h3>
-                  <p className='text-lg text-gray-500 dark:text-gray-300'>
-                    {lunch.food}
-                  </p>
+                  </Text>
+                  <Text variant='p'>{lunch.food}</Text>
                 </li>
               ))
             ) : (
@@ -49,12 +48,8 @@ const ListItem = (props: ListProps) => {
                   }`}
                   key={item.type}
                 >
-                  <h4 className='font-bold text-gray-800 dark:text-gray-300'>
-                    {item.type}
-                  </h4>
-                  <h5 className='text-gray-500 dark:text-gray-300'>
-                    {item.food}
-                  </h5>
+                  <Text variant='h4'>{item.type}</Text>
+                  <Text variant='h5'>{item.food}</Text>
                 </li>
               ))}
             </ul>

@@ -12,7 +12,7 @@ export const lunchRouter = createTRPCRouter({
   menuSearch: publicProcedure
     .input(
       z.object({
-        searchText: z.string().nonempty(),
+        searchText: z.string().min(1),
         limit: z.number().optional(),
       })
     )

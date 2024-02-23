@@ -20,6 +20,7 @@
       "@page/*": ["./src/pages/*"],
       "@router/*": ["./src/server/api/routers/*"],
       "@router/helper/*": ["./src/server/api/routers/helpers/*"],
+      "@provider/*": ["./src/provider/*"],
       "@scraper/*": ["./src/server/scrapers/*"],
       "@server/*": ["./src/server/*"],
       "@type/*": ["./src/types/*"],
