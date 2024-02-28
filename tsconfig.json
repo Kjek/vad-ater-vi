@@ -16,6 +16,7 @@
     "paths": {
       "@asset/*": ["./src/components/assets/*"],
       "@component/*": ["./src/components/*"],
+      "@api-helper/*": ["./src/server/api/routers/helpers/*"],
       "@hook/*": ["./src/hooks/*"],
       "@page/*": ["./src/pages/*"],
       "@router/*": ["./src/server/api/routers/*"],

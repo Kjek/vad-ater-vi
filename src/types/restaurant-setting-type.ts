@@ -4,7 +4,8 @@ export interface RestaurantSetting {
   name: string;
   homeUrl: string;
   lunchUrl: string;
-  regex?: string;
+  lunchRegex?: string;
+  weeklyRegex?: string;
   enabled?: boolean;
 }
 

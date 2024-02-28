@@ -4,19 +4,18 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("POSTGRES_PRISMA_URL")
-  directUrl         = env("POSTGRES_URL_NON_POOLING")
-  shadowDatabaseUrl = env("POSTGRES_URL_NON_POOLING")
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Restaurant {
-  id            String          @id @default(cuid())
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  name          String          @unique
-  menu          Menu[]
-  weeklySpecial WeeklySpecial[]
+  id                String             @id @default(cuid())
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  menu              Menu[]
+  weeklySpecial     WeeklySpecial[]
+  restaurantSetting RestaurantSetting?
 
   @@map("restaurant")
 }
@@ -67,12 +66,15 @@ model User {
 }
 
 model RestaurantSetting {
-  id       String  @id @default(cuid())
-  name     String  @unique
-  enabled  Boolean @default(false)
-  homeUrl  String
-  lunchUrl String
-  regex    String?
+  id           String      @id @default(cuid())
+  name         String      @unique
+  enabled      Boolean     @default(false)
+  homeUrl      String
+  lunchUrl     String
+  lunchRegex   String?
+  weeklyRegex  String?
+  restaurantId String      @unique
+  restaurant   Restaurant? @relation(fields: [restaurantId], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@map("restaurant_setting")
 }

@@ -1,13 +1,13 @@
+import LoadingIndicator from '@component/atoms/LoadingIndicator/LoadingIndicator';
+import Header from '@component/molecules/Header/Header';
+import LunchList from '@component/molecules/LunchList/LunchList';
+import FilterSection from '@component/organisms/FilterSection/FilterSection';
+import FilterSectionMobile from '@component/organisms/FilterSectionMobile/FilterSectionMobile';
 import { api } from '@util/api';
 import { type NextPage } from 'next';
 import { useState } from 'react';
 import { useIsFirstRender, useWindowSize } from 'usehooks-ts';
-import FilterSection from '../components/FilterSection';
-import Header from '../components/Header';
-import LoadingIndicator from '../components/LoadingIndicator';
-import LunchList from '../components/LunchList';
 import MetaHeader from '../components/MetaHeader';
-import FilterSectionMobile from '../components/mobile/FilterSectionMobile';
 
 const Home: NextPage = () => {
   const isMobile = useWindowSize().width < 640;
