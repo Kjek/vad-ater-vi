@@ -3,13 +3,11 @@ import type { PrismaType } from '@type/prisma-custom';
 
 export const getRestaurantNeedsUpdating = async (
   prisma: PrismaType,
-  name: string
+  id: string
 ) => {
   const restaurant = await prisma.restaurant.findFirst({
     where: {
-      restaurantSetting: {
-        name: name,
-      },
+      id: id,
     },
     select: {
       id: true,
@@ -20,31 +18,32 @@ export const getRestaurantNeedsUpdating = async (
   return { restaurantId: restaurant?.id, updatedAt: restaurant?.updatedAt };
 };
 
-export const deleteMenuAndWeekly = async (prisma: PrismaType, id: string) => {
+export const deleteMenuAndWeekly = async (
+  prisma: PrismaType,
+  restaurantId: string
+) => {
   await prisma.menu.deleteMany({
     where: {
-      restaurantId: id,
+      restaurantId: restaurantId,
     },
   });
 
   await prisma.weeklySpecial.deleteMany({
     where: {
-      restaurantId: id,
+      restaurantId: restaurantId,
     },
   });
 };
 
-export const createRestaurantIfNotExists = async (
+export const updateRestaurantFood = async (
   prisma: PrismaType,
-  name: string,
+  restaurantId: string,
   menu: LunchMenu[],
   weeklySpecials: WeeklySpecial[] = []
 ) => {
-  let restaurant = await prisma.restaurant.findFirst({
+  const restaurant = await prisma.restaurant.findUniqueOrThrow({
     where: {
-      restaurantSetting: {
-        name: name,
-      },
+      id: restaurantId,
     },
     include: {
       menu: true,
@@ -53,26 +52,9 @@ export const createRestaurantIfNotExists = async (
     },
   });
 
-  if (!restaurant) {
-    restaurant = await prisma.restaurant.create({
-      data: {
-        restaurantSetting: {
-          connect: {
-            name: name,
-          },
-        },
-      },
-      include: {
-        menu: true,
-        weeklySpecial: true,
-        restaurantSetting: true,
-      },
-    });
-  }
-
   return await prisma.restaurant.upsert({
     where: {
-      id: restaurant?.id,
+      id: restaurant.id,
     },
     include: {
       menu: true,

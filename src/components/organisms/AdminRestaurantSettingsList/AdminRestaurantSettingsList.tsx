@@ -13,7 +13,7 @@ const AdminRestaurantSettingsList = () => {
   const toastId = useRef<Id>(0);
   const [currentDebugName, setDebugName] = useState<string>('');
 
-  const { data: restaurants, refetch: fetchRestaurants } =
+  const { data: restaurantSettings, refetch: fetchRestaurants } =
     api.admin.getRestaurantSettings.useQuery(undefined);
   const { mutate: reScrape } = api.admin.reScrape.useMutation({
     onSuccess() {
@@ -60,12 +60,12 @@ const AdminRestaurantSettingsList = () => {
 
   return (
     <>
-      {restaurants?.map((restaurant) => (
-        <div key={restaurant.name} className='flex w-full gap-4'>
-          <SettingsModal restaurant={restaurant}></SettingsModal>
+      {restaurantSettings?.map((restaurantSetting) => (
+        <div key={restaurantSetting.name} className='flex w-full gap-4'>
+          <SettingsModal restaurant={restaurantSetting}></SettingsModal>
           <Modal
             title='Debug content'
-            onClick={() => setDebugName(restaurant.name)}
+            onClick={() => setDebugName(restaurantSetting.name)}
           >
             <IconButton
               variant={'copy'}
@@ -79,7 +79,7 @@ const AdminRestaurantSettingsList = () => {
             />
             {debugData ? (
               <textarea
-                id={`${restaurant.name}.textarea`}
+                id={`${restaurantSetting.name}.textarea`}
                 rows={100}
                 className='min-h-full rounded-md'
                 value={JSON.parse(debugData) as string}
@@ -92,20 +92,20 @@ const AdminRestaurantSettingsList = () => {
           <InputButton
             value='Re-scrape'
             onClick={() => {
-              reScrape({ name: restaurant.name });
+              reScrape({ restaurantId: restaurantSetting.restaurantId });
             }}
           />
           <InputButton
-            value={restaurant.enabled ? 'Disable' : 'Enable'}
+            value={restaurantSetting.enabled ? 'Disable' : 'Enable'}
             className={
-              restaurant.enabled
+              restaurantSetting.enabled
                 ? 'dark:text-red-800 dark:hover:text-red-600'
                 : 'dark:text-green-800 dark:hover:text-green-600'
             }
             onClick={() => {
               void updateSettings({
-                id: restaurant.id,
-                enabled: !restaurant.enabled,
+                id: restaurantSetting.id,
+                enabled: !restaurantSetting.enabled,
               });
             }}
           />

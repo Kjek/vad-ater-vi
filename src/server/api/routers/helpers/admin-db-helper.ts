@@ -3,34 +3,17 @@ import type { CreateRestaurantSetting } from '@type/restaurant-setting-type';
 
 export const getRestaurantSetting = async (
   prisma: PrismaType,
-  name: string
+  restaurantId: string
 ) => {
-  const restaurant = await prisma.restaurantSetting.findUnique({
+  const restaurant = await prisma.restaurantSetting.findUniqueOrThrow({
     where: {
-      name: name,
-    },
-    select: {
-      homeUrl: true,
-      lunchUrl: true,
-      lunchRegex: true,
-      weeklyRegex: true,
-      enabled: true,
+      restaurantId: restaurantId,
     },
   });
   return {
     ...restaurant,
-    lunchRegex: restaurant?.lunchRegex
-      ? new RegExp(
-          restaurant.lunchRegex.replace('/', '').replace(/\/\w+?$/, ''),
-          restaurant.lunchRegex.split('/').slice(-1)[0]
-        )
-      : undefined,
-    weeklyRegex: restaurant?.weeklyRegex
-      ? new RegExp(
-          restaurant.weeklyRegex.replace('/', '').replace(/\/\w+?$/, ''),
-          restaurant.weeklyRegex.split('/').slice(-1)[0]
-        )
-      : undefined,
+    lunchRegex: restaurant.lunchRegex?.toRegExp(),
+    weeklyRegex: restaurant.weeklyRegex?.toRegExp(),
   };
 };
 

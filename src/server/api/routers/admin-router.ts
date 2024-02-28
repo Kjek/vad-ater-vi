@@ -1,16 +1,17 @@
 import {
+  handleDebugScraper,
+  handleLunchScrapers,
+  handleScraper,
+  scrapeNewData,
+} from '@api-helper/scraper-helper';
+import {
   createTRPCRouter,
   protectedProcedure,
   publicProcedure,
 } from '@server/api/trpc';
-import { z } from 'zod';
-import {
-  handleDebugScraper,
-  handleLunchScrapers,
-} from './helpers/scraper-helper';
-import webScraper from '@scraper/webscraper';
-import bcrypt from 'bcrypt';
 import { TRPCError } from '@trpc/server';
+import bcrypt from 'bcrypt';
+import { z } from 'zod';
 
 export const adminRouter = createTRPCRouter({
   getRestaurantSettings: protectedProcedure.query(async ({ ctx }) => {
@@ -51,7 +52,7 @@ export const adminRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      await ctx.prisma.restaurant.create({
+      const { id } = await ctx.prisma.restaurant.create({
         data: {
           restaurantSetting: {
             create: {
@@ -65,7 +66,8 @@ export const adminRouter = createTRPCRouter({
           },
         },
       });
-      await webScraper(ctx.prisma, input.name);
+
+      await scrapeNewData(ctx.prisma, id);
     }),
   updateRestaurantSetting: protectedProcedure
     .input(
@@ -106,11 +108,11 @@ export const adminRouter = createTRPCRouter({
   reScrape: protectedProcedure
     .input(
       z.object({
-        name: z.string().min(1),
+        restaurantId: z.string().min(1),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      await webScraper(ctx.prisma, input.name);
+      await handleScraper(ctx.prisma, input.restaurantId);
     }),
   reScrapeAll: protectedProcedure.mutation(async ({ ctx }) => {
     await handleLunchScrapers(ctx.prisma);
