@@ -44,7 +44,7 @@ const webScraper = async (prisma: PrismaType, restaurantName: string) => {
       break;
     default:
       scraper = genericWebScraper;
-      return;
+      break;
   }
   await handleScraper(prisma, restaurantName, scraper);
 };

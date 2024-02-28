@@ -4,7 +4,10 @@ import {
   publicProcedure,
 } from '@server/api/trpc';
 import { z } from 'zod';
-import { handleLunchScrapers } from './helpers/scraper-helper';
+import {
+  handleDebugScraper,
+  handleLunchScrapers,
+} from './helpers/scraper-helper';
 import webScraper from '@scraper/webscraper';
 import bcrypt from 'bcrypt';
 import { TRPCError } from '@trpc/server';
@@ -18,8 +21,10 @@ export const adminRouter = createTRPCRouter({
           name: true,
           homeUrl: true,
           lunchUrl: true,
-          regex: true,
+          lunchRegex: true,
+          weeklyRegex: true,
           enabled: true,
+          restaurantId: true,
         },
       })
     ).sort((left, right) => {
@@ -40,18 +45,24 @@ export const adminRouter = createTRPCRouter({
         name: z.string().min(1),
         homeUrl: z.string().min(1),
         lunchUrl: z.string().min(1),
-        regex: z.string().optional(),
+        lunchRegex: z.string().optional(),
+        weeklyRegex: z.string().optional(),
         enabled: z.boolean().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      await ctx.prisma.restaurantSetting.create({
+      await ctx.prisma.restaurant.create({
         data: {
-          name: input.name,
-          homeUrl: input.homeUrl,
-          lunchUrl: input.lunchUrl,
-          regex: input.regex,
-          enabled: input.enabled,
+          restaurantSetting: {
+            create: {
+              name: input.name,
+              homeUrl: input.homeUrl,
+              lunchUrl: input.lunchUrl,
+              lunchRegex: input.lunchRegex,
+              weeklyRegex: input.weeklyRegex,
+              enabled: input.enabled,
+            },
+          },
         },
       });
       await webScraper(ctx.prisma, input.name);
@@ -63,7 +74,8 @@ export const adminRouter = createTRPCRouter({
         name: z.string().optional(),
         homeUrl: z.string().optional(),
         lunchUrl: z.string().optional(),
-        regex: z.string().optional(),
+        lunchRegex: z.string().optional(),
+        weeklyRegex: z.string().optional(),
         enabled: z.boolean().optional(),
       })
     )
@@ -76,8 +88,18 @@ export const adminRouter = createTRPCRouter({
           name: input.name,
           homeUrl: input.homeUrl,
           lunchUrl: input.lunchUrl,
-          regex: input.regex,
+          lunchRegex: input.lunchRegex,
+          weeklyRegex: input.weeklyRegex,
           enabled: input.enabled,
+        },
+      });
+    }),
+  deleteRestaurant: protectedProcedure
+    .input(z.object({ id: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      await ctx.prisma.restaurant.delete({
+        where: {
+          id: input.id,
         },
       });
     }),
@@ -93,6 +115,16 @@ export const adminRouter = createTRPCRouter({
   reScrapeAll: protectedProcedure.mutation(async ({ ctx }) => {
     await handleLunchScrapers(ctx.prisma);
   }),
+  debugContent: protectedProcedure
+    .input(z.object({ name: z.string().min(1) }))
+    .query(async ({ ctx, input }) => {
+      const debugData = await handleDebugScraper(ctx.prisma, input.name);
+      if (typeof debugData === 'string') {
+        return debugData;
+      } else {
+        return undefined;
+      }
+    }),
   createAdminAccount: publicProcedure
     .input(
       z.object({

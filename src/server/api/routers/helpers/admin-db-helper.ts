@@ -12,16 +12,23 @@ export const getRestaurantSetting = async (
     select: {
       homeUrl: true,
       lunchUrl: true,
-      regex: true,
+      lunchRegex: true,
+      weeklyRegex: true,
       enabled: true,
     },
   });
   return {
     ...restaurant,
-    regex: restaurant?.regex
+    lunchRegex: restaurant?.lunchRegex
       ? new RegExp(
-          restaurant.regex.replace('/', '').replace(/\/\w+?$/, ''),
-          restaurant.regex.split('/').slice(-1)[0]
+          restaurant.lunchRegex.replace('/', '').replace(/\/\w+?$/, ''),
+          restaurant.lunchRegex.split('/').slice(-1)[0]
+        )
+      : undefined,
+    weeklyRegex: restaurant?.weeklyRegex
+      ? new RegExp(
+          restaurant.weeklyRegex.replace('/', '').replace(/\/\w+?$/, ''),
+          restaurant.weeklyRegex.split('/').slice(-1)[0]
         )
       : undefined,
   };
@@ -37,7 +44,8 @@ export const createRestaurantSetting = async (
       homeUrl: createRestaurantSetting.homeUrl,
       lunchUrl: createRestaurantSetting.lunchUrl,
       enabled: createRestaurantSetting.enabled,
-      regex: createRestaurantSetting.regex,
+      lunchRegex: createRestaurantSetting.lunchRegex,
+      weeklyRegex: createRestaurantSetting.weeklyRegex,
     },
   });
 };

@@ -1,15 +1,16 @@
+import genericWebScraper from '@scraper/generic';
 import webScraper from '@scraper/webscraper';
 import type { LunchMenu, Restaurant } from '@type/lunch-menu';
 import { isLunchMenus, isWeekMenu } from '@type/lunch-menu';
 import type { PrismaType } from '@type/prisma-custom';
 import type Scraper from '@type/scraper';
 import { convertRestaurant } from '@util/restaurantUtils';
+import { getRestaurantSetting } from './admin-db-helper';
 import {
   createRestaurantIfNotExists,
   deleteMenuAndWeekly,
   getRestaurantNeedsUpdating,
 } from './db-helper';
-import { getRestaurantSetting } from './admin-db-helper';
 
 const scrapeNewData = async (
   prisma: PrismaType,
@@ -17,12 +18,10 @@ const scrapeNewData = async (
   scraper: Scraper
 ) => {
   try {
-    const { lunchUrl, regex, enabled } = await getRestaurantSetting(
-      prisma,
-      name
-    );
+    const { lunchUrl, lunchRegex, weeklyRegex, enabled } =
+      await getRestaurantSetting(prisma, name);
     if (enabled && lunchUrl) {
-      const menu = await scraper(lunchUrl, regex);
+      const menu = await scraper(lunchUrl, lunchRegex, weeklyRegex);
       if (isLunchMenus(menu)) {
         const restaurantModel = await createRestaurantIfNotExists(
           prisma,
@@ -65,4 +64,14 @@ export const handleLunchScrapers = async (prisma: PrismaType) => {
     select: { name: true },
   });
   await Promise.all(restaurants.map(({ name }) => webScraper(prisma, name)));
+};
+
+export const handleDebugScraper = async (prisma: PrismaType, name: string) => {
+  const { lunchUrl, lunchRegex, weeklyRegex } = await getRestaurantSetting(
+    prisma,
+    name
+  );
+  if (lunchUrl) {
+    return await genericWebScraper(lunchUrl, lunchRegex, weeklyRegex, true);
+  }
 };

@@ -1,7 +1,7 @@
-import AdminOption from '@component/admin/AdminOption';
-import AdminRestaurantSettingsList from '@component/admin/AdminRestaurantSettingsList';
-import CreateRestaurantSettingModal from '@component/admin/CreateRestaurantSettingModal';
-import LoginSection from '@component/admin/LoginSection';
+import AdminOption from '@component/molecules/AdminOption/AdminOption';
+import CreateRestaurantSettingModal from '@component/molecules/CreateRestaurantSettingModal/CreateRestaurantSettingModal';
+import AdminRestaurantSettingsList from '@component/organisms/AdminRestaurantSettingsList/AdminRestaurantSettingsList';
+import LoginSection from '@component/organisms/LoginSection/LoginSection';
 import { api } from '@util/api';
 import { toastError, toastSuccessful } from '@util/toast-utils';
 import type { NextPage } from 'next';

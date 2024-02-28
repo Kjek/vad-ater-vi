@@ -17,23 +17,23 @@ services:
       timeout: 5s
       retries: 3
 
-  shadow-db:
-    image: postgres:15.3-alpine
-    restart: unless-stopped
-    ports:
-      - '6543:5432'
-    environment:
-      POSTGRES_DB: postgres
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    volumes:
-      - shadow_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ['CMD', 'pg_isready -u postgres -d postgres']
-      interval: 10s
-      timeout: 5s
-      retries: 3
+  # shadow-db:
+  #   image: postgres:15.3-alpine
+  #   restart: unless-stopped
+  #   ports:
+  #     - '6543:5432'
+  #   environment:
+  #     POSTGRES_DB: postgres
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   volumes:
+  #     - shadow_data:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: ['CMD', 'pg_isready -u postgres -d postgres']
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 3
 
 volumes:
   pg_data:
-  shadow_data:
+  # shadow_data:

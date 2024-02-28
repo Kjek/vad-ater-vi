@@ -7,7 +7,9 @@ export const getRestaurantNeedsUpdating = async (
 ) => {
   const restaurant = await prisma.restaurant.findFirst({
     where: {
-      name: name,
+      restaurantSetting: {
+        name: name,
+      },
     },
     select: {
       id: true,
@@ -40,22 +42,30 @@ export const createRestaurantIfNotExists = async (
 ) => {
   let restaurant = await prisma.restaurant.findFirst({
     where: {
-      name: name,
+      restaurantSetting: {
+        name: name,
+      },
     },
     include: {
       menu: true,
       weeklySpecial: true,
+      restaurantSetting: true,
     },
   });
 
   if (!restaurant) {
     restaurant = await prisma.restaurant.create({
       data: {
-        name: name,
+        restaurantSetting: {
+          connect: {
+            name: name,
+          },
+        },
       },
       include: {
         menu: true,
         weeklySpecial: true,
+        restaurantSetting: true,
       },
     });
   }
@@ -67,9 +77,9 @@ export const createRestaurantIfNotExists = async (
     include: {
       menu: true,
       weeklySpecial: true,
+      restaurantSetting: true,
     },
     create: {
-      name: name,
       menu: {
         createMany: {
           data: menu.map((item) => {
@@ -128,9 +138,12 @@ export const getAllRestaurants = async (prisma: PrismaType) => {
     include: {
       menu: true,
       weeklySpecial: true,
+      restaurantSetting: true,
     },
     orderBy: {
-      name: 'asc',
+      restaurantSetting: {
+        name: 'asc',
+      },
     },
   });
 };
@@ -141,11 +154,14 @@ export const findRestaurantByName = async (
 ) => {
   return await prisma.restaurant.findFirst({
     where: {
-      name: name,
+      restaurantSetting: {
+        name: name,
+      },
     },
     include: {
       menu: true,
       weeklySpecial: true,
+      restaurantSetting: true,
     },
   });
 };
@@ -159,11 +175,14 @@ export const searchRestaurantByName = async (
     include: {
       menu: true,
       weeklySpecial: true,
+      restaurantSetting: true,
     },
     where: {
-      name: {
-        startsWith: searchText,
-        mode: 'insensitive',
+      restaurantSetting: {
+        name: {
+          startsWith: searchText,
+          mode: 'insensitive',
+        },
       },
     },
     take: limit ?? 100,
