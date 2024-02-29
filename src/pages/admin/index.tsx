@@ -6,13 +6,30 @@ import { api } from '@util/api';
 import { toastError, toastSuccessful } from '@util/toast-utils';
 import type { NextPage } from 'next';
 import { signOut, useSession } from 'next-auth/react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Id } from 'react-toastify';
 import { toast } from 'react-toastify';
 
 const LoginPage: NextPage = () => {
   const { data: session } = useSession();
   const toastId = useRef<Id>(0);
+  const [currentDebugRestaurantId, setDebugRestaurantId] = useState<string>('');
+
+  const { data: restaurantSettings, refetch: fetchRestaurants } =
+    api.admin.getRestaurantSettings.useQuery(undefined);
+
+  const { mutate: reScrape } = api.admin.reScrape.useMutation({
+    onSuccess() {
+      toastSuccessful(toastId.current);
+    },
+    onError(error) {
+      toastError(toastId.current, error);
+    },
+    onMutate() {
+      toastId.current = toast.loading('Scraping in progress...');
+    },
+  });
+
   const { mutate: reScrapeAll } = api.admin.reScrapeAll.useMutation({
     onSuccess() {
       toastSuccessful(toastId.current);
@@ -25,6 +42,46 @@ const LoginPage: NextPage = () => {
     },
   });
 
+  const { mutate: deleteRestaurant } = api.admin.deleteRestaurant.useMutation({
+    onSuccess() {
+      toastSuccessful(toastId.current);
+      void fetchRestaurants();
+    },
+    onError(error) {
+      toastError(toastId.current, error);
+    },
+    onMutate() {
+      toastId.current = toast.loading('Updating in progress...');
+    },
+  });
+
+  const { mutate: updateSettings } =
+    api.admin.updateRestaurantSetting.useMutation({
+      onSuccess() {
+        toastSuccessful(toastId.current);
+        void fetchRestaurants();
+      },
+      onError(error) {
+        toastError(toastId.current, error);
+      },
+      onMutate() {
+        toastId.current = toast.loading('Updating in progress...');
+      },
+    });
+
+  const { data: debugData, refetch: fetchDebug } =
+    api.admin.debugContent.useQuery(
+      { restaurantId: currentDebugRestaurantId },
+      { enabled: false, refetchOnWindowFocus: false }
+    );
+
+  useEffect(() => {
+    if (currentDebugRestaurantId) {
+      void fetchDebug();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDebugRestaurantId]);
+
   return (
     <>
       {session?.user ? (
@@ -35,7 +92,14 @@ const LoginPage: NextPage = () => {
               buttonValue='Re-scrape all'
               onClick={() => void reScrapeAll()}
             />
-            <AdminRestaurantSettingsList />
+            <AdminRestaurantSettingsList
+              restaurantSettings={restaurantSettings}
+              debugData={debugData}
+              setDebugRestaurantId={setDebugRestaurantId}
+              deleteRestaurant={deleteRestaurant}
+              updateSettings={updateSettings}
+              reScrape={reScrape}
+            />
             <CreateRestaurantSettingModal />
             <AdminOption buttonValue='Logout' onClick={() => void signOut()} />
           </div>

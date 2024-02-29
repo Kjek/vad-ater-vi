@@ -29,8 +29,11 @@ export const handleScraper = async (
   prisma: PrismaType,
   restaurantId: string
 ) => {
-  await deleteMenuAndWeekly(prisma, restaurantId);
-  await scrapeNewData(prisma, restaurantId);
+  const { enabled } = await getRestaurantSetting(prisma, restaurantId);
+  if (enabled) {
+    await deleteMenuAndWeekly(prisma, restaurantId);
+    await scrapeNewData(prisma, restaurantId);
+  }
 };
 
 export const handleLunchScrapers = async (prisma: PrismaType) => {
@@ -44,10 +47,13 @@ export const handleLunchScrapers = async (prisma: PrismaType) => {
   );
 };
 
-export const handleDebugScraper = async (prisma: PrismaType, name: string) => {
+export const handleDebugScraper = async (
+  prisma: PrismaType,
+  restaurantId: string
+) => {
   const { lunchUrl, lunchRegex, weeklyRegex } = await getRestaurantSetting(
     prisma,
-    name
+    restaurantId
   );
   if (lunchUrl) {
     return await genericWebScraper(lunchUrl, lunchRegex, weeklyRegex, true);
