@@ -118,9 +118,12 @@ export const adminRouter = createTRPCRouter({
     await handleLunchScrapers(ctx.prisma);
   }),
   debugContent: protectedProcedure
-    .input(z.object({ name: z.string().min(1) }))
+    .input(z.object({ restaurantId: z.string().min(1) }))
     .query(async ({ ctx, input }) => {
-      const debugData = await handleDebugScraper(ctx.prisma, input.name);
+      const debugData = await handleDebugScraper(
+        ctx.prisma,
+        input.restaurantId
+      );
       if (typeof debugData === 'string') {
         return debugData;
       } else {
