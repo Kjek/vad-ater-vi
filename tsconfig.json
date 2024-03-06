@@ -14,14 +14,14 @@
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
+      "@api-helper/*": ["./src/server/api/routers/helpers/*"],
       "@asset/*": ["./src/components/assets/*"],
       "@component/*": ["./src/components/*"],
-      "@api-helper/*": ["./src/server/api/routers/helpers/*"],
       "@hook/*": ["./src/hooks/*"],
       "@page/*": ["./src/pages/*"],
+      "@provider/*": ["./src/provider/*"],
       "@router/*": ["./src/server/api/routers/*"],
       "@router/helper/*": ["./src/server/api/routers/helpers/*"],
-      "@provider/*": ["./src/provider/*"],
       "@scraper/*": ["./src/server/scrapers/*"],
       "@server/*": ["./src/server/*"],
       "@type/*": ["./src/types/*"],
@@ -38,7 +38,8 @@
     "**/*.ts",
     "**/*.tsx",
     "**/*.cjs",
-    "**/*.mjs"
+    "**/*.mjs",
+    "setupTests.js"
   ],
   "exclude": ["node_modules"]
 }
