@@ -48,7 +48,7 @@ const genericWebScraper: Scraper = async (
   if (lunchMenu) {
     const lunchMatch = lunchMenu.matchAll(
       lunchRegex ||
-        /(?:Måndag|MÅNDAG)\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTisdag)\nTisdag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nOnsdag)\nOnsdag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTorsdag)\nTorsdag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nFredag)\nFredag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nVeckans|Lördag|\n{2,}|\n+\s{2,})|(?:Mån|MÅN)\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTis)\nTis\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nOns)\nOns\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTors)\nTors\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nFre)\nFre\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nVeckans|Lördag|\n{2,}|\n+\s{2,})/gim
+        /(?:\nM[åÅ]ndag)\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTisdag)\nTisdag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nOnsdag)\nOnsdag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTorsdag)\nTorsdag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nFredag)\nFredag\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nVeckans|L[öÖ]rdag|\n{2,}|\n+\s{2,})|(?:\nM[åÅ]n)\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTis)\nTis\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nOns)\nOns\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nTors)\nTors\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nFre)\nFre\:?(?:\s\d+\/\d)?\s+([\W\w]*?)(?=\nVeckans|L[öÖ]rdag|\n{2,}|\n+\s{2,})/gim
     );
     const weeklyMatch = lunchMenu.matchAll(
       weeklyRegex ||

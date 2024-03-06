@@ -2,14 +2,20 @@ import { cn } from '@util/cn';
 import { useCallback, type HTMLAttributes } from 'react';
 
 interface TextProps extends HTMLAttributes<HTMLElement> {
-  className?: string;
   variant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span';
   type?: 'normal' | 'info' | 'error';
   placeholder?: string;
 }
 
-const Text = (props: TextProps) => {
-  const { className, variant, children, type } = props;
+const Text = ({
+  className,
+  children,
+  placeholder,
+  title,
+  type,
+  variant,
+  ...props
+}: TextProps) => {
   const Tag = variant ?? 'span';
   const tagClasses = useCallback(() => {
     switch (variant) {
@@ -47,7 +53,7 @@ const Text = (props: TextProps) => {
     <>
       <Tag
         {...props}
-        title={props.title}
+        title={title}
         className={cn(tagClasses, typeClasses, className)}
       >
         {children}

@@ -1,29 +1,17 @@
 import { useTheme } from '@hook/useTheme';
 import type { Dispatch, SetStateAction } from 'react';
-import { useRef } from 'react';
-import { useEffect, useState } from 'react';
 
 interface SearchBarProps {
+  searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
 }
 
-const SearchBar = (props: SearchBarProps) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [inputText, setInputText] = useState<string>();
+const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
   const { theme } = useTheme();
-  const { setSearchQuery } = props;
 
   const onClear = () => {
-    if (inputRef.current) {
-      inputRef.current.value = '';
-      setInputText(undefined);
-    }
+    setSearchQuery('');
   };
-
-  useEffect(() => {
-    setSearchQuery(inputText ?? '');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputText]);
 
   return (
     <>
@@ -33,10 +21,9 @@ const SearchBar = (props: SearchBarProps) => {
             title='Sök på restauranger som ska visas i listan'
             type='text'
             id='search-restaurant'
-            ref={inputRef}
             className='w-full self-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-800 outline-none transition duration-500 focus:border-gray-300 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:border-gray-600 dark:focus:ring-gray-600 md:w-auto'
             placeholder='Sök restauranger...'
-            onChange={(event) => setInputText(event.currentTarget.value)}
+            onChange={(event) => setSearchQuery(event.currentTarget.value)}
           />
           <button
             aria-label='rensa sökfältet'
@@ -44,7 +31,7 @@ const SearchBar = (props: SearchBarProps) => {
             className='absolute bottom-[5px] right-0 rounded-lg px-2 py-2 text-sm font-medium text-white sm:bottom-[55px] lg:bottom-[5px]'
             onClick={() => onClear()}
           >
-            {inputText && (
+            {searchQuery && (
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 viewBox='0 0 24 24'

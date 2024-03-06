@@ -2,13 +2,14 @@ import { cn } from '@util/cn';
 import type { HTMLAttributes, SVGProps } from 'react';
 
 interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
-  svgProps?: SVGProps<SVGElement>;
+  svgProps?: HTMLAttributes<SVGElement>;
 }
 
-const Spinner = (props: SpinnerProps) => {
+const Spinner = ({ svgProps, className, ...props }: SpinnerProps) => {
   return (
-    <div {...props} className={cn('flex self-center', props.className)}>
+    <div {...props} className={cn('flex self-center', className)}>
       <svg
+        {...svgProps}
         className='my-auto h-5 w-5 animate-spin text-gray-800 dark:text-gray-300'
         xmlns='http://www.w3.org/2000/svg'
         fill='none'

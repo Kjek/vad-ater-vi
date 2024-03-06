@@ -1,14 +1,18 @@
-import type { AllWeekButtonProps } from '@component/atoms/AllWeekButton/AllWeekButton';
 import { useGlobalState } from '@hook/useGlobalState';
+import type { Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
 import { useCallback } from 'react';
 
-interface DayButtonMobileProps extends AllWeekButtonProps {
+interface DayButtonMobileProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
+  setAllSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-const DayButton = (props: DayButtonMobileProps) => {
+const DayButton = ({
+  title,
+  setAllSelected,
+  ...props
+}: DayButtonMobileProps) => {
   const { state, dispatch } = useGlobalState();
-  const { title, setAllSelected } = props;
   const isSelected = state.daysSelected.get(title);
 
   const onClick = useCallback(
@@ -32,6 +36,7 @@ const DayButton = (props: DayButtonMobileProps) => {
   return (
     <>
       <input
+        {...props}
         className={`cursor-pointer rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-800 transition-all duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white ${selectedClasses}`}
         type='button'
         value={title.slice(0, 2)}

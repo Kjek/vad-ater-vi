@@ -1,13 +1,10 @@
 import type { InputHTMLAttributes } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-interface InputButtonProps extends InputHTMLAttributes<HTMLInputElement> {
-  className?: string;
-}
-
-const InputButton = (props: InputButtonProps) => {
-  const { className } = props;
-
+const InputButton = ({
+  className,
+  ...props
+}: InputHTMLAttributes<HTMLInputElement>) => {
   return (
     <>
       <input

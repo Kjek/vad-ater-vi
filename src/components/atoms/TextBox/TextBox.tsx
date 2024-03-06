@@ -5,9 +5,7 @@ interface TextBoxProps extends InputHTMLAttributes<HTMLInputElement> {
   variant?: 'text' | 'password';
 }
 
-const TextBox = (props: TextBoxProps) => {
-  const { className, variant } = props;
-
+const TextBox = ({ className, variant, ...props }: TextBoxProps) => {
   return (
     <>
       <input

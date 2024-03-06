@@ -1,14 +1,14 @@
-import type { AllWeekButtonProps } from '@component/atoms/AllWeekButton/AllWeekButton';
 import { useGlobalState } from '@hook/useGlobalState';
+import type { Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
 import { useCallback } from 'react';
 
-interface DayButtonProps extends AllWeekButtonProps {
+interface DayButtonProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
+  setAllSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-const DayButton = (props: DayButtonProps) => {
+const DayButton = ({ title, setAllSelected, ...props }: DayButtonProps) => {
   const { state, dispatch } = useGlobalState();
-  const { title, setAllSelected } = props;
   const isSelected = state.daysSelected.get(title);
 
   const onClick = useCallback(
@@ -32,10 +32,11 @@ const DayButton = (props: DayButtonProps) => {
   return (
     <>
       <input
+        {...props}
         title='Tryck för att visa den här dagens lunch i listan nedan'
         className={`cursor-pointer rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-800 transition-all duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white ${selectedClasses}`}
         type='button'
-        value={props.title}
+        value={title}
         onClick={onClick}
       />
     </>

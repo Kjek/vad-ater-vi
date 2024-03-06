@@ -8,14 +8,18 @@ import { useEffect, type Dispatch, type SetStateAction } from 'react';
 import { useToggle } from 'usehooks-ts';
 
 interface DaySelectorMobileProps {
+  searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
 }
 
-const DaySelectorMobile = (props: DaySelectorMobileProps) => {
+const DaySelectorMobile = ({
+  searchQuery,
+  setSearchQuery,
+}: DaySelectorMobileProps) => {
   const { dispatch } = useGlobalState();
   const [isSearchBarVisible, toggleSearchBar] = useToggle();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isAllSelected, _, setAllSelected] = useToggle();
-  const { setSearchQuery } = props;
 
   useEffect(() => {
     dispatch({
@@ -33,7 +37,10 @@ const DaySelectorMobile = (props: DaySelectorMobileProps) => {
         >
           {isSearchBarVisible ? (
             <li key='search-bar' className='w-full'>
-              <SearchBar setSearchQuery={setSearchQuery} />
+              <SearchBar
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
             </li>
           ) : null}
           <li key='all'>
@@ -44,11 +51,7 @@ const DaySelectorMobile = (props: DaySelectorMobileProps) => {
           </li>
           {sweDays.map((day) => (
             <li key={day}>
-              <DayButtonMobile
-                isAllSelected={isAllSelected}
-                setAllSelected={setAllSelected}
-                title={day}
-              />
+              <DayButtonMobile setAllSelected={setAllSelected} title={day} />
             </li>
           ))}
           <li key='search-button'>
