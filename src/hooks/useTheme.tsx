@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect } from 'react';
+import { useDarkMode } from 'usehooks-ts';
 
 type Theme = 'light' | 'dark';
 
@@ -8,22 +9,31 @@ type Props = {
 
 interface ThemeContextValue {
   theme: Theme;
-  setTheme: (theme: Theme) => void;
+  toggle: VoidFunction;
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
   theme: 'dark',
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setTheme: () => {},
+  toggle: () => null,
 });
 
 const ThemeProvider = ({ children }: Props) => {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const { isDarkMode, toggle } = useDarkMode();
 
   const contextValue: ThemeContextValue = {
-    theme,
-    setTheme,
+    theme: isDarkMode ? 'dark' : 'light',
+    toggle,
   };
+
+  // OS interaction
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isDarkMode]);
 
   return (
     <ThemeContext.Provider value={contextValue}>

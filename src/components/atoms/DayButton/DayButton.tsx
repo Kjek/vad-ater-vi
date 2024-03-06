@@ -1,4 +1,5 @@
 import { useGlobalState } from '@hook/useGlobalState';
+import { cn } from '@util/cn';
 import type { Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
 import { useCallback } from 'react';
 
@@ -26,7 +27,7 @@ const DayButton = ({ title, setAllSelected, ...props }: DayButtonProps) => {
   );
 
   const selectedClasses = isSelected
-    ? 'z-10 outline-none ring-2 ring-gray-700 duration-75 bg-white dark:ring-gray-400 dark:bg-gray-800'
+    ? 'z-10 outline-none ring-2 ring-gray-700 bg-white dark:ring-gray-400 dark:bg-gray-800'
     : '';
 
   return (
@@ -34,7 +35,10 @@ const DayButton = ({ title, setAllSelected, ...props }: DayButtonProps) => {
       <input
         {...props}
         title='Tryck för att visa den här dagens lunch i listan nedan'
-        className={`cursor-pointer rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-800 transition-all duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white ${selectedClasses}`}
+        className={cn(
+          'cursor-pointer rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white',
+          selectedClasses
+        )}
         type='button'
         value={title}
         onClick={onClick}

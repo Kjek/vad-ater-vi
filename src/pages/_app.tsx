@@ -1,4 +1,3 @@
-import useDarkMode from '@hook/useDarkMode';
 import { StateProvider } from '@hook/useGlobalState';
 import { ThemeProvider } from '@hook/useTheme';
 import { api } from '@util/api';
@@ -14,7 +13,6 @@ const MyApp: AppType<{ session: Session | null }> = ({
   Component,
   pageProps,
 }) => {
-  useDarkMode();
   return (
     <StateProvider>
       <SessionProvider session={pageProps.session}>

@@ -27,7 +27,7 @@ const AllWeekButton = ({
   const icon = isAllSelected ? <CancelIcon /> : <CalendarIcon theme={theme} />;
 
   const selectedClasses = isAllSelected
-    ? 'ring-2 ring-gray-700 duration-75 bg-white dark:ring-gray-400 dark:bg-gray-800'
+    ? 'ring-2 ring-gray-700 bg-white dark:ring-gray-400 dark:bg-gray-800'
     : '';
 
   return (

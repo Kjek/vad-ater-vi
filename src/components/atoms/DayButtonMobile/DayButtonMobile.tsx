@@ -1,4 +1,5 @@
 import { useGlobalState } from '@hook/useGlobalState';
+import { cn } from '@util/cn';
 import type { Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
 import { useCallback } from 'react';
 
@@ -30,14 +31,17 @@ const DayButton = ({
   );
 
   const selectedClasses = isSelected
-    ? 'z-10 outline-none ring-1 ring-gray-700 duration-75 dark:ring-gray-400'
+    ? 'z-10 outline-none ring-1 ring-gray-700 dark:ring-gray-400'
     : '';
 
   return (
     <>
       <input
         {...props}
-        className={`cursor-pointer rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-800 transition-all duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white ${selectedClasses}`}
+        className={cn(
+          'cursor-pointer rounded-lg border border-gray-200 bg-white px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white',
+          selectedClasses
+        )}
         type='button'
         value={title.slice(0, 2)}
         onClick={onClick}
