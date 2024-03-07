@@ -21,7 +21,7 @@ const genericWebScraper: Scraper = async (
   ).text();
   const { document } = parseHTML(html);
   const searchRegex = new RegExp('\nTisdag|\nTis', 'gim');
-  const lunchMenu =
+  const lunchMenu = (
     Array.from(document.querySelectorAll('div'))
       .filter(({ innerText }) => innerText && searchRegex.test(innerText))
       .map(({ innerText }) => innerText)[0] ??
@@ -36,7 +36,11 @@ const genericWebScraper: Scraper = async (
       .map(({ innerText }) => innerText)[0] ??
     Array.from(document.querySelectorAll('span'))
       .filter(({ innerText }) => innerText && searchRegex.test(innerText))
-      .map(({ innerText }) => innerText)[0];
+      .map(({ innerText }) => innerText)[0]
+  )?.replace(
+    /(?:\nM[åÅ]ndag)\:?(?:\s\d+\/\d)?\s+(?=\nTisdag)\nTisdag\:?(?:\s\d+\/\d)?\s+(?=\nOnsdag)\nOnsdag\:?(?:\s\d+\/\d)?\s+(?=\nTorsdag)\nTorsdag\:?(?:\s\d+\/\d)?\s+(?=\nFredag)\nFredag\:?(?:\s\d+\/\d)?\s+(?=\nVeckans|L[öÖ]rdag|\n{2,}|\n+\s{2,})|(?:\nM[åÅ]n)\:?(?:\s\d+\/\d)?\s+(?=\nTis)\nTis\:?(?:\s\d+\/\d)?\s+(?=\nOns)\nOns\:?(?:\s\d+\/\d)?\s+(?=\nTors)\nTors\:?(?:\s\d+\/\d)?\s+(?=\nFre)\nFre\:?(?:\s\d+\/\d)?\s+(?=\nVeckans|L[öÖ]rdag|\n{2,}|\n+\s{2,})/gim,
+    ''
+  );
 
   if (debug) {
     console.timeEnd(`Generic scraper for ${lunchUrl}`);
@@ -52,7 +56,7 @@ const genericWebScraper: Scraper = async (
     );
     const weeklyMatch = lunchMenu.matchAll(
       weeklyRegex ??
-        /\n?(Veckans\s\w+)\:?\s+([a-zA-ZåäöÅÄÖ,.0-9\s-]*?)(?=\nVeckans|Måndag|MÅNDAG|\-{3,}|\n[A-Ö])/gim
+        /\n+(Veckans\s(?!Lunch)\w+)\:?\s+(?!\/\s?Veckans)([a-zA-ZåäöÅÄÖ\W,.0-9\s-]*?)(?=\nVeckans|M[åÅ]ndag|\-{3,}|\n[A-Ö])/gim
     );
     const lunchGroups = [...lunchMatch][0];
     if (lunchGroups) {
