@@ -12,14 +12,9 @@ export interface DeleteRestaurantParamsProps {
   id: string;
 }
 
-export interface UpdateSettingsFunction {
-  ({}: UpdateSettingsParamsProps): void;
-}
+export type UpdateSettingsFunction = ({}: UpdateSettingsParamsProps) => void;
 
-export interface DeleteRestaurantFunction {
-  ({}: DeleteRestaurantParamsProps): void;
-}
+export type DeleteRestaurantFunction =
+  ({}: DeleteRestaurantParamsProps) => void;
 
-export interface IdParamVoidFunction {
-  ({}: { restaurantId: string }): void;
-}
+export type IdParamVoidFunction = ({}: { restaurantId: string }) => void;

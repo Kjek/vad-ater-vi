@@ -1,14 +1,17 @@
-import type { AllWeekButtonProps } from '@component/atoms/AllWeekButton/AllWeekButton';
 import { useGlobalState } from '@hook/useGlobalState';
+import { cn } from '@util/cn';
+import type { Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
 import { useCallback } from 'react';
+import { useWindowSize } from 'usehooks-ts';
 
-interface DayButtonProps extends AllWeekButtonProps {
+interface DayButtonProps extends InputHTMLAttributes<HTMLInputElement> {
   title: string;
+  setAllSelected: Dispatch<SetStateAction<boolean>>;
 }
 
-const DayButton = (props: DayButtonProps) => {
+const DayButton = ({ title, setAllSelected, ...props }: DayButtonProps) => {
+  const isMobile = useWindowSize().width < 640;
   const { state, dispatch } = useGlobalState();
-  const { title, setAllSelected } = props;
   const isSelected = state.daysSelected.get(title);
 
   const onClick = useCallback(
@@ -26,16 +29,20 @@ const DayButton = (props: DayButtonProps) => {
   );
 
   const selectedClasses = isSelected
-    ? 'z-10 outline-none ring-2 ring-gray-700 duration-75 bg-white dark:ring-gray-400 dark:bg-gray-800'
+    ? 'z-10 outline-none ring-2 ring-gray-700 bg-white dark:ring-gray-400 dark:bg-gray-800'
     : '';
 
   return (
     <>
       <input
+        {...props}
         title='Tryck för att visa den här dagens lunch i listan nedan'
-        className={`cursor-pointer rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-800 transition-all duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white ${selectedClasses}`}
+        className={cn(
+          'cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5',
+          selectedClasses
+        )}
         type='button'
-        value={props.title}
+        value={isMobile ? title.slice(0, 2) : title}
         onClick={onClick}
       />
     </>

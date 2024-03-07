@@ -6,8 +6,7 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'cancel' | 'copy';
 }
 
-const IconButton = (props: IconButtonProps) => {
-  const { variant, className } = props;
+const IconButton = ({ variant, className, ...props }: IconButtonProps) => {
   const icon = () => {
     switch (variant) {
       case 'cancel':

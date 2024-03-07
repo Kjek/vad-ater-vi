@@ -2,6 +2,7 @@ import IconButton from '@component/atoms/IconButton/IconButton';
 import Spinner from '@component/atoms/Spinner/Spinner';
 import Modal from '@component/molecules/Modal/Modal';
 import type { Dispatch, SetStateAction } from 'react';
+import { useCopyToClipboard } from 'usehooks-ts';
 
 interface DebugContentModalProps {
   debugData: string | undefined;
@@ -14,15 +15,13 @@ const DebugContentModal = ({
   restaurantName,
   setDebugName,
 }: DebugContentModalProps) => {
+  const [_, copy] = useCopyToClipboard();
   return (
     <Modal title='Debug content' onClick={() => setDebugName(restaurantName)}>
       <IconButton
         variant={'copy'}
         className='self-end'
-        onClick={() =>
-          debugData &&
-          void navigator.clipboard.writeText(JSON.parse(debugData) as string)
-        }
+        onClick={() => debugData && void copy(JSON.parse(debugData) as string)}
       />
       {debugData ? (
         <textarea

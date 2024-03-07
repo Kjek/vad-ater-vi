@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import { ThemeScript } from 'src/lib/getTheme';
 
 const MetaHeader = () => {
   return (
     <Head>
+      <ThemeScript />
       <title>Lunch i Sundsvall</title>
       <meta
         property='og:title'

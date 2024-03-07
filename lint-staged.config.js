@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-module.exports = {
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+const config = {
   // check for spelling mistakes
   // @ts-ignore
   //'*.md|src/**/*': (filenames) => `cspell ${filenames.join(' ')}`,
 
   // ensure typescript files compiles according to config
-  '**/*.ts': () => 'tsc --noEmit',
-  '**/*.tsx': () => 'tsc --noEmit',
+  '**/*.(ts|tsx)': () => 'tsc --noEmit',
 
   // lint and format script files
   // @ts-ignore
@@ -19,4 +20,10 @@ module.exports = {
   // @ts-ignore
   '**/!(*.ts|*.js|*.tsx)': (filenames) =>
     `prettier --write --ignore-unknown ${filenames.join(' ')}`,
+
+  // Prettify only Markdown and JSON files
+  // @ts-ignore
+  '**/*.(md|json)': (filenames) => `prettier --write ${filenames.join(' ')}`,
 };
+
+export default config;

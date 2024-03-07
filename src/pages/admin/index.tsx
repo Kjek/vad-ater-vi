@@ -6,9 +6,11 @@ import { api } from '@util/api';
 import { toastError, toastSuccessful } from '@util/toast-utils';
 import type { NextPage } from 'next';
 import { signOut, useSession } from 'next-auth/react';
+import Head from 'next/head';
 import { useEffect, useRef, useState } from 'react';
 import type { Id } from 'react-toastify';
 import { toast } from 'react-toastify';
+import { ThemeScript } from 'src/lib/getTheme';
 
 const LoginPage: NextPage = () => {
   const { data: session } = useSession();
@@ -84,6 +86,9 @@ const LoginPage: NextPage = () => {
 
   return (
     <>
+      <Head>
+        <ThemeScript />
+      </Head>
       {session?.user ? (
         <div className='flex items-center justify-center'>
           <div className='dark:bg-gray-custom mx-80 my-8 flex h-full w-full flex-col gap-4 bg-white p-8'>

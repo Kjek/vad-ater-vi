@@ -27,8 +27,8 @@ const SettingsModal = ({
   const restaurantName = useRef<string>(restaurant.name);
   const homeUrl = useRef<string>(restaurant.homeUrl);
   const lunchUrl = useRef<string>(restaurant.lunchUrl);
-  const lunchRegex = useRef<string>(restaurant.lunchRegex || '');
-  const weeklyRegex = useRef<string>(restaurant.weeklyRegex || '');
+  const lunchRegex = useRef<string>(restaurant.lunchRegex ?? '');
+  const weeklyRegex = useRef<string>(restaurant.weeklyRegex ?? '');
 
   const handleUpdate = () => {
     updateSettings({

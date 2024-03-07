@@ -1,6 +1,4 @@
-interface EntityMap {
-  [key: string]: string;
-}
+type EntityMap = Record<string, string>;
 
 export const decodeHtmlEntity = (text: string) => {
   const entityMap: EntityMap = {
@@ -13,6 +11,6 @@ export const decodeHtmlEntity = (text: string) => {
     '#160': ' ',
   };
   return text.replaceAll(/&(\#?\w+);/gi, (match, entity: string) => {
-    return entityMap[entity] || match;
+    return entityMap[entity] ?? match;
   });
 };
