@@ -5,11 +5,9 @@ import FilterSection from '@component/organisms/FilterSection/FilterSection';
 import { api } from '@util/api';
 import { type NextPage } from 'next';
 import { useState } from 'react';
-import { useWindowSize } from 'usehooks-ts';
 import MetaHeader from '../components/MetaHeader';
 
 const Home: NextPage = () => {
-  const isMobile = useWindowSize().width < 640;
   const [searchQuery, setSearchQuery] = useState<string>('');
   const restaurants = searchQuery
     ? api.lunch.menuSearch.useQuery({ searchText: searchQuery }).data
@@ -24,7 +22,6 @@ const Home: NextPage = () => {
           <FilterSection
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
-            isMobile={isMobile}
           />
           {restaurants ? (
             <LunchList restaurants={restaurants} />

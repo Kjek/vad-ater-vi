@@ -15,7 +15,7 @@ const ListItem = (props: ListProps) => {
 
   return (
     <>
-      <li className='dark:bg-gray-custom whitespace-pre-line break-words border-b bg-white p-6 shadow-md last:border-none dark:border-gray-700 dark:shadow-none sm:flex'>
+      <li className='dark:bg-gray-custom whitespace-pre-line break-words border-b bg-white p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none sm:flex'>
         <Text variant='h2'>
           <a title='Gå till restaurangens hemsida' href={restaurant.homeUrl}>
             {restaurant.name}

@@ -1,5 +1,4 @@
 import { StateProvider } from '@hook/useGlobalState';
-import { ThemeProvider } from '@hook/useTheme';
 import { api } from '@util/api';
 import {} from '@util/init-utils';
 import { Analytics } from '@vercel/analytics/react';
@@ -16,12 +15,10 @@ const MyApp: AppType<{ session: Session | null }> = ({
   return (
     <StateProvider>
       <SessionProvider session={pageProps.session}>
-        <ThemeProvider>
-          <ToastProvider>
-            <Component {...pageProps} />
-          </ToastProvider>
-          <Analytics />
-        </ThemeProvider>
+        <ToastProvider>
+          <Component {...pageProps} />
+        </ToastProvider>
+        <Analytics />
       </SessionProvider>
     </StateProvider>
   );

@@ -1,47 +1,18 @@
-import { createContext, useContext, useEffect } from 'react';
-import { useDarkMode } from 'usehooks-ts';
+'use client';
 
-type Theme = 'light' | 'dark';
+import { useState, useEffect, useCallback } from 'react';
 
-type Props = {
-  children: React.ReactNode;
-};
-
-interface ThemeContextValue {
-  theme: Theme;
-  toggle: VoidFunction;
-}
-
-const ThemeContext = createContext<ThemeContextValue>({
-  theme: 'dark',
-  toggle: () => null,
-});
-
-const ThemeProvider = ({ children }: Props) => {
-  const { isDarkMode, toggle } = useDarkMode();
-
-  const contextValue: ThemeContextValue = {
-    theme: isDarkMode ? 'dark' : 'light',
-    toggle,
-  };
-
-  // OS interaction
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isDarkMode]);
-
-  return (
-    <ThemeContext.Provider value={contextValue}>
-      {children}
-    </ThemeContext.Provider>
+export const useTheme = () => {
+  const [theme, setTheme] = useState(
+    typeof window === 'undefined' ? 'light' : window.__theme || 'light'
   );
+  const toggleTheme = useCallback(() => {
+    window?.__setPreferredTheme(theme === 'light' ? 'dark' : 'light');
+  }, [theme]);
+
+  useEffect(() => {
+    window.__onThemeChange = setTheme;
+  }, []);
+
+  return { theme, toggleTheme };
 };
-
-const useTheme = () => useContext(ThemeContext);
-
-export { ThemeProvider, useTheme };

@@ -1,9 +1,10 @@
+'use client';
+
 import { useTheme } from '@hook/useTheme';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 
 const ThemeButton = () => {
-  const { theme, toggle } = useTheme();
-
+  const { theme, toggleTheme } = useTheme();
   const renderIcon = () => {
     switch (theme) {
       case 'light':
@@ -19,7 +20,7 @@ const ThemeButton = () => {
       <span
         title='Byt mellan mörk-, ljustläge för tema på sidan'
         className='cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700'
-        onClick={toggle}
+        onClick={toggleTheme}
       >
         {renderIcon()}
       </span>

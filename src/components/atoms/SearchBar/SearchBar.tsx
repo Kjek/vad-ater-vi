@@ -15,7 +15,7 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchBarProps) => {
 
   return (
     <>
-      <div className='flex justify-center'>
+      <div className='hidden justify-center md:flex'>
         <div className='relative w-full sm:w-auto'>
           <input
             title='Sök på restauranger som ska visas i listan'

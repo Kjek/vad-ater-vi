@@ -1,6 +1,6 @@
 import { sweDays } from '@type/swedish-days';
 import type { Dispatch } from 'react';
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 
 export interface MultiSelectorState {
   isMultiSelect: boolean;
@@ -76,6 +76,13 @@ const StateContext = createContext<StateContextValue>({
 
 const StateProvider = ({ children }: Props) => {
   const { state, dispatch } = useMultiSelector();
+
+  useEffect(() => {
+    dispatch({
+      type: 'reset',
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const contextValue: StateContextValue = {
     state,

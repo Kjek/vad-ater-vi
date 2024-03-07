@@ -1,20 +1,19 @@
 import AllWeekButton from '@component/atoms/AllWeekButton/AllWeekButton';
 import DayButton from '@component/atoms/DayButton/DayButton';
-import { useGlobalState } from '@hook/useGlobalState';
+import SearchBar from '@component/atoms/SearchBar/SearchBar';
+import SearchButton from '@component/atoms/SearchButton/SearchButton';
 import { sweDays } from '@type/swedish-days';
-import { useEffect } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import { useToggle } from 'usehooks-ts';
 
-const DaySelector = () => {
-  const { dispatch } = useGlobalState();
-  const [isAllSelected, _, setAllSelected] = useToggle();
+interface DaySelectorProps {
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>;
+}
 
-  useEffect(() => {
-    dispatch({
-      type: 'reset',
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+const DaySelector = ({ searchQuery, setSearchQuery }: DaySelectorProps) => {
+  const [isSearchBarVisible, toggleSearchBar] = useToggle();
+  const [isAllSelected, _, setAllSelected] = useToggle();
 
   return (
     <>
@@ -23,6 +22,14 @@ const DaySelector = () => {
           id='day-button-list'
           className='flex flex-wrap items-center justify-center gap-2'
         >
+          {isSearchBarVisible ? (
+            <li key='search-bar' className='block w-full md:hidden '>
+              <SearchBar
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
+              />
+            </li>
+          ) : null}
           <li key='all-week'>
             <AllWeekButton
               isAllSelected={isAllSelected}
@@ -34,6 +41,12 @@ const DaySelector = () => {
               <DayButton title={day} setAllSelected={setAllSelected} />
             </li>
           ))}
+          <li key='search-button' className='block md:hidden'>
+            <SearchButton
+              isSearchBarVisible={isSearchBarVisible}
+              toggleSearchBar={toggleSearchBar}
+            />
+          </li>
         </ul>
       </div>
     </>

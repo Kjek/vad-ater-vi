@@ -1,20 +1,18 @@
 import nextPWA from 'next-pwa';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import runtimeCaching from 'next-pwa/cache.js';
-// @ts-check
+import defaultRuntimeCaching from 'next-pwa/cache.js';
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
  * This is especially useful for Docker builds.
  */
-!process.env.SKIP_ENV_VALIDATION && (await import('./src/env.mjs'));
+!process.env.SKIP_ENV_VALIDATION && (await import('./src/env.js'));
 
 const withPWA = nextPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
-  runtimeCaching: runtimeCaching,
+  runtimeCaching: defaultRuntimeCaching,
   disable: process.env.NODE_ENV === 'development',
 });
 

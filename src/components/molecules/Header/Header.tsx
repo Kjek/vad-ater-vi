@@ -1,7 +1,17 @@
 import GitHubButton from '@component/atoms/GitHubButton/GitHubButton';
 import SiteLogo from '@component/atoms/SiteLogo/SiteLogo';
 import Text from '@component/atoms/Text/Text';
-import ThemeButton from '@component/atoms/ThemeButton/ThemeButton';
+import ThemeButtonSkeleton from '@component/atoms/ThemeButton/ThemeButtonSkeleton';
+import dynamic from 'next/dynamic';
+
+const ThemeButton = dynamic(
+  () => import('../../atoms/ThemeButton/ThemeButton'),
+  {
+    ssr: false,
+    // Make sure to code a placeholder so the UI doesn't jump when the component loads
+    loading: () => <ThemeButtonSkeleton />,
+  }
+);
 
 const Header = () => {
   return (

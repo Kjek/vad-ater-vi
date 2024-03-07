@@ -18,7 +18,7 @@ const ListItemSkeleton = () => {
           <ul>
             {menuToShow.map((_, index) => (
               <li key={index} className='flex flex-col gap-2'>
-                <Text variant='h3' className={skeletonClasses}>
+                <Text variant='h3' className={cn('w-1/3', skeletonClasses)}>
                   &nbsp;
                 </Text>
                 <Text variant='p' className={skeletonClasses}>
@@ -34,7 +34,7 @@ const ListItemSkeleton = () => {
                 className='flex flex-col gap-2 whitespace-pre-line'
                 key={index}
               >
-                <Text variant='h4' className={skeletonClasses}>
+                <Text variant='h4' className={cn('w-1/3', skeletonClasses)}>
                   &nbsp;
                 </Text>
                 <Text variant='h5' className={skeletonClasses}>

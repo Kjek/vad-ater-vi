@@ -1,7 +1,8 @@
 import InputButton from '@component/atoms/Button/Button';
 import IconButton from '@component/atoms/IconButton/IconButton';
 import Text from '@component/atoms/Text/Text';
-import { useToggle } from 'usehooks-ts';
+import { useRef } from 'react';
+import { useOnClickOutside, useToggle } from 'usehooks-ts';
 
 interface ModalProps {
   children: React.ReactNode;
@@ -12,8 +13,10 @@ interface ModalProps {
 }
 
 const Modal = (props: ModalProps) => {
+  const ref = useRef(null);
   const { children, className, title, variant, onClick } = props;
   const [open, toggleOpen] = useToggle();
+  useOnClickOutside(ref, toggleOpen);
 
   const handleOnClick = () => {
     toggleOpen();
@@ -56,12 +59,11 @@ const Modal = (props: ModalProps) => {
         {toggleComponent()}
         {open ? (
           <>
+            <div className='fixed left-0 top-0 m-0 h-full w-full bg-black opacity-30' />
             <div
-              className='fixed left-0 top-0 m-0 h-full w-full bg-black opacity-30'
-              onClick={toggleOpen}
-              onKeyDown={keyDownEvent}
-            />
-            <div className='dark:bg-gray-custom fixed left-[50%] top-[50%] flex max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] flex-col gap-4 rounded-[6px] bg-white p-6 pt-10'>
+              ref={ref}
+              className='dark:bg-gray-custom fixed left-[50%] top-[50%] flex max-h-[85vh] w-[90vw] max-w-[450px] translate-x-[-50%] translate-y-[-50%] flex-col gap-4 rounded-[6px] bg-white p-6 pt-10'
+            >
               {children}
               <IconButton
                 variant='cancel'

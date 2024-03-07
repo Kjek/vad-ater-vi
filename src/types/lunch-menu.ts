@@ -61,6 +61,6 @@ export const isLunchMenus = (object: unknown): object is LunchMenu[] => {
   return (
     Array.isArray(object) &&
     object.length > 0 &&
-    isLunchMenu((object as LunchMenu[])[0] as LunchMenu)
+    isLunchMenu((object as LunchMenu[])[0] as unknown as LunchMenu)
   );
 };

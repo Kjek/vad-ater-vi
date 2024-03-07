@@ -1,7 +1,5 @@
-import CalendarIcon from '@asset/CalendarIcon';
-import CancelIcon from '@asset/CancelIcon';
 import { useGlobalState } from '@hook/useGlobalState';
-import { useTheme } from '@hook/useTheme';
+import { CalendarIcon, Cross1Icon } from '@radix-ui/react-icons';
 import type { Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
 
 interface AllWeekButtonProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -15,16 +13,18 @@ const AllWeekButton = ({
   ...props
 }: AllWeekButtonProps) => {
   const { dispatch } = useGlobalState();
-  const { theme } = useTheme();
   const onClick = () => {
     dispatch({
       type: !isAllSelected ? 'all' : 'reset',
     });
     setAllSelected(!isAllSelected);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
-  const icon = isAllSelected ? <CancelIcon /> : <CalendarIcon theme={theme} />;
+  const icon = isAllSelected ? (
+    <Cross1Icon className='text-red-500 dark:text-red-700' />
+  ) : (
+    <CalendarIcon className='text-black dark:text-white' />
+  );
 
   const selectedClasses = isAllSelected
     ? 'ring-2 ring-gray-700 bg-white dark:ring-gray-400 dark:bg-gray-800'
