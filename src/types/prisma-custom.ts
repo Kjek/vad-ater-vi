@@ -4,7 +4,4 @@ export interface PrismaInterface {
   prisma: PrismaType;
 }
 
-export type PrismaType = PrismaClient<
-  Prisma.PrismaClientOptions,
-  never | undefined
->;
+export type PrismaType = PrismaClient<Prisma.PrismaClientOptions, undefined>;
