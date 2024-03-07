@@ -17,6 +17,7 @@ En [T3 Stack](https://create.t3.gg/) med [Next.js](https://nextjs.org) för fron
 ```bash
 git clone https://github.com/Kjek/vad-ater-vi.git
 ```
+
 2. Installera dependencies:
 
 ```bash
@@ -31,18 +32,24 @@ DATABASE_URL=[PATH_TO_DATABASE]
 ```
 
 4. Snurra igång stacken:
+
 ```
 yarn dev
 ```
+
 Gå till `localhost:3000`
 
 ## Demo
+
 Gå hit för demo: [https://www.vadätervi.nu/](https://www.vadätervi.nu/)
 
 ## Omnämningar
+
 - [T3 Stack](https://create.t3.gg/)
 - [Next.js](https://nextjs.org)
+- [NextAuth.js](https://next-auth.js.org/)
 - [Prisma](https://prisma.io)
 - [Tailwind CSS](https://tailwindcss.com)
 - [tRPC](https://trpc.io)
 - [heroicons](https://heroicons.com/)
+- [Radix](https://www.radix-ui.com/)
