@@ -66,7 +66,10 @@ const genericWebScraper: Scraper = async (
           lunchWeek.push({
             day: sweDays[lunchGroups.indexOf(group)],
             food: decodeHtmlEntity(
-              group.replace(/\d\.\s?/gim, '').replace(/^\s?\*\s?/gm, '')
+              group
+                .replace(/\d\.\s?/gim, '')
+                .replace(/^\s?\*\s?/gm, '')
+                .replace(/\n{2,}/gim, '\n')
             ).trim(),
           } as LunchMenu);
         }
