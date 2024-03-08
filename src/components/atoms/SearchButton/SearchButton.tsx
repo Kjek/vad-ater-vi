@@ -1,12 +1,18 @@
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { cn } from '@util/cn';
+import { type HTMLAttributes } from 'react';
 
-interface SearchButtonProps {
+interface SearchButtonProps extends HTMLAttributes<HTMLSpanElement> {
   isSearchBarVisible: boolean;
   toggleSearchBar: () => void;
 }
 
-const SearchButton = (props: SearchButtonProps) => {
-  const { isSearchBarVisible, toggleSearchBar } = props;
+const SearchButton = ({
+  isSearchBarVisible,
+  toggleSearchBar,
+  className,
+  ...props
+}: SearchButtonProps) => {
   const activeClasses = isSearchBarVisible
     ? 'ring-1 ring-gray-300 dark:ring-gray-600'
     : '';
@@ -14,7 +20,12 @@ const SearchButton = (props: SearchButtonProps) => {
   return (
     <>
       <span
-        className={`flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700 ${activeClasses}`}
+        {...props}
+        className={cn(
+          'flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700',
+          className,
+          activeClasses
+        )}
         onClick={toggleSearchBar}
       >
         <MagnifyingGlassIcon className='text-black dark:text-white' />
