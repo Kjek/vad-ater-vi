@@ -4,19 +4,13 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import SearchBar from './SearchBar';
 
 describe(SearchBar, () => {
-  let searchQuery = '';
-  const setSearchQuery = vi.fn().mockImplementation((newValue: string) => {
-    searchQuery = newValue;
-  });
-
   beforeEach(() => {
     vi.clearAllMocks();
-    searchQuery = '';
   });
 
   it('renders correctly', () => {
     const { getByDisplayValue } = render(
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <SearchBar searchQuery={''} setSearchQuery={vi.fn()} />
     );
     const searchBar = getByDisplayValue('') as HTMLInputElement;
     expect(searchBar).toBeInTheDocument();
@@ -24,6 +18,10 @@ describe(SearchBar, () => {
   });
 
   it('displays value correctly', () => {
+    let searchQuery = '';
+    const setSearchQuery = vi.fn().mockImplementation((newValue: string) => {
+      searchQuery = newValue;
+    });
     const { getByDisplayValue } = render(
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
     );

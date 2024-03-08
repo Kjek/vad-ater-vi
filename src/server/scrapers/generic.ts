@@ -47,8 +47,8 @@ const genericWebScraper: Scraper = async (
     return JSON.stringify(lunchMenu);
   }
 
-  const lunchWeek = [];
-  const weeklySpecials = [];
+  const lunchWeek: LunchMenu[] = [];
+  const weeklySpecials: WeeklySpecial[] = [];
   if (lunchMenu) {
     const lunchMatch = lunchMenu.matchAll(
       lunchRegex ??

@@ -1,6 +1,15 @@
-const LoadingIndicator = () => {
+import { cn } from '@util/cn';
+import { type HTMLAttributes } from 'react';
+
+const LoadingIndicator = ({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) => {
   return (
-    <div className='flex h-full w-full justify-center'>
+    <div
+      {...props}
+      className={cn('flex h-full w-full justify-center', className)}
+    >
       <svg
         className='my-auto h-5 w-5 animate-spin text-gray-800 dark:text-gray-300'
         xmlns='http://www.w3.org/2000/svg'

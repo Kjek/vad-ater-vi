@@ -1,8 +1,15 @@
 import { CopyIcon, Cross1Icon } from '@radix-ui/react-icons';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import React from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import IconButton from './IconButton';
+
+vi.mock('@radix-ui/react-icons', async (importOriginal) => ({
+  // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+  ...(await importOriginal<typeof import('@radix-ui/react-icons')>()),
+  CopyIcon: () => <div>CopyIcon</div>,
+  Cross1Icon: () => <div>Cross1Icon</div>,
+}));
 
 describe(IconButton, () => {
   it('renders correctly', () => {
@@ -20,11 +27,8 @@ describe(IconButton, () => {
     );
     const button = getByTestId('icon.button') as HTMLButtonElement;
     expect(button).toBeVisible();
-    screen.debug();
 
-    const { container: Cross1IconContainer } = render(<Cross1Icon />);
-
-    expect(button).toHaveTextContent(Cross1IconContainer.textContent ?? '');
+    expect(button).toHaveTextContent('Cross1Icon');
   });
 
   it('displays copy correctly', () => {
@@ -33,10 +37,7 @@ describe(IconButton, () => {
     );
     const button = getByTestId('icon.button') as HTMLButtonElement;
     expect(button).toBeVisible();
-    screen.debug();
 
-    const { container: CopyIconContainer } = render(<CopyIcon />);
-
-    expect(button).toHaveTextContent(CopyIconContainer.textContent ?? '');
+    expect(button).toHaveTextContent('CopyIcon');
   });
 });

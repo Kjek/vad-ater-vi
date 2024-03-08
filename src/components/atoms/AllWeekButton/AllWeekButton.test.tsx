@@ -1,32 +1,27 @@
-import { render } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, render } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import AllWeekButton from './AllWeekButton';
 
-vi.mock('../../assets/CancelIcon', () => ({
-  default: () => <div>CancelIcon</div>,
-}));
-
-vi.mock('../../assets/CalendarIcon', () => ({
-  default: () => <div>CalendarIcon</div>,
-}));
+vi.mock('@radix-ui/react-icons', async (importOriginal) => {
+  return {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-imports
+    ...(await importOriginal<typeof import('@radix-ui/react-icons')>()),
+    CalendarIcon: () => <div>CalendarIcon</div>,
+    Cross1Icon: () => <div>Cross1Icon</div>,
+  };
+});
 
 describe(AllWeekButton, () => {
-  let isAllSelected = false;
-  const setAllSelected = vi.fn().mockImplementation((newValue: boolean) => {
-    isAllSelected = newValue;
-  });
-
   beforeEach(() => {
     vi.clearAllMocks();
-    isAllSelected = false;
   });
 
   it('renders correctly', () => {
+    const setAllSelected = vi.fn();
     const { getByTestId } = render(
       <AllWeekButton
         data-testid={'all.week.button'}
-        isAllSelected={isAllSelected}
+        isAllSelected={false}
         setAllSelected={setAllSelected}
       />
     );
@@ -36,23 +31,25 @@ describe(AllWeekButton, () => {
   });
 
   it('displays cancel icon correctly', () => {
+    const setAllSelected = vi.fn();
     const { getByTestId } = render(
       <AllWeekButton
         data-testid={'all.week.button'}
-        isAllSelected={!isAllSelected}
+        isAllSelected={true}
         setAllSelected={setAllSelected}
       />
     );
     const allWeekButton = getByTestId('all.week.button') as HTMLSpanElement;
     expect(allWeekButton).toBeVisible();
-    expect(allWeekButton).toHaveTextContent('CancelIcon');
+    expect(allWeekButton).toHaveTextContent('Cross1Icon');
   });
 
   it('displays calendar icon correctly', () => {
+    const setAllSelected = vi.fn();
     const { getByTestId } = render(
       <AllWeekButton
         data-testid={'all.week.button'}
-        isAllSelected={isAllSelected}
+        isAllSelected={false}
         setAllSelected={setAllSelected}
       />
     );
@@ -61,24 +58,22 @@ describe(AllWeekButton, () => {
     expect(allWeekButton).toHaveTextContent('CalendarIcon');
   });
 
-  // it('displays correctly after user clicked', async () => {
-  //   const { getByTestId } = render(
-  //     <AllWeekButton
-  //       isAllSelected={isAllSelected}
-  //       setAllSelected={setAllSelected}
-  //     />
-  //   );
+  it('user interaction works correctly', async () => {
+    const setAllSelected = vi.fn();
+    const { getByTestId } = render(
+      <AllWeekButton
+        data-testid={'all.week.button'}
+        isAllSelected={false}
+        setAllSelected={setAllSelected}
+      />
+    );
 
-  //   expect(isAllSelected).toBeFalsy();
-  //   const allWeekButton = getByTestId('all.week.button') as HTMLSpanElement;
-  //   expect(allWeekButton).toBeInTheDocument();
-  //   expect(allWeekButton).toBeVisible();
-  //   expect(allWeekButton).toHaveTextContent('CalendarIcon');
+    const allWeekButton = getByTestId('all.week.button') as HTMLSpanElement;
 
-  //   fireEvent.click(allWeekButton);
+    fireEvent.click(allWeekButton);
 
-  //   expect(isAllSelected).toBeTruthy();
-  //   expect(setAllSelected).toBeCalledWith(true);
-  //   expect(allWeekButton).toHaveTextContent('CancelIcon');
-  // });
+    expect(allWeekButton).toBeInTheDocument();
+    expect(allWeekButton).toBeVisible();
+    expect(setAllSelected).toBeCalledWith(true);
+  });
 });
