@@ -6,8 +6,13 @@ import Spinner from './Spinner';
 describe(Spinner, () => {
   it('renders correctly', () => {
     const { getByTestId } = render(<Spinner data-testid={'spinner'} />);
-    const button = getByTestId('spinner');
-    expect(button).toBeInTheDocument();
-    expect(button).toBeVisible();
+    const spinner = getByTestId('spinner');
+    expect(spinner).toBeInTheDocument();
+    expect(spinner).toBeVisible();
+  });
+
+  it('matches snapshot', () => {
+    const defaultRender = render(<Spinner />);
+    expect(defaultRender).toMatchSnapshot();
   });
 });

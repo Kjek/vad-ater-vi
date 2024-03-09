@@ -58,7 +58,7 @@ describe(AllWeekButton, () => {
     expect(allWeekButton).toHaveTextContent('CalendarIcon');
   });
 
-  it('user interaction works correctly', async () => {
+  it('user interaction works correctly', () => {
     const setAllSelected = vi.fn();
     const { getByTestId } = render(
       <AllWeekButton
@@ -75,5 +75,17 @@ describe(AllWeekButton, () => {
     expect(allWeekButton).toBeInTheDocument();
     expect(allWeekButton).toBeVisible();
     expect(setAllSelected).toBeCalledWith(true);
+  });
+
+  it('matches snapshot', () => {
+    const setAllSelected = vi.fn();
+    const defaultRender = render(
+      <AllWeekButton
+        data-testid={'all.week.button'}
+        isAllSelected={false}
+        setAllSelected={setAllSelected}
+      />
+    );
+    expect(defaultRender).toMatchSnapshot();
   });
 });

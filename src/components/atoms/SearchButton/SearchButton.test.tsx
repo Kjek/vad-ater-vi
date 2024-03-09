@@ -61,4 +61,11 @@ describe(SearchButton, () => {
     expect(searchButton).toBeVisible();
     expect(toggleSearchBar).toBeCalledTimes(1);
   });
+
+  it('matches snapshot', () => {
+    const defaultRender = render(
+      <SearchButton isSearchBarVisible={false} toggleSearchBar={vi.fn()} />
+    );
+    expect(defaultRender).toMatchSnapshot();
+  });
 });

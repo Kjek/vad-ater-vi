@@ -19,4 +19,9 @@ describe(InputButton, () => {
     expect(button).toBeVisible();
     expect(button).toHaveValue('Press me!');
   });
+
+  it('matches snapshot', () => {
+    const defaultRender = render(<InputButton value={'Press me!'} />);
+    expect(defaultRender).toMatchSnapshot();
+  });
 });

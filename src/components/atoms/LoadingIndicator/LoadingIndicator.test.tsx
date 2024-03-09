@@ -12,4 +12,9 @@ describe(LoadingIndicator, () => {
     expect(button).toBeInTheDocument();
     expect(button).toBeVisible();
   });
+
+  it('matches snapshot', () => {
+    const defaultRender = render(<LoadingIndicator />);
+    expect(defaultRender).toMatchSnapshot();
+  });
 });
