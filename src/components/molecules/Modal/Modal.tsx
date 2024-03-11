@@ -12,9 +12,14 @@ interface ModalProps {
   variant?: 'text' | 'button';
 }
 
-const Modal = (props: ModalProps) => {
+const Modal = ({
+  children,
+  className,
+  title,
+  variant,
+  onClick,
+}: ModalProps) => {
   const ref = useRef(null);
-  const { children, className, title, variant, onClick } = props;
   const [open, toggleOpen] = useToggle();
   useOnClickOutside(ref, toggleOpen);
 

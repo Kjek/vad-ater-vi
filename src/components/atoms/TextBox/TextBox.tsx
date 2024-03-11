@@ -1,7 +1,7 @@
 import { cn } from '@util/cn';
-import type { InputHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-interface TextBoxProps extends InputHTMLAttributes<HTMLInputElement> {
+interface TextBoxProps extends ComponentPropsWithoutRef<'input'> {
   variant?: 'text' | 'password';
 }
 

@@ -1,10 +1,10 @@
 import { cn } from '@util/cn';
-import { type HTMLAttributes } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 
 const LoadingIndicator = ({
   className,
   ...props
-}: HTMLAttributes<HTMLDivElement>) => {
+}: ComponentPropsWithoutRef<'div'>) => {
   return (
     <div
       {...props}

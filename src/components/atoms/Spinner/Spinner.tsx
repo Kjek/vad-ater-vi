@@ -1,8 +1,8 @@
 import { cn } from '@util/cn';
-import type { HTMLAttributes, SVGProps } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
-  svgProps?: HTMLAttributes<SVGElement>;
+interface SpinnerProps extends ComponentPropsWithoutRef<'div'> {
+  svgProps?: ComponentPropsWithoutRef<'svg'>;
 }
 
 const Spinner = ({ svgProps, className, ...props }: SpinnerProps) => {

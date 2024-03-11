@@ -1,10 +1,10 @@
-import type { InputHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 const InputButton = ({
   className,
   ...props
-}: InputHTMLAttributes<HTMLInputElement>) => {
+}: ComponentPropsWithoutRef<'input'>) => {
   return (
     <>
       <input

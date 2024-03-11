@@ -3,12 +3,12 @@
 import { useTheme } from '@hook/useTheme';
 import { MoonIcon, SunIcon } from '@radix-ui/react-icons';
 import { cn } from '@util/cn';
-import { type ButtonHTMLAttributes } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 
 const ThemeButton = ({
   className,
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement>) => {
+}: ComponentPropsWithoutRef<'button'>) => {
   const { theme, toggleTheme } = useTheme();
   const renderIcon = () => {
     switch (theme) {
@@ -26,7 +26,7 @@ const ThemeButton = ({
       type='button'
       title='Byt mellan mörk-, ljustläge för tema på sidan'
       className={cn(
-        'cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700',
+        'cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:ring-gray-300 hover:transition-none dark:bg-gray-800 dark:hover:bg-gray-700',
         className
       )}
       onClick={toggleTheme}
