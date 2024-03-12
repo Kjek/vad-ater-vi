@@ -165,6 +165,7 @@ export const searchRestaurantByName = async (
           startsWith: searchText,
           mode: 'insensitive',
         },
+        enabled: true,
       },
     },
     take: limit ?? 100,
