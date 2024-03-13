@@ -24,7 +24,7 @@ const ThemeButton = ({
     <button
       {...props}
       type='button'
-      title='Byt mellan mörk-, ljustläge för tema på sidan'
+      title='Byt mellan mörk- och ljustläge för tema på sidan'
       className={cn(
         'cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:ring-gray-300 hover:transition-none dark:bg-gray-800 dark:hover:bg-gray-700',
         className
