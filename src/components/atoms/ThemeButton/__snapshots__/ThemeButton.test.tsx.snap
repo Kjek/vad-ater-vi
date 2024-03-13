@@ -6,8 +6,8 @@ exports[`ThemeButton > matches snapshot 1`] = `
   "baseElement": <body>
     <div>
       <button
-        class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
-        title="Byt mellan mörk-, ljustläge för tema på sidan"
+        class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:ring-gray-300 hover:transition-none dark:bg-gray-800 dark:hover:bg-gray-700"
+        title="Byt mellan mörk- och ljustläge för tema på sidan"
         type="button"
       >
         <div>
@@ -18,8 +18,8 @@ exports[`ThemeButton > matches snapshot 1`] = `
   </body>,
   "container": <div>
     <button
-      class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700"
-      title="Byt mellan mörk-, ljustläge för tema på sidan"
+      class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:ring-gray-300 hover:transition-none dark:bg-gray-800 dark:hover:bg-gray-700"
+      title="Byt mellan mörk- och ljustläge för tema på sidan"
       type="button"
     >
       <div>

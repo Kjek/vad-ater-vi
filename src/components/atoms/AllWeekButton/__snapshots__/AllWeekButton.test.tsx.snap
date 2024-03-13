@@ -5,25 +5,27 @@ exports[`AllWeekButton > matches snapshot 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <span
-        class="flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 "
+      <button
+        class="flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 "
         data-testid="all.week.button"
+        type="button"
       >
         <div>
           CalendarIcon
         </div>
-      </span>
+      </button>
     </div>
   </body>,
   "container": <div>
-    <span
-      class="flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 "
+    <button
+      class="flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 "
       data-testid="all.week.button"
+      type="button"
     >
       <div>
         CalendarIcon
       </div>
-    </span>
+    </button>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
