@@ -1,26 +1,18 @@
 import InputButton from '@component/atoms/Button/Button';
+import Text from '@component/atoms/Text/Text';
 import DebugContentModal from '@component/molecules/DebugContentModal/DebugContentModal';
 import SettingsModal from '@component/organisms/SettingsModal/SettingsModal';
+import { type RestaurantSetting } from '@prisma/client';
 import type {
   DeleteRestaurantFunction,
   IdParamVoidFunction,
   UpdateSettingsFunction,
 } from '@type/api-types';
-import type { Dispatch, SetStateAction } from 'react';
+import { type Dispatch, type SetStateAction, useState } from 'react';
+import { useToggle } from 'usehooks-ts';
 
 interface AdminRestaurantSettingsListProps {
-  restaurantSettings:
-    | {
-        id: string;
-        name: string;
-        restaurantId: string;
-        enabled: boolean;
-        homeUrl: string;
-        lunchUrl: string;
-        lunchRegex: string | null;
-        weeklyRegex: string | null;
-      }[]
-    | undefined;
+  restaurantSettings: RestaurantSetting[] | undefined;
   debugData: string | undefined;
   setDebugRestaurantId: Dispatch<SetStateAction<string>>;
   reScrape: IdParamVoidFunction;
@@ -36,19 +28,36 @@ const AdminRestaurantSettingsList = ({
   deleteRestaurant,
   updateSettings,
 }: AdminRestaurantSettingsListProps) => {
+  const [isOpen, toggleOpen] = useToggle();
+  const [currentRestaurant, setCurrentRestaurant] =
+    useState<RestaurantSetting>();
+  const toggleModal = (restaurantSetting: RestaurantSetting) => {
+    setCurrentRestaurant(restaurantSetting);
+    toggleOpen();
+  };
+
   return (
     <>
+      {currentRestaurant && isOpen ? (
+        <SettingsModal
+          toggleOpen={toggleOpen}
+          restaurant={currentRestaurant}
+          deleteRestaurant={deleteRestaurant}
+          updateSettings={updateSettings}
+        />
+      ) : null}
       {restaurantSettings?.map((restaurantSetting) => (
         <div key={restaurantSetting.name} className='flex w-full gap-4'>
-          <SettingsModal
-            restaurant={restaurantSetting}
-            deleteRestaurant={deleteRestaurant}
-            updateSettings={updateSettings}
-          />
+          <Text
+            className='flex-1 cursor-pointer self-center'
+            onClick={() => toggleModal(restaurantSetting)}
+          >
+            {restaurantSetting.name}
+          </Text>
           <DebugContentModal
-            restaurantName={restaurantSetting.restaurantId}
+            restaurantId={restaurantSetting.restaurantId}
             debugData={debugData}
-            setDebugName={setDebugRestaurantId}
+            setDebugId={setDebugRestaurantId}
           />
           <InputButton
             value='Re-scrape'
