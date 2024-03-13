@@ -16,7 +16,7 @@ const Main = () => {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
       />
-      {restaurants && restaurants?.length > 0 ? (
+      {restaurants ? (
         <LunchList restaurants={restaurants} />
       ) : (
         <LunchListSkeleton />
