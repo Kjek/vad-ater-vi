@@ -6,7 +6,7 @@ exports[`DayButton > matches snapshot 1`] = `
   "baseElement": <body>
     <div>
       <input
-        class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+        class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
         data-testid="day.button"
         title="Tryck för att visa den här dagens lunch i listan nedan"
         type="button"
@@ -16,7 +16,7 @@ exports[`DayButton > matches snapshot 1`] = `
   </body>,
   "container": <div>
     <input
-      class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+      class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
       data-testid="day.button"
       title="Tryck för att visa den här dagens lunch i listan nedan"
       type="button"

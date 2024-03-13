@@ -10,7 +10,7 @@ exports[`GitHubButton > matches snapshot 1`] = `
         type="button"
       >
         <a
-          class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
+          class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:transition-none dark:bg-gray-800 dark:hover:bg-gray-700"
           href="https://github.com/Kjek/vad-ater-vi"
           title="Länk till sidans GitHub repository"
         >
@@ -27,7 +27,7 @@ exports[`GitHubButton > matches snapshot 1`] = `
       type="button"
     >
       <a
-        class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700"
+        class="cursor-pointer self-center rounded-md bg-white p-2 transition duration-500 hover:bg-gray-200 hover:transition-none dark:bg-gray-800 dark:hover:bg-gray-700"
         href="https://github.com/Kjek/vad-ater-vi"
         title="Länk till sidans GitHub repository"
       >

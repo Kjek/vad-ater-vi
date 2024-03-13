@@ -6,7 +6,7 @@ exports[`SearchButton > matches snapshot 1`] = `
   "baseElement": <body>
     <div>
       <span
-        class="flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
+        class="flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
       >
         <div>
           MagnifyingGlassIcon
@@ -16,7 +16,7 @@ exports[`SearchButton > matches snapshot 1`] = `
   </body>,
   "container": <div>
     <span
-      class="flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
+      class="flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
     >
       <div>
         MagnifyingGlassIcon
