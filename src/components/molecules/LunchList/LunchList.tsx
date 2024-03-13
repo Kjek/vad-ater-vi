@@ -5,9 +5,7 @@ interface LunchListProps {
   restaurants: Restaurant[] | undefined;
 }
 
-const LunchList = (props: LunchListProps) => {
-  const { restaurants } = props;
-
+const LunchList = ({ restaurants }: LunchListProps) => {
   return (
     <div className='mb-14 flex justify-center py-8 md:mb-0 md:pt-0'>
       <div className='container px-4'>

@@ -1,8 +1,8 @@
 import { useGlobalState } from '@hook/useGlobalState';
 import { CalendarIcon, Cross1Icon } from '@radix-ui/react-icons';
-import type { Dispatch, InputHTMLAttributes, SetStateAction } from 'react';
+import type { ComponentPropsWithoutRef, Dispatch, SetStateAction } from 'react';
 
-interface AllWeekButtonProps extends InputHTMLAttributes<HTMLInputElement> {
+interface AllWeekButtonProps extends ComponentPropsWithoutRef<'button'> {
   isAllSelected: boolean;
   setAllSelected: Dispatch<SetStateAction<boolean>>;
 }
@@ -31,13 +31,14 @@ const AllWeekButton = ({
     : '';
 
   return (
-    <span
+    <button
       {...props}
-      className={`flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 ${selectedClasses}`}
+      type='button'
+      className={`flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 ${selectedClasses}`}
       onClick={onClick}
     >
       {icon}
-    </span>
+    </button>
   );
 };
 

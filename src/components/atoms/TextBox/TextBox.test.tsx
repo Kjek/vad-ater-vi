@@ -30,4 +30,11 @@ describe(TextBox, () => {
     expect(textBox).toBeVisible();
     expect(textBox.type).toEqual('password');
   });
+
+  it('matches snapshot', () => {
+    const password = render(<TextBox variant='password' />);
+    expect(password).toMatchSnapshot();
+    const defaultRender = render(<TextBox />);
+    expect(defaultRender).toMatchSnapshot();
+  });
 });

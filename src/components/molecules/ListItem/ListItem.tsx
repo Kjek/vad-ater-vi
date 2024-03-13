@@ -7,9 +7,8 @@ interface ListProps {
   restaurant: Restaurant;
 }
 
-const ListItem = (props: ListProps) => {
+const ListItem = ({ restaurant }: ListProps) => {
   const { state } = useGlobalState();
-  const { restaurant } = props;
   const daysToShow = state.daysSelected;
   const menuToShow = restaurant.menu.filter((item) => daysToShow.get(item.day));
 

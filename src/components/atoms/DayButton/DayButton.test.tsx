@@ -57,4 +57,15 @@ describe(DayButton, () => {
     expect(setAllSelected).toBeCalledWith(false);
     expect(isAllSelected).toBeFalsy();
   });
+
+  it('matches snapshot', () => {
+    const defaultRender = render(
+      <DayButton
+        data-testid={'day.button'}
+        setAllSelected={setAllSelected}
+        title='Måndag'
+      />
+    );
+    expect(defaultRender).toMatchSnapshot();
+  });
 });

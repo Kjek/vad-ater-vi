@@ -4,8 +4,7 @@ interface ErrorListItemProps {
   restaurantHomeUrl?: string;
 }
 
-const ErrorListItem = (props: ErrorListItemProps) => {
-  const { restaurantHomeUrl } = props;
+const ErrorListItem = ({ restaurantHomeUrl }: ErrorListItemProps) => {
   return (
     <>
       <li key='error-message'>

@@ -27,4 +27,9 @@ describe(ThemeButton, () => {
     expect(themeButton).toBeVisible();
     expect(themeButton).toHaveTextContent('SunIcon');
   });
+
+  it('matches snapshot', () => {
+    const defaultRender = render(<ThemeButton />);
+    expect(defaultRender).toMatchSnapshot();
+  });
 });

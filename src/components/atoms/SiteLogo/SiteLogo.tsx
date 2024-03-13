@@ -1,11 +1,8 @@
 import { cn } from '@util/cn';
 import Image from 'next/image';
-import { type ImgHTMLAttributes } from 'react';
+import { type ComponentPropsWithoutRef } from 'react';
 
-const SiteLogo = ({
-  className,
-  ...props
-}: ImgHTMLAttributes<HTMLImageElement>) => {
+const SiteLogo = ({ className, ...props }: ComponentPropsWithoutRef<'img'>) => {
   return (
     <>
       <Image

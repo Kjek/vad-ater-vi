@@ -1,8 +1,8 @@
 import { CopyIcon, Cross1Icon } from '@radix-ui/react-icons';
 import { cn } from '@util/cn';
-import type { ButtonHTMLAttributes } from 'react';
+import type { ComponentPropsWithoutRef } from 'react';
 
-interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface IconButtonProps extends ComponentPropsWithoutRef<'button'> {
   variant: 'cancel' | 'copy';
 }
 

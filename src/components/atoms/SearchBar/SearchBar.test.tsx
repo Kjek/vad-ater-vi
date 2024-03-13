@@ -34,4 +34,11 @@ describe(SearchBar, () => {
     expect(searchBar).toHaveValue('test');
     expect(searchBar).toHaveValue(searchQuery);
   });
+
+  it('matches snapshot', () => {
+    const defaultRender = render(
+      <SearchBar searchQuery={'searchQuery'} setSearchQuery={vi.fn()} />
+    );
+    expect(defaultRender).toMatchSnapshot();
+  });
 });

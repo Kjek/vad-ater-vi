@@ -77,6 +77,20 @@ const LoginPage: NextPage = () => {
       { enabled: false, refetchOnWindowFocus: false }
     );
 
+  const { mutate: createRestaurantSetting } =
+    api.admin.createRestaurantSetting.useMutation({
+      onSuccess() {
+        toastSuccessful(toastId.current);
+        void fetchRestaurants();
+      },
+      onError(error) {
+        toastError(toastId.current, error);
+      },
+      onMutate() {
+        toastId.current = toast.loading('Creating restaurant...');
+      },
+    });
+
   useEffect(() => {
     if (currentDebugRestaurantId) {
       void fetchDebug();
@@ -105,7 +119,9 @@ const LoginPage: NextPage = () => {
               updateSettings={updateSettings}
               reScrape={reScrape}
             />
-            <CreateRestaurantSettingModal />
+            <CreateRestaurantSettingModal
+              createRestaurantSetting={createRestaurantSetting}
+            />
             <AdminOption buttonValue='Logout' onClick={() => void signOut()} />
           </div>
         </div>

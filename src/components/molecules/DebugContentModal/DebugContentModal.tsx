@@ -1,40 +1,58 @@
+import InputButton from '@component/atoms/Button/Button';
 import IconButton from '@component/atoms/IconButton/IconButton';
 import Spinner from '@component/atoms/Spinner/Spinner';
 import Modal from '@component/molecules/Modal/Modal';
 import type { Dispatch, SetStateAction } from 'react';
-import { useCopyToClipboard } from 'usehooks-ts';
+import { useCopyToClipboard, useToggle } from 'usehooks-ts';
 
 interface DebugContentModalProps {
   debugData: string | undefined;
-  restaurantName: string;
-  setDebugName: Dispatch<SetStateAction<string>>;
+  restaurantId: string;
+  setDebugId: Dispatch<SetStateAction<string>>;
 }
 
 const DebugContentModal = ({
   debugData,
-  restaurantName,
-  setDebugName,
+  restaurantId,
+  setDebugId,
 }: DebugContentModalProps) => {
+  const [isOpen, toggleOpen] = useToggle();
   const [_, copy] = useCopyToClipboard();
+
+  const toggleModal = () => {
+    setDebugId(restaurantId);
+    toggleOpen();
+  };
   return (
-    <Modal title='Debug content' onClick={() => setDebugName(restaurantName)}>
-      <IconButton
-        variant={'copy'}
-        className='self-end'
-        onClick={() => debugData && void copy(JSON.parse(debugData) as string)}
+    <>
+      <InputButton
+        value={'Debug'}
+        className='cursor-pointer'
+        onClick={toggleModal}
       />
-      {debugData ? (
-        <textarea
-          id={`${restaurantName}.textarea`}
-          rows={100}
-          className='min-h-full rounded-md'
-          value={JSON.parse(debugData) as string}
-          disabled
-        ></textarea>
-      ) : (
-        <Spinner />
-      )}
-    </Modal>
+      {isOpen ? (
+        <Modal toggleOpen={toggleOpen}>
+          <IconButton
+            variant={'copy'}
+            className='self-end'
+            onClick={() =>
+              debugData && void copy(JSON.parse(debugData) as string)
+            }
+          />
+          {debugData ? (
+            <textarea
+              id={`${restaurantId}.textarea`}
+              rows={100}
+              className='min-h-full rounded-md'
+              value={JSON.parse(debugData) as string}
+              disabled
+            ></textarea>
+          ) : (
+            <Spinner />
+          )}
+        </Modal>
+      ) : null}
+    </>
   );
 };
 

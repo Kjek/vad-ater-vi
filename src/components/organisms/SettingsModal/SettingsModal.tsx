@@ -2,27 +2,22 @@ import InputButton from '@component/atoms/Button/Button';
 import Text from '@component/atoms/Text/Text';
 import Modal from '@component/molecules/Modal/Modal';
 import SettingsItem from '@component/molecules/SettingsItem/SettingsItem';
+import { type RestaurantSetting } from '@prisma/client';
 import type { UpdateSettingsFunction } from '@type/api-types';
 import { useRef } from 'react';
 
 interface SettingsModalProps {
-  restaurant: {
-    id: string;
-    name: string;
-    homeUrl: string;
-    lunchUrl: string;
-    lunchRegex: string | null;
-    weeklyRegex: string | null;
-    restaurantId: string;
-  };
+  restaurant: RestaurantSetting;
   deleteRestaurant: ({}: { id: string }) => void;
   updateSettings: UpdateSettingsFunction;
+  toggleOpen: VoidFunction;
 }
 
 const SettingsModal = ({
   restaurant,
   deleteRestaurant,
   updateSettings,
+  toggleOpen,
 }: SettingsModalProps) => {
   const restaurantName = useRef<string>(restaurant.name);
   const homeUrl = useRef<string>(restaurant.homeUrl);
@@ -39,19 +34,17 @@ const SettingsModal = ({
       lunchRegex: lunchRegex.current,
       weeklyRegex: weeklyRegex.current,
     });
+    toggleOpen();
   };
 
   const handleDelete = () => {
     deleteRestaurant({ id: restaurant.restaurantId });
+    toggleOpen();
   };
 
   return (
     <>
-      <Modal
-        title={restaurant.name}
-        variant='text'
-        className='flex-grow self-center'
-      >
+      <Modal className='flex-grow self-center' toggleOpen={toggleOpen}>
         <Text variant='h3'>{'Edit resstaurant'}</Text>
         <Text variant='h5'>
           {"Make changes to the restaurant here. Click save when you're done."}

@@ -40,4 +40,16 @@ describe(IconButton, () => {
 
     expect(button).toHaveTextContent('CopyIcon');
   });
+
+  it('matches snapshot', () => {
+    const copy = render(
+      <IconButton data-testid={'icon.button'} variant='copy' />
+    );
+    expect(copy).toMatchSnapshot();
+
+    const cancel = render(
+      <IconButton data-testid={'icon.button'} variant='cancel' />
+    );
+    expect(cancel).toMatchSnapshot();
+  });
 });
