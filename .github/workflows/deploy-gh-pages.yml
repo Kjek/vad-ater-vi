@@ -4,8 +4,8 @@ on:
     branches:
       - develop
     paths:
-      - stories/**
-      - .storybook/**
+      - 'stories/**'
+      - '.storybook/**'
 jobs:
   Deploy-GitHub-Actions:
     runs-on: ubuntu-latest
