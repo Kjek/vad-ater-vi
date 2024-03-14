@@ -6,6 +6,7 @@ on:
     paths:
       - 'src/stories/*/**'
       - '.storybook/**'
+      - '.github/workflows/deploy-gh-pages.yml'
 jobs:
   Deploy-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -24,7 +25,8 @@ jobs:
       - run: export PUBLIC_URL=https://kjek.github.io/vad-ater-vi
       - name: Install dependencies
         run: |
-          yarn
+          corepack enable
+          yarn install --immutable
       - name: Build storybook
         run: |
           yarn storybook:build
