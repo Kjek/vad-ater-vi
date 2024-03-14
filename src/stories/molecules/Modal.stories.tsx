@@ -13,6 +13,15 @@ const meta = {
     toggleOpen: fn(),
     children: <Text>Add any children here to design your modal!</Text>,
   },
+  argTypes: {
+    toggleOpen: {
+      description: 'The function to toggle the visibility of the modal.',
+    },
+    children: {
+      description:
+        'Any child element that should display when the modal is visible.',
+    },
+  },
 } satisfies Meta<typeof Modal>;
 
 export default meta;
