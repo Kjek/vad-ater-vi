@@ -9,6 +9,14 @@ const meta = {
     layout: 'centered',
   },
   args: { buttonValue: 'Button', onClick: fn(), text: 'Text' },
+  argTypes: {
+    buttonValue: { description: 'The value of the `<InputButton>` element.' },
+    onClick: {
+      description:
+        'The on click event handler for the `<InputButton>` element.',
+    },
+    text: { description: 'The text for the `<Text>` element.' },
+  },
 } satisfies Meta<typeof AdminOption>;
 
 export default meta;
