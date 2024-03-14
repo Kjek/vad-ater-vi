@@ -7,6 +7,9 @@ on:
       - 'src/stories/*/**'
       - '.storybook/**'
       - '.github/workflows/deploy-gh-pages.yml'
+env:
+  PUBLIC_URL: https://kjek.github.io/vad-ater-vi
+  NODE_ENV: development
 jobs:
   Deploy-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -22,11 +25,6 @@ jobs:
         with:
           node-version-file: .nvmrc
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - run: |
-          export PUBLIC_URL=https://kjek.github.io/vad-ater-vi
-          export POSTGRES_PRISMA_URL=banana
-          export POSTGRES_URL_NON_POOLING=banana
-          export NEXTAUTH_SECRET=banana
       - name: Install dependencies
         run: |
           corepack enable
