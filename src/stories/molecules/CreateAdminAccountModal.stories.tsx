@@ -10,6 +10,11 @@ const meta = {
     layout: 'centered',
   },
   args: { toggleModal: fn() },
+  argTypes: {
+    toggleModal: {
+      description: 'The function to toggle the visibility of the modal.',
+    },
+  },
   decorators: [
     (Story) => (
       <StorybookTrpcProvider>
