@@ -25,6 +25,7 @@
       "@router/helper/*": ["./src/server/api/routers/helpers/*"],
       "@scraper/*": ["./src/server/scrapers/*"],
       "@server/*": ["./src/server/*"],
+      "@style/*": ["./src/styles/*"],
       "@type/*": ["./src/types/*"],
       "@util/*": ["./src/utils/*"]
     },
