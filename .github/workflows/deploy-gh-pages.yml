@@ -10,6 +10,8 @@ on:
 env:
   PUBLIC_URL: https://kjek.github.io/vad-ater-vi
   NODE_ENV: development
+  POSTGRES_PRISMA_URL: banana
+  POSTGRES_URL_NON_POOLING: banana
 jobs:
   Deploy-GitHub-Actions:
     runs-on: ubuntu-latest
