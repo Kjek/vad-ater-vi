@@ -10,6 +10,8 @@ on:
 env:
   PUBLIC_URL: https://kjek.github.io/vad-ater-vi
   NODE_ENV: development
+  POSTGRES_PRISMA_URL: postgres://banana
+  POSTGRES_URL_NON_POOLING: postgres://banana
 jobs:
   Deploy-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -29,8 +31,6 @@ jobs:
         run: |
           corepack enable
           yarn install --immutable
-      - name: Pull Vercel Environment Information
-        run: yarn dlx vercel@latest pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build storybook
         run: |
           yarn storybook:build
