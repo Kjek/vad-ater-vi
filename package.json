@@ -15,7 +15,9 @@
     "test:coverage": "vitest run --coverage",
     "vercel-build": "prisma generate && prisma migrate deploy && next build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:build": "storybook build",
+    "predeploy": "yarn storybook:build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
