@@ -4,7 +4,7 @@ on:
     branches:
       - develop
     paths:
-      - 'stories/**'
+      - 'src/stories/*/**'
       - '.storybook/**'
 jobs:
   Deploy-GitHub-Actions:
