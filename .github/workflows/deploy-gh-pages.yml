@@ -9,6 +9,7 @@ on:
       - '.github/workflows/deploy-gh-pages.yml'
 env:
   PUBLIC_URL: https://kjek.github.io/vad-ater-vi
+  NEXTAUTH_URL: https://kjek.github.io/vad-ater-vi
   NODE_ENV: development
   POSTGRES_PRISMA_URL: postgres://banana
   POSTGRES_URL_NON_POOLING: postgres://banana
