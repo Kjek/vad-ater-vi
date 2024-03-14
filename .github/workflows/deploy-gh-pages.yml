@@ -19,7 +19,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v4
         with:
-          node-version: ./.nvmrc
+          node-version-file: .nvmrc
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
       - run: export PUBLIC_URL=https://kjek.github.io/vad-ater-vi
       - name: Install dependencies
