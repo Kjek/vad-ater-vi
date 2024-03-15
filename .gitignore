@@ -19,6 +19,7 @@ next-env.d.ts
 
 # production
 /build
+/storybook-static
 
 # misc
 .DS_Store
@@ -45,3 +46,14 @@ yarn-error.log*
 /public/sw.js*
 /public/workbox-*.js*
 /public/sitemap*.xml
+
+# yarn
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+*storybook.log

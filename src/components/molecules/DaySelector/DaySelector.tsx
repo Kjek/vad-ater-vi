@@ -41,7 +41,7 @@ const DaySelector = ({ searchQuery, setSearchQuery }: DaySelectorProps) => {
               <DayButton title={day} setAllSelected={setAllSelected} />
             </li>
           ))}
-          <li key='search-button' className='block md:hidden'>
+          <li key='search-button' className='block sm:hidden'>
             <SearchButton
               isSearchBarVisible={isSearchBarVisible}
               toggleSearchBar={toggleSearchBar}

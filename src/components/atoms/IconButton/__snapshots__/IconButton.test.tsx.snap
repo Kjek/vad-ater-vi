@@ -6,7 +6,7 @@ exports[`IconButton > matches snapshot 1`] = `
   "baseElement": <body>
     <div>
       <button
-        class="rounded-full p-2 hover:bg-gray-700 dark:hover:bg-gray-700"
+        class="rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700"
         data-testid="icon.button"
         type="button"
       >
@@ -18,7 +18,7 @@ exports[`IconButton > matches snapshot 1`] = `
   </body>,
   "container": <div>
     <button
-      class="rounded-full p-2 hover:bg-gray-700 dark:hover:bg-gray-700"
+      class="rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700"
       data-testid="icon.button"
       type="button"
     >
@@ -87,7 +87,7 @@ exports[`IconButton > matches snapshot 2`] = `
   "baseElement": <body>
     <div>
       <button
-        class="rounded-full p-2 hover:bg-gray-700 dark:hover:bg-gray-700"
+        class="rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700"
         data-testid="icon.button"
         type="button"
       >
@@ -98,7 +98,7 @@ exports[`IconButton > matches snapshot 2`] = `
     </div>
     <div>
       <button
-        class="rounded-full p-2 hover:bg-gray-700 dark:hover:bg-gray-700"
+        class="rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700"
         data-testid="icon.button"
         type="button"
       >
@@ -110,7 +110,7 @@ exports[`IconButton > matches snapshot 2`] = `
   </body>,
   "container": <div>
     <button
-      class="rounded-full p-2 hover:bg-gray-700 dark:hover:bg-gray-700"
+      class="rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700"
       data-testid="icon.button"
       type="button"
     >

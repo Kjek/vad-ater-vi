@@ -42,6 +42,7 @@ Gå till `localhost:3000`
 ## Demo
 
 Gå hit för demo: [https://www.vadätervi.nu/](https://www.vadätervi.nu/)
+Gå hit för att se alla komponenter i Storybook [https://kjek.github.io/vad-ater-vi/](https://kjek.github.io/vad-ater-vi/)
 
 ## Omnämningar
 

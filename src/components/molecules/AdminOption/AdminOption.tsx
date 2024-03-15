@@ -11,7 +11,7 @@ interface AdminOptionProps {
 const AdminOption = ({ text, buttonValue, onClick }: AdminOptionProps) => {
   return (
     <>
-      <div className='flex w-full'>
+      <div className='flex w-full gap-4'>
         <Text className='flex-1 self-center' variant='h4'>
           {text}
         </Text>

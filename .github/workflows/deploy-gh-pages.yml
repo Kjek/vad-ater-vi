@@ -1,0 +1,44 @@
+name: GitHub Pages Deploy
+on:
+  push:
+    branches:
+      - develop
+    paths:
+      - 'src/stories/*/**'
+      - 'src/stories/**'
+      - '.storybook/**'
+      - '.github/workflows/deploy-gh-pages.yml'
+env:
+  PUBLIC_URL: https://kjek.github.io/vad-ater-vi
+  NEXTAUTH_URL: https://kjek.github.io/vad-ater-vi
+  NODE_ENV: development
+  POSTGRES_PRISMA_URL: postgres://banana
+  POSTGRES_URL_NON_POOLING: postgres://banana
+jobs:
+  Deploy-GitHub-Actions:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Set up node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - name: Install dependencies
+        run: |
+          corepack enable
+          yarn install --immutable
+      - name: Build storybook
+        run: |
+          yarn storybook:build
+      - name: Deploy using gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./storybook-static
+      - run: echo "This job's status is ${{ job.status }}."
