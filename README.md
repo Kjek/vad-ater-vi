@@ -28,7 +28,7 @@ yarn install
 3. Skapa .env och sätt upp miljövariabler
 
 ```bash
-DATABASE_URL=[PATH_TO_DATABASE]
+Kolla upp .env.example för vilka variabler som behövs
 ```
 
 4. Snurra igång stacken:
