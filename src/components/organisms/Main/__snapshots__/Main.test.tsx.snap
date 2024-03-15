@@ -1,0 +1,902 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Main > matches snapshot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <main>
+        <div
+          class="fixed bottom-0 w-full self-center bg-neutral-100 pb-8 pt-4 transition duration-500 dark:bg-gray-900 md:static md:bottom-auto md:flex md:justify-center md:py-0"
+        >
+          <div
+            class="container flex justify-center md:px-4"
+          >
+            <div
+              class="flex w-full gap-4 md:py-12"
+              id="filter-section"
+            >
+              <div
+                class="flex w-full flex-col justify-center gap-2 md:flex-row md:pb-4"
+              >
+                <h2
+                  class="hidden text-center text-3xl font-bold text-gray-800 dark:text-gray-300 md:block"
+                >
+                  v.undefined
+                </h2>
+                <div
+                  class="flex flex-grow flex-col justify-center gap-2 sm:flex-row"
+                >
+                  <ul
+                    class="flex flex-wrap items-center justify-center gap-2"
+                    id="day-button-list"
+                  >
+                    <li>
+                      <button
+                        class="flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 "
+                        type="button"
+                      >
+                        <svg
+                          class="text-black dark:text-white"
+                          fill="none"
+                          height="15"
+                          viewBox="0 0 15 15"
+                          width="15"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M4.5 1C4.77614 1 5 1.22386 5 1.5V2H10V1.5C10 1.22386 10.2239 1 10.5 1C10.7761 1 11 1.22386 11 1.5V2H12.5C13.3284 2 14 2.67157 14 3.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V3.5C1 2.67157 1.67157 2 2.5 2H4V1.5C4 1.22386 4.22386 1 4.5 1ZM10 3V3.5C10 3.77614 10.2239 4 10.5 4C10.7761 4 11 3.77614 11 3.5V3H12.5C12.7761 3 13 3.22386 13 3.5V5H2V3.5C2 3.22386 2.22386 3 2.5 3H4V3.5C4 3.77614 4.22386 4 4.5 4C4.77614 4 5 3.77614 5 3.5V3H10ZM2 6V12.5C2 12.7761 2.22386 13 2.5 13H12.5C12.7761 13 13 12.7761 13 12.5V6H2ZM7 7.5C7 7.22386 7.22386 7 7.5 7C7.77614 7 8 7.22386 8 7.5C8 7.77614 7.77614 8 7.5 8C7.22386 8 7 7.77614 7 7.5ZM9.5 7C9.22386 7 9 7.22386 9 7.5C9 7.77614 9.22386 8 9.5 8C9.77614 8 10 7.77614 10 7.5C10 7.22386 9.77614 7 9.5 7ZM11 7.5C11 7.22386 11.2239 7 11.5 7C11.7761 7 12 7.22386 12 7.5C12 7.77614 11.7761 8 11.5 8C11.2239 8 11 7.77614 11 7.5ZM11.5 9C11.2239 9 11 9.22386 11 9.5C11 9.77614 11.2239 10 11.5 10C11.7761 10 12 9.77614 12 9.5C12 9.22386 11.7761 9 11.5 9ZM9 9.5C9 9.22386 9.22386 9 9.5 9C9.77614 9 10 9.22386 10 9.5C10 9.77614 9.77614 10 9.5 10C9.22386 10 9 9.77614 9 9.5ZM7.5 9C7.22386 9 7 9.22386 7 9.5C7 9.77614 7.22386 10 7.5 10C7.77614 10 8 9.77614 8 9.5C8 9.22386 7.77614 9 7.5 9ZM5 9.5C5 9.22386 5.22386 9 5.5 9C5.77614 9 6 9.22386 6 9.5C6 9.77614 5.77614 10 5.5 10C5.22386 10 5 9.77614 5 9.5ZM3.5 9C3.22386 9 3 9.22386 3 9.5C3 9.77614 3.22386 10 3.5 10C3.77614 10 4 9.77614 4 9.5C4 9.22386 3.77614 9 3.5 9ZM3 11.5C3 11.2239 3.22386 11 3.5 11C3.77614 11 4 11.2239 4 11.5C4 11.7761 3.77614 12 3.5 12C3.22386 12 3 11.7761 3 11.5ZM5.5 11C5.22386 11 5 11.2239 5 11.5C5 11.7761 5.22386 12 5.5 12C5.77614 12 6 11.7761 6 11.5C6 11.2239 5.77614 11 5.5 11ZM7 11.5C7 11.2239 7.22386 11 7.5 11C7.77614 11 8 11.2239 8 11.5C8 11.7761 7.77614 12 7.5 12C7.22386 12 7 11.7761 7 11.5ZM9.5 11C9.22386 11 9 11.2239 9 11.5C9 11.7761 9.22386 12 9.5 12C9.77614 12 10 11.7761 10 11.5C10 11.2239 9.77614 11 9.5 11Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                    </li>
+                    <li>
+                      <input
+                        class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                        title="Tryck för att visa den här dagens lunch i listan nedan"
+                        type="button"
+                        value="Måndag"
+                      />
+                    </li>
+                    <li>
+                      <input
+                        class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                        title="Tryck för att visa den här dagens lunch i listan nedan"
+                        type="button"
+                        value="Tisdag"
+                      />
+                    </li>
+                    <li>
+                      <input
+                        class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                        title="Tryck för att visa den här dagens lunch i listan nedan"
+                        type="button"
+                        value="Onsdag"
+                      />
+                    </li>
+                    <li>
+                      <input
+                        class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                        title="Tryck för att visa den här dagens lunch i listan nedan"
+                        type="button"
+                        value="Torsdag"
+                      />
+                    </li>
+                    <li>
+                      <input
+                        class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                        title="Tryck för att visa den här dagens lunch i listan nedan"
+                        type="button"
+                        value="Fredag"
+                      />
+                    </li>
+                    <li
+                      class="block sm:hidden"
+                    >
+                      <span
+                        class="flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
+                      >
+                        <svg
+                          class="text-black dark:text-white"
+                          fill="none"
+                          height="15"
+                          viewBox="0 0 15 15"
+                          width="15"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  class="hidden justify-center md:flex"
+                >
+                  <div
+                    class="relative w-full sm:w-auto"
+                  >
+                    <input
+                      class="w-full self-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-800 outline-none transition duration-500 focus:border-gray-300 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:border-gray-600 dark:focus:ring-gray-600 md:w-auto"
+                      id="search-restaurant"
+                      placeholder="Sök restauranger..."
+                      title="Sök på restauranger som ska visas i listan"
+                      type="text"
+                    />
+                    <button
+                      aria-label="rensa sökfältet"
+                      class="absolute bottom-[5px] right-0 rounded-lg px-2 py-2 text-sm font-medium text-white sm:bottom-[55px] lg:bottom-[5px]"
+                      type="button"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex animate-pulse justify-center py-8 pb-16 md:py-0"
+          role="status"
+        >
+          <div
+            class="container mb-6 px-4 md:m-0"
+          >
+            <div
+              id="restaurant-list"
+            >
+              <ul
+                id="restaurant-list-ul"
+              >
+                <li
+                  class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+                >
+                  <h2
+                    class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                  >
+                    <a
+                      class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                    >
+                       
+                    </a>
+                  </h2>
+                  <div
+                    class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                  >
+                    <ul>
+                      <li
+                        class="flex flex-col gap-2"
+                      >
+                        <h3
+                          class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h3>
+                        <p
+                          class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </p>
+                      </li>
+                    </ul>
+                    <ul
+                      class="flex flex-col gap-4"
+                      id="weekly-specials-list"
+                    >
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li
+                  class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+                >
+                  <h2
+                    class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                  >
+                    <a
+                      class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                    >
+                       
+                    </a>
+                  </h2>
+                  <div
+                    class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                  >
+                    <ul>
+                      <li
+                        class="flex flex-col gap-2"
+                      >
+                        <h3
+                          class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h3>
+                        <p
+                          class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </p>
+                      </li>
+                    </ul>
+                    <ul
+                      class="flex flex-col gap-4"
+                      id="weekly-specials-list"
+                    >
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li
+                  class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+                >
+                  <h2
+                    class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                  >
+                    <a
+                      class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                    >
+                       
+                    </a>
+                  </h2>
+                  <div
+                    class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                  >
+                    <ul>
+                      <li
+                        class="flex flex-col gap-2"
+                      >
+                        <h3
+                          class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h3>
+                        <p
+                          class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </p>
+                      </li>
+                    </ul>
+                    <ul
+                      class="flex flex-col gap-4"
+                      id="weekly-specials-list"
+                    >
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+                <li
+                  class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+                >
+                  <h2
+                    class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                  >
+                    <a
+                      class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                    >
+                       
+                    </a>
+                  </h2>
+                  <div
+                    class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                  >
+                    <ul>
+                      <li
+                        class="flex flex-col gap-2"
+                      >
+                        <h3
+                          class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h3>
+                        <p
+                          class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </p>
+                      </li>
+                    </ul>
+                    <ul
+                      class="flex flex-col gap-4"
+                      id="weekly-specials-list"
+                    >
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                      <li
+                        class="flex flex-col gap-2 whitespace-pre-line"
+                      >
+                        <h4
+                          class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h4>
+                        <h5
+                          class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                        >
+                           
+                        </h5>
+                      </li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>,
+  "container": <div>
+    <main>
+      <div
+        class="fixed bottom-0 w-full self-center bg-neutral-100 pb-8 pt-4 transition duration-500 dark:bg-gray-900 md:static md:bottom-auto md:flex md:justify-center md:py-0"
+      >
+        <div
+          class="container flex justify-center md:px-4"
+        >
+          <div
+            class="flex w-full gap-4 md:py-12"
+            id="filter-section"
+          >
+            <div
+              class="flex w-full flex-col justify-center gap-2 md:flex-row md:pb-4"
+            >
+              <h2
+                class="hidden text-center text-3xl font-bold text-gray-800 dark:text-gray-300 md:block"
+              >
+                v.undefined
+              </h2>
+              <div
+                class="flex flex-grow flex-col justify-center gap-2 sm:flex-row"
+              >
+                <ul
+                  class="flex flex-wrap items-center justify-center gap-2"
+                  id="day-button-list"
+                >
+                  <li>
+                    <button
+                      class="flex cursor-pointer rounded-md border border-gray-300 px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:hover:bg-gray-700 sm:p-3 "
+                      type="button"
+                    >
+                      <svg
+                        class="text-black dark:text-white"
+                        fill="none"
+                        height="15"
+                        viewBox="0 0 15 15"
+                        width="15"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M4.5 1C4.77614 1 5 1.22386 5 1.5V2H10V1.5C10 1.22386 10.2239 1 10.5 1C10.7761 1 11 1.22386 11 1.5V2H12.5C13.3284 2 14 2.67157 14 3.5V12.5C14 13.3284 13.3284 14 12.5 14H2.5C1.67157 14 1 13.3284 1 12.5V3.5C1 2.67157 1.67157 2 2.5 2H4V1.5C4 1.22386 4.22386 1 4.5 1ZM10 3V3.5C10 3.77614 10.2239 4 10.5 4C10.7761 4 11 3.77614 11 3.5V3H12.5C12.7761 3 13 3.22386 13 3.5V5H2V3.5C2 3.22386 2.22386 3 2.5 3H4V3.5C4 3.77614 4.22386 4 4.5 4C4.77614 4 5 3.77614 5 3.5V3H10ZM2 6V12.5C2 12.7761 2.22386 13 2.5 13H12.5C12.7761 13 13 12.7761 13 12.5V6H2ZM7 7.5C7 7.22386 7.22386 7 7.5 7C7.77614 7 8 7.22386 8 7.5C8 7.77614 7.77614 8 7.5 8C7.22386 8 7 7.77614 7 7.5ZM9.5 7C9.22386 7 9 7.22386 9 7.5C9 7.77614 9.22386 8 9.5 8C9.77614 8 10 7.77614 10 7.5C10 7.22386 9.77614 7 9.5 7ZM11 7.5C11 7.22386 11.2239 7 11.5 7C11.7761 7 12 7.22386 12 7.5C12 7.77614 11.7761 8 11.5 8C11.2239 8 11 7.77614 11 7.5ZM11.5 9C11.2239 9 11 9.22386 11 9.5C11 9.77614 11.2239 10 11.5 10C11.7761 10 12 9.77614 12 9.5C12 9.22386 11.7761 9 11.5 9ZM9 9.5C9 9.22386 9.22386 9 9.5 9C9.77614 9 10 9.22386 10 9.5C10 9.77614 9.77614 10 9.5 10C9.22386 10 9 9.77614 9 9.5ZM7.5 9C7.22386 9 7 9.22386 7 9.5C7 9.77614 7.22386 10 7.5 10C7.77614 10 8 9.77614 8 9.5C8 9.22386 7.77614 9 7.5 9ZM5 9.5C5 9.22386 5.22386 9 5.5 9C5.77614 9 6 9.22386 6 9.5C6 9.77614 5.77614 10 5.5 10C5.22386 10 5 9.77614 5 9.5ZM3.5 9C3.22386 9 3 9.22386 3 9.5C3 9.77614 3.22386 10 3.5 10C3.77614 10 4 9.77614 4 9.5C4 9.22386 3.77614 9 3.5 9ZM3 11.5C3 11.2239 3.22386 11 3.5 11C3.77614 11 4 11.2239 4 11.5C4 11.7761 3.77614 12 3.5 12C3.22386 12 3 11.7761 3 11.5ZM5.5 11C5.22386 11 5 11.2239 5 11.5C5 11.7761 5.22386 12 5.5 12C5.77614 12 6 11.7761 6 11.5C6 11.2239 5.77614 11 5.5 11ZM7 11.5C7 11.2239 7.22386 11 7.5 11C7.77614 11 8 11.2239 8 11.5C8 11.7761 7.77614 12 7.5 12C7.22386 12 7 11.7761 7 11.5ZM9.5 11C9.22386 11 9 11.2239 9 11.5C9 11.7761 9.22386 12 9.5 12C9.77614 12 10 11.7761 10 11.5C10 11.2239 9.77614 11 9.5 11Z"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </button>
+                  </li>
+                  <li>
+                    <input
+                      class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                      title="Tryck för att visa den här dagens lunch i listan nedan"
+                      type="button"
+                      value="Måndag"
+                    />
+                  </li>
+                  <li>
+                    <input
+                      class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                      title="Tryck för att visa den här dagens lunch i listan nedan"
+                      type="button"
+                      value="Tisdag"
+                    />
+                  </li>
+                  <li>
+                    <input
+                      class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                      title="Tryck för att visa den här dagens lunch i listan nedan"
+                      type="button"
+                      value="Onsdag"
+                    />
+                  </li>
+                  <li>
+                    <input
+                      class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                      title="Tryck för att visa den här dagens lunch i listan nedan"
+                      type="button"
+                      value="Torsdag"
+                    />
+                  </li>
+                  <li>
+                    <input
+                      class="cursor-pointer rounded-lg border border-gray-300 px-3.5 py-2 text-sm font-medium text-gray-800 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white md:px-5 md:py-2.5"
+                      title="Tryck för att visa den här dagens lunch i listan nedan"
+                      type="button"
+                      value="Fredag"
+                    />
+                  </li>
+                  <li
+                    class="block sm:hidden"
+                  >
+                    <span
+                      class="flex cursor-pointer rounded-md border border-gray-200 bg-white px-2.5 py-2.5 transition duration-500 hover:bg-gray-200 hover:transition-none dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
+                    >
+                      <svg
+                        class="text-black dark:text-white"
+                        fill="none"
+                        height="15"
+                        viewBox="0 0 15 15"
+                        width="15"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M10 6.5C10 8.433 8.433 10 6.5 10C4.567 10 3 8.433 3 6.5C3 4.567 4.567 3 6.5 3C8.433 3 10 4.567 10 6.5ZM9.30884 10.0159C8.53901 10.6318 7.56251 11 6.5 11C4.01472 11 2 8.98528 2 6.5C2 4.01472 4.01472 2 6.5 2C8.98528 2 11 4.01472 11 6.5C11 7.56251 10.6318 8.53901 10.0159 9.30884L12.8536 12.1464C13.0488 12.3417 13.0488 12.6583 12.8536 12.8536C12.6583 13.0488 12.3417 13.0488 12.1464 12.8536L9.30884 10.0159Z"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="hidden justify-center md:flex"
+              >
+                <div
+                  class="relative w-full sm:w-auto"
+                >
+                  <input
+                    class="w-full self-center rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-800 outline-none transition duration-500 focus:border-gray-300 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:border-gray-600 dark:focus:ring-gray-600 md:w-auto"
+                    id="search-restaurant"
+                    placeholder="Sök restauranger..."
+                    title="Sök på restauranger som ska visas i listan"
+                    type="text"
+                  />
+                  <button
+                    aria-label="rensa sökfältet"
+                    class="absolute bottom-[5px] right-0 rounded-lg px-2 py-2 text-sm font-medium text-white sm:bottom-[55px] lg:bottom-[5px]"
+                    type="button"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex animate-pulse justify-center py-8 pb-16 md:py-0"
+        role="status"
+      >
+        <div
+          class="container mb-6 px-4 md:m-0"
+        >
+          <div
+            id="restaurant-list"
+          >
+            <ul
+              id="restaurant-list-ul"
+            >
+              <li
+                class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+              >
+                <h2
+                  class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                >
+                  <a
+                    class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                  >
+                     
+                  </a>
+                </h2>
+                <div
+                  class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                >
+                  <ul>
+                    <li
+                      class="flex flex-col gap-2"
+                    >
+                      <h3
+                        class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h3>
+                      <p
+                        class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </p>
+                    </li>
+                  </ul>
+                  <ul
+                    class="flex flex-col gap-4"
+                    id="weekly-specials-list"
+                  >
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li
+                class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+              >
+                <h2
+                  class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                >
+                  <a
+                    class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                  >
+                     
+                  </a>
+                </h2>
+                <div
+                  class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                >
+                  <ul>
+                    <li
+                      class="flex flex-col gap-2"
+                    >
+                      <h3
+                        class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h3>
+                      <p
+                        class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </p>
+                    </li>
+                  </ul>
+                  <ul
+                    class="flex flex-col gap-4"
+                    id="weekly-specials-list"
+                  >
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li
+                class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+              >
+                <h2
+                  class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                >
+                  <a
+                    class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                  >
+                     
+                  </a>
+                </h2>
+                <div
+                  class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                >
+                  <ul>
+                    <li
+                      class="flex flex-col gap-2"
+                    >
+                      <h3
+                        class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h3>
+                      <p
+                        class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </p>
+                    </li>
+                  </ul>
+                  <ul
+                    class="flex flex-col gap-4"
+                    id="weekly-specials-list"
+                  >
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li
+                class="dark:bg-gray-custom flex flex-col gap-4 border-b p-6 shadow-md transition duration-500 last:border-none dark:border-gray-700 dark:shadow-none md:flex-row"
+              >
+                <h2
+                  class="pb-4 text-center text-3xl font-bold text-gray-800 dark:text-gray-300 sm:w-1/3 sm:grow sm:pb-0"
+                >
+                  <a
+                    class="flex rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                  >
+                     
+                  </a>
+                </h2>
+                <div
+                  class="flex flex-col gap-6 sm:w-2/3 sm:grow"
+                >
+                  <ul>
+                    <li
+                      class="flex flex-col gap-2"
+                    >
+                      <h3
+                        class="text-2xl font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h3>
+                      <p
+                        class="text-lg text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </p>
+                    </li>
+                  </ul>
+                  <ul
+                    class="flex flex-col gap-4"
+                    id="weekly-specials-list"
+                  >
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                    <li
+                      class="flex flex-col gap-2 whitespace-pre-line"
+                    >
+                      <h4
+                        class="font-bold text-gray-800 dark:text-gray-300 w-1/3 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h4>
+                      <h5
+                        class="text-gray-500 dark:text-gray-300 rounded-full bg-gray-200 dark:bg-gray-700 transition duration-500"
+                      >
+                         
+                      </h5>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
