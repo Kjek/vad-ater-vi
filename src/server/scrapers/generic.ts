@@ -61,10 +61,10 @@ const genericWebScraper: Scraper = async (
     const lunchGroups = [...lunchMatch][0];
     if (lunchGroups) {
       lunchGroups.shift();
-      for (const group of lunchGroups) {
+      lunchGroups.forEach((group, index) => {
         if (group) {
           lunchWeek.push({
-            day: sweDays[lunchGroups.indexOf(group)],
+            day: sweDays[index],
             food: decodeHtmlEntity(
               group
                 .replace(/\d\.\s?/gim, '')
@@ -73,7 +73,7 @@ const genericWebScraper: Scraper = async (
             ).trim(),
           } as LunchMenu);
         }
-      }
+      });
     }
     for (const group of weeklyMatch) {
       if (group[1] && group[2] && group[2].length > 0) {
