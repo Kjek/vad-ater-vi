@@ -4929,12 +4929,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@trpc/client@npm:^10.17.0":
-  version: 10.34.0
-  resolution: "@trpc/client@npm:10.34.0"
+"@trpc/client@npm:^10.45.2":
+  version: 10.45.2
+  resolution: "@trpc/client@npm:10.45.2"
   peerDependencies:
-    "@trpc/server": 10.34.0
-  checksum: 10c0/d875f8147928efb9f1440629f9fb780e2a3e59cbd776108bda0e806dfe4c4d5a772b321f96a0b2570e40fa278c296c8b362034a53938ee776f29209689ad352c
+    "@trpc/server": 10.45.2
+  checksum: 10c0/15c277a35f15108346902507c7f04fdcdf008d7fd8232f28806518af555ce72273a06d024b727494684c9d8752949b3e334437f321a7f3228be6411511b553f0
   languageName: node
   linkType: hard
 
@@ -12201,7 +12201,7 @@ __metadata:
     "@tanstack/react-query": "npm:^4.36.1"
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^14.2.1"
-    "@trpc/client": "npm:^10.17.0"
+    "@trpc/client": "npm:^10.45.2"
     "@trpc/next": "npm:^10.17.0"
     "@trpc/react-query": "npm:^10.17.0"
     "@trpc/server": "npm:^10.17.0"
