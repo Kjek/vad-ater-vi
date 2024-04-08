@@ -5229,13 +5229,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:^8.56.5":
+"@types/eslint@npm:*":
   version: 8.56.5
   resolution: "@types/eslint@npm:8.56.5"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
   checksum: 10c0/1d5d70ea107c63adfaf63020f85859c404f90c21ada2a655376b8e76109df354643797e30c7afc3b2de84797d9f5ce9f03f53a5d29a186706a44afd90f76597c
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:^8.56.7":
+  version: 8.56.7
+  resolution: "@types/eslint@npm:8.56.7"
+  dependencies:
+    "@types/estree": "npm:*"
+    "@types/json-schema": "npm:*"
+  checksum: 10c0/159bb5ae2f78d905b9263240c75d07b60c26e1bcaecee8c775a7bb0cf7362f5dcdd286259ba6289ab62f989b87048090b2420619f7170a0abbd83cb68b5e0699
   languageName: node
   linkType: hard
 
@@ -12360,7 +12370,7 @@ __metadata:
     "@trpc/react-query": "npm:^10.45.2"
     "@trpc/server": "npm:^10.17.0"
     "@types/bcrypt": "npm:^5.0.2"
-    "@types/eslint": "npm:^8.56.5"
+    "@types/eslint": "npm:^8.56.7"
     "@types/next-pwa": "npm:^5.6.9"
     "@types/node": "npm:^20.11.25"
     "@types/react": "npm:^18.2.74"
