@@ -3997,17 +3997,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-interactions@npm:^8.0.8":
-  version: 8.0.8
-  resolution: "@storybook/addon-interactions@npm:8.0.8"
+"@storybook/addon-interactions@npm:^8.0.9":
+  version: 8.0.9
+  resolution: "@storybook/addon-interactions@npm:8.0.9"
   dependencies:
     "@storybook/global": "npm:^5.0.0"
-    "@storybook/instrumenter": "npm:8.0.8"
-    "@storybook/test": "npm:8.0.8"
-    "@storybook/types": "npm:8.0.8"
+    "@storybook/instrumenter": "npm:8.0.9"
+    "@storybook/test": "npm:8.0.9"
+    "@storybook/types": "npm:8.0.9"
     polished: "npm:^4.2.2"
     ts-dedent: "npm:^2.2.0"
-  checksum: 10c0/dcebdfe306262ef2853ab8b49a018329c3e4b3f423ec27e4f9db94313437d30022f6f2c2feb7e60ad600ce49a671561ec3cf0acdee19f41e3006a5fdc9aadd8f
+  checksum: 10c0/1f690ebc306ab3dab42516c7ea208fdc626c6d9dfd9f09b953fd6bd4556838a79a1d1a1dc852c991f812f4b90089a1c18ef3b4f5941675d563ff14c4fc54ac19
   languageName: node
   linkType: hard
 
@@ -4600,21 +4600,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/instrumenter@npm:8.0.8":
-  version: 8.0.8
-  resolution: "@storybook/instrumenter@npm:8.0.8"
-  dependencies:
-    "@storybook/channels": "npm:8.0.8"
-    "@storybook/client-logger": "npm:8.0.8"
-    "@storybook/core-events": "npm:8.0.8"
-    "@storybook/global": "npm:^5.0.0"
-    "@storybook/preview-api": "npm:8.0.8"
-    "@vitest/utils": "npm:^1.3.1"
-    util: "npm:^0.12.4"
-  checksum: 10c0/0ca9553f41f3651452264833b5fd66fcaa446236855bb17d7127039adc01f73b5a46b5ea6df2a92ac1f5e306f0fcfa9fa409e42c1b77adf3d14137dfec50eaf4
-  languageName: node
-  linkType: hard
-
 "@storybook/instrumenter@npm:8.0.9":
   version: 8.0.9
   resolution: "@storybook/instrumenter@npm:8.0.9"
@@ -4952,26 +4937,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/test@npm:8.0.8":
-  version: 8.0.8
-  resolution: "@storybook/test@npm:8.0.8"
-  dependencies:
-    "@storybook/client-logger": "npm:8.0.8"
-    "@storybook/core-events": "npm:8.0.8"
-    "@storybook/instrumenter": "npm:8.0.8"
-    "@storybook/preview-api": "npm:8.0.8"
-    "@testing-library/dom": "npm:^9.3.4"
-    "@testing-library/jest-dom": "npm:^6.4.2"
-    "@testing-library/user-event": "npm:^14.5.2"
-    "@vitest/expect": "npm:1.3.1"
-    "@vitest/spy": "npm:^1.3.1"
-    chai: "npm:^4.4.1"
-    util: "npm:^0.12.4"
-  checksum: 10c0/d1ce07522bb790d3034461577da7886e3c0b252c5a0296d4e386067e5a6d697e8b466edac3fc773375517ef0fefe2a59839c9b0e088cfd421069ed570ab078b5
-  languageName: node
-  linkType: hard
-
-"@storybook/test@npm:^8.0.9":
+"@storybook/test@npm:8.0.9, @storybook/test@npm:^8.0.9":
   version: 8.0.9
   resolution: "@storybook/test@npm:8.0.9"
   dependencies:
@@ -7616,7 +7582,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chai@npm:^4.3.10, chai@npm:^4.4.1":
+"chai@npm:^4.3.10":
   version: 4.4.1
   resolution: "chai@npm:4.4.1"
   dependencies:
@@ -12496,7 +12462,7 @@ __metadata:
     "@prisma/client": "npm:^5.12.1"
     "@radix-ui/react-icons": "npm:^1.3.0"
     "@storybook/addon-essentials": "npm:^8.0.9"
-    "@storybook/addon-interactions": "npm:^8.0.8"
+    "@storybook/addon-interactions": "npm:^8.0.9"
     "@storybook/addon-links": "npm:^8.0.8"
     "@storybook/addon-onboarding": "npm:^8.0.8"
     "@storybook/addon-themes": "npm:^8.0.9"
