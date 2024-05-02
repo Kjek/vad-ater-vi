@@ -5142,31 +5142,31 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@t3-oss/env-core@npm:0.9.2":
-  version: 0.9.2
-  resolution: "@t3-oss/env-core@npm:0.9.2"
+"@t3-oss/env-core@npm:0.10.1":
+  version: 0.10.1
+  resolution: "@t3-oss/env-core@npm:0.10.1"
   peerDependencies:
     typescript: ">=5.0.0"
     zod: ^3.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/2e87aff2e811535eaa8cbc85f26a44fddf5af4428add237fc75770978ef6c43914031bc3d827c5face170632cd08fb7af8d037379f30b8d73fceaf6b1b746e0b
+  checksum: 10c0/0d86d0453b41dee2f3a84227682c3cd2baf2f5167bfb06893fa9d28b59688bb775fe472c45d3e10efd35962c73e21131bb1763a8b1294d10edb5c8506fb9940a
   languageName: node
   linkType: hard
 
-"@t3-oss/env-nextjs@npm:^0.9.2":
-  version: 0.9.2
-  resolution: "@t3-oss/env-nextjs@npm:0.9.2"
+"@t3-oss/env-nextjs@npm:^0.10.1":
+  version: 0.10.1
+  resolution: "@t3-oss/env-nextjs@npm:0.10.1"
   dependencies:
-    "@t3-oss/env-core": "npm:0.9.2"
+    "@t3-oss/env-core": "npm:0.10.1"
   peerDependencies:
     typescript: ">=5.0.0"
     zod: ^3.0.0
   peerDependenciesMeta:
     typescript:
       optional: true
-  checksum: 10c0/2defb935eb65f87eb6dd620cd46a2a873ca2283076b4e0ba8acd30e5e6c7c425cb144668a6830977dc4b4467b645a04056b9dd258a04c51871a223fc351368b7
+  checksum: 10c0/475f265c592121490fa29d3fb06af78013e17e9d4d989b0d6832c905db971e0d70c1f2947f127fc0c79a762c2ee3f2c9bf1fe44f71e2f16fb541ca2213910c92
   languageName: node
   linkType: hard
 
@@ -12603,7 +12603,7 @@ __metadata:
     "@storybook/nextjs": "npm:^8.0.8"
     "@storybook/react": "npm:^8.0.8"
     "@storybook/test": "npm:^8.0.9"
-    "@t3-oss/env-nextjs": "npm:^0.9.2"
+    "@t3-oss/env-nextjs": "npm:^0.10.1"
     "@tanstack/react-query": "npm:^4.36.1"
     "@testing-library/jest-dom": "npm:^6.4.2"
     "@testing-library/react": "npm:^15.0.2"
