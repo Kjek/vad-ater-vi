@@ -4200,10 +4200,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-onboarding@npm:^8.0.8":
-  version: 8.0.8
-  resolution: "@storybook/addon-onboarding@npm:8.0.8"
-  checksum: 10c0/42e7fb6f129ec2ff543fc13ccdf7ed2f762a950281f532c49de6b86c9d9b088740a1fb9aad8fa3fcd8372c83a1ca31f8e7f005a5d8a2e9d946d5d42c5664df9b
+"@storybook/addon-onboarding@npm:^8.0.9":
+  version: 8.0.9
+  resolution: "@storybook/addon-onboarding@npm:8.0.9"
+  checksum: 10c0/a1fdd88d3dcb09ac75b426bb40d334131ac6e5a0ade9884872cfd61a3869cfed5ea0683ac6756d3952857c7fa3d9146265ab192d6f919b13176764d39e04ca29
   languageName: node
   linkType: hard
 
@@ -12341,7 +12341,7 @@ __metadata:
     "@storybook/addon-essentials": "npm:^8.0.9"
     "@storybook/addon-interactions": "npm:^8.0.9"
     "@storybook/addon-links": "npm:^8.0.8"
-    "@storybook/addon-onboarding": "npm:^8.0.8"
+    "@storybook/addon-onboarding": "npm:^8.0.9"
     "@storybook/addon-themes": "npm:^8.0.9"
     "@storybook/blocks": "npm:^8.0.9"
     "@storybook/nextjs": "npm:^8.0.9"
