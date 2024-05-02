@@ -3332,17 +3332,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:14.2.3":
+"@next/env@npm:14.2.3, @next/env@npm:^14.2.3":
   version: 14.2.3
   resolution: "@next/env@npm:14.2.3"
   checksum: 10c0/25ab3ac2739c8e5ce35e1f50373238c5c428ab6b01d448ba78a6068dcdef88978b64f9a92790c324b2926ccc41390a67107154a0b0fee32fe980a485f4ef20d8
-  languageName: node
-  linkType: hard
-
-"@next/env@npm:^14.2.2":
-  version: 14.2.2
-  resolution: "@next/env@npm:14.2.2"
-  checksum: 10c0/45f5fe2e47b20b10e71400ae0a201a6f36644ff77681b4f4342106d69dead85a968940f1bb55e6ed9293089a7f2f51ab41ac90bad970fde7722afa840491b61f
   languageName: node
   linkType: hard
 
@@ -12494,7 +12487,7 @@ __metadata:
     "@babel/core": "npm:^7.24.4"
     "@chromatic-com/storybook": "npm:^1.3.3"
     "@next-auth/prisma-adapter": "npm:^1.0.7"
-    "@next/env": "npm:^14.2.2"
+    "@next/env": "npm:^14.2.3"
     "@prisma/client": "npm:^5.12.1"
     "@radix-ui/react-icons": "npm:^1.3.0"
     "@storybook/addon-essentials": "npm:^8.0.9"
