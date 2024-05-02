@@ -20,7 +20,7 @@ const genericWebScraper: Scraper = async (
     })
   ).text();
   const { document } = parseHTML(html);
-  const searchRegex = new RegExp('\nTisdag|\nTis', 'gim');
+  const searchRegex = new RegExp('\nTisdag|\nTis|\nTorsdag|\nTors', 'gim');
   const lunchMenu = (
     Array.from(document.querySelectorAll('div'))
       .filter(({ innerText }) => innerText && searchRegex.test(innerText))
