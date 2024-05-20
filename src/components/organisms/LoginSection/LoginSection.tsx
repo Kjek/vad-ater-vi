@@ -1,4 +1,5 @@
 import InputButton from '@component/atoms/Button/Button';
+import CustomForm from '@component/atoms/CustomForm/CustomForm';
 import TextBox from '@component/atoms/TextBox/TextBox';
 import CreateAdminAccountModal from '@component/molecules/CreateAdminAccountModal/CreateAdminAccountModal';
 import { signIn } from 'next-auth/react';
@@ -17,34 +18,31 @@ const LoginSection = () => {
       callbackUrl: '/admin',
     });
   };
-  const keyDownEvent = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.code === 'Enter') {
-      void onSubmit();
-    }
-  };
+
   return (
     <div
       className={
         'flex h-screen flex-col items-center justify-center gap-1 bg-neutral-100 dark:bg-gray-900'
       }
     >
-      <div
-        className='dark:bg-gray-custom flex flex-col gap-2 rounded-md bg-white px-7 py-4 shadow'
-        onKeyDown={keyDownEvent}
-      >
-        <TextBox
-          title='Username'
-          placeholder='Username'
-          onChange={(e) => (userName.current = e.target.value)}
-        />
-        <TextBox
-          title='Password'
-          placeholder='Password'
-          variant='password'
-          onChange={(e) => (pass.current = e.target.value)}
-        />
-        <InputButton value='Login' onClick={() => void onSubmit()} />
-      </div>
+      <CustomForm onSubmit={onSubmit}>
+        <div className='dark:bg-gray-custom flex flex-col gap-2 rounded-md bg-white px-7 py-4 shadow'>
+          <TextBox
+            title='Username'
+            placeholder='Username'
+            onChange={(e) => (userName.current = e.target.value)}
+            required
+          />
+          <TextBox
+            title='Password'
+            placeholder='Password'
+            variant='password'
+            onChange={(e) => (pass.current = e.target.value)}
+            required
+          />
+          <InputButton type='submit' value='Login' />
+        </div>
+      </CustomForm>
       <div className='dark:bg-gray-custom absolute bottom-0 right-0 mb-4 mr-4 bg-white'>
         <InputButton
           value='Generate admin account'

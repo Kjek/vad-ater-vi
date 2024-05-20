@@ -1,4 +1,5 @@
 import InputButton from '@component/atoms/Button/Button';
+import CustomForm from '@component/atoms/CustomForm/CustomForm';
 import Text from '@component/atoms/Text/Text';
 import Modal from '@component/molecules/Modal/Modal';
 import SettingsItem from '@component/molecules/SettingsItem/SettingsItem';
@@ -49,7 +50,7 @@ const SettingsModal = ({
         <Text variant='h5'>
           {"Make changes to the restaurant here. Click save when you're done."}
         </Text>
-        <div>
+        <CustomForm onSubmit={handleUpdate}>
           <SettingsItem
             title='Name'
             inputDefaultValue={restaurantName.current}
@@ -89,13 +90,9 @@ const SettingsModal = ({
                 className='text-red-500 dark:text-red-700'
               />
             </div>
-            <InputButton
-              value='Save changes'
-              aria-label='Save'
-              onClick={handleUpdate}
-            />
+            <InputButton type='submit' value='Save changes' aria-label='Save' />
           </div>
-        </div>
+        </CustomForm>
       </Modal>
     </>
   );

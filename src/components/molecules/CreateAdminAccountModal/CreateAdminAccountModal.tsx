@@ -1,4 +1,5 @@
 import InputButton from '@component/atoms/Button/Button';
+import CustomForm from '@component/atoms/CustomForm/CustomForm';
 import TextBox from '@component/atoms/TextBox/TextBox';
 import { api } from '@util/api';
 import { toastError, toastSuccessful } from '@util/toast-utils';
@@ -31,7 +32,7 @@ const CreateAdminAccountModal = ({
       },
     });
 
-  const handleOnClick = () => {
+  const generateAdminAccount = () => {
     if (username.current && password.current && secret.current) {
       createAdminAccount({
         username: username.current,
@@ -44,27 +45,29 @@ const CreateAdminAccountModal = ({
   return (
     <div className='absolute right-0 top-0 h-full w-full backdrop-blur-sm'>
       <div className='flex h-full w-full items-center justify-center'>
-        <div className='dark:bg-gray-custom flex max-w-6xl flex-col flex-wrap gap-4 bg-white p-6'>
+        <CustomForm
+          className='dark:bg-gray-custom flex max-w-6xl flex-col flex-wrap gap-4 bg-white p-6'
+          onSubmit={generateAdminAccount}
+        >
           <TextBox
             placeholder='Username'
             onChange={(event) => (username.current = event.target.value)}
+            required
           />
           <TextBox
             placeholder='Password'
             variant='password'
             onChange={(event) => (password.current = event.target.value)}
+            required
           />
           <TextBox
             placeholder='Secret'
             variant='password'
             onChange={(event) => (secret.current = event.target.value)}
+            required
           />
-          <InputButton
-            value='Generate'
-            aria-label='Generate'
-            onClick={handleOnClick}
-          />
-        </div>
+          <InputButton type='submit' value='Generate' aria-label='Generate' />
+        </CustomForm>
       </div>
     </div>
   );
