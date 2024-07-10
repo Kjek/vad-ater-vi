@@ -99,7 +99,7 @@ const AdminMain = () => {
     <>
       {session?.user ? (
         <div className='flex items-center justify-center'>
-          <div className='dark:bg-gray-custom mx-80 my-8 flex h-full w-full flex-col gap-4 bg-white p-8'>
+          <div className='dark:bg-gray-custom flex h-full w-full flex-col gap-4 bg-white p-4 md:mx-80 md:my-8 md:p-8'>
             <AdminOption
               text='Re-scrape all restaurants'
               buttonValue='Re-scrape all'

@@ -1,9 +1,14 @@
-import { CopyIcon, Cross1Icon } from '@radix-ui/react-icons';
+import {
+  CopyIcon,
+  Cross1Icon,
+  HobbyKnifeIcon,
+  ReaderIcon,
+} from '@radix-ui/react-icons';
 import { cn } from '@util/cn';
 import type { ComponentPropsWithoutRef } from 'react';
 
 interface IconButtonProps extends ComponentPropsWithoutRef<'button'> {
-  variant: 'cancel' | 'copy';
+  variant: 'cancel' | 'copy' | 'reader' | 'hobby knife';
 }
 
 const IconButton = ({ variant, className, ...props }: IconButtonProps) => {
@@ -13,6 +18,10 @@ const IconButton = ({ variant, className, ...props }: IconButtonProps) => {
         return <Cross1Icon className='text-red-500 dark:text-red-700' />;
       case 'copy':
         return <CopyIcon className='text-gray-500 dark:text-gray-300' />;
+      case 'reader':
+        return <ReaderIcon className='text-gray-500 dark:text-gray-300' />;
+      case 'hobby knife':
+        return <HobbyKnifeIcon className='text-gray-500 dark:text-gray-300' />;
       default:
         break;
     }
