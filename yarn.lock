@@ -5010,12 +5010,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/addon-themes@npm:^8.1.1":
-  version: 8.1.1
-  resolution: "@storybook/addon-themes@npm:8.1.1"
+"@storybook/addon-themes@npm:^8.2.9":
+  version: 8.2.9
+  resolution: "@storybook/addon-themes@npm:8.2.9"
   dependencies:
     ts-dedent: "npm:^2.0.0"
-  checksum: 10c0/a36a5c0b37f3ecadd416148a772a2ee1fbb381be92d22d3697b32d4201c5cc31d6656816058436d13a266041ecd9d642a3c55ec41ccaab53f1c5f650398dece8
+  peerDependencies:
+    storybook: ^8.2.9
+  checksum: 10c0/353b30190f91a2687206f3efb280feea571c4837e02b254201bb0fd36e58757dc12c30e9e1a12e486841583207739a677d5c9d0aa1e6f5fa43df68e48a3c88a0
   languageName: node
   linkType: hard
 
@@ -13123,7 +13125,7 @@ __metadata:
     "@storybook/addon-interactions": "npm:^8.1.1"
     "@storybook/addon-links": "npm:^8.2.9"
     "@storybook/addon-onboarding": "npm:^8.2.9"
-    "@storybook/addon-themes": "npm:^8.1.1"
+    "@storybook/addon-themes": "npm:^8.2.9"
     "@storybook/blocks": "npm:^8.2.9"
     "@storybook/nextjs": "npm:^8.2.9"
     "@storybook/react": "npm:^8.2.9"
