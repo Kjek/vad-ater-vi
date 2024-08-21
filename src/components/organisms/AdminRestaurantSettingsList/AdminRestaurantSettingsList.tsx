@@ -1,4 +1,5 @@
 import InputButton from '@component/atoms/Button/Button';
+import IconButton from '@component/atoms/IconButton/IconButton';
 import Text from '@component/atoms/Text/Text';
 import DebugContentModal from '@component/molecules/DebugContentModal/DebugContentModal';
 import SettingsModal from '@component/organisms/SettingsModal/SettingsModal';
@@ -47,7 +48,10 @@ const AdminRestaurantSettingsList = ({
         />
       ) : null}
       {restaurantSettings?.map((restaurantSetting) => (
-        <div key={restaurantSetting.name} className='flex w-full gap-4'>
+        <div
+          key={restaurantSetting.name}
+          className='flex w-full gap-2 md:gap-4'
+        >
           <Text
             className='flex-1 cursor-pointer self-center'
             onClick={() => toggleModal(restaurantSetting)}
@@ -61,6 +65,14 @@ const AdminRestaurantSettingsList = ({
           />
           <InputButton
             value='Re-scrape'
+            className='max-md:hidden'
+            onClick={() => {
+              reScrape({ restaurantId: restaurantSetting.restaurantId });
+            }}
+          />
+          <IconButton
+            variant='hobby knife'
+            className='rounded-md border border-gray-300 p-3 dark:border-gray-600 md:hidden'
             onClick={() => {
               reScrape({ restaurantId: restaurantSetting.restaurantId });
             }}

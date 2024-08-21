@@ -2,6 +2,7 @@ import InputButton from '@component/atoms/Button/Button';
 import IconButton from '@component/atoms/IconButton/IconButton';
 import Spinner from '@component/atoms/Spinner/Spinner';
 import Modal from '@component/molecules/Modal/Modal';
+import { ReaderIcon } from '@radix-ui/react-icons';
 import type { Dispatch, SetStateAction } from 'react';
 import { useCopyToClipboard, useToggle } from 'usehooks-ts';
 
@@ -27,8 +28,14 @@ const DebugContentModal = ({
     <>
       <InputButton
         value={'Debug'}
-        className='cursor-pointer'
+        className='cursor-pointer max-md:hidden'
         onClick={toggleModal}
+      />
+      <IconButton
+        variant='reader'
+        className='rounded-md border border-gray-300 p-3 dark:border-gray-600 md:hidden'
+        onClick={toggleModal}
+        aria-label='Debug'
       />
       {isOpen ? (
         <Modal toggleOpen={toggleOpen}>
