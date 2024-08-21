@@ -4940,7 +4940,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/blocks@npm:8.1.1, @storybook/blocks@npm:^8.1.1":
+"@storybook/blocks@npm:8.1.1":
   version: 8.1.1
   resolution: "@storybook/blocks@npm:8.1.1"
   dependencies:
@@ -4977,6 +4977,37 @@ __metadata:
     react-dom:
       optional: true
   checksum: 10c0/dea1712aeb3ceb902353f94b83661b5fc4968641f02715197a619dcb00f1497c083f2c827264c575ba62ced030e87dfdc58038d107d7dba2443eeb9126ab71a8
+  languageName: node
+  linkType: hard
+
+"@storybook/blocks@npm:^8.2.9":
+  version: 8.2.9
+  resolution: "@storybook/blocks@npm:8.2.9"
+  dependencies:
+    "@storybook/csf": "npm:0.1.11"
+    "@storybook/global": "npm:^5.0.0"
+    "@storybook/icons": "npm:^1.2.5"
+    "@types/lodash": "npm:^4.14.167"
+    color-convert: "npm:^2.0.1"
+    dequal: "npm:^2.0.2"
+    lodash: "npm:^4.17.21"
+    markdown-to-jsx: "npm:^7.4.5"
+    memoizerific: "npm:^1.11.3"
+    polished: "npm:^4.2.2"
+    react-colorful: "npm:^5.1.2"
+    telejson: "npm:^7.2.0"
+    ts-dedent: "npm:^2.0.0"
+    util-deprecate: "npm:^1.0.2"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0-beta
+    storybook: ^8.2.9
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/7804e61d2c92c0ef7032ad1f4cbe166341bc4c18b73c6a16ef377b447b88412ee1aa22e886af9493f6f5d50a59c3166e7eedef839d53424a832782f36127cea8
   languageName: node
   linkType: hard
 
@@ -13009,7 +13040,7 @@ __metadata:
     "@storybook/addon-links": "npm:^8.2.9"
     "@storybook/addon-onboarding": "npm:^8.1.1"
     "@storybook/addon-themes": "npm:^8.1.1"
-    "@storybook/blocks": "npm:^8.1.1"
+    "@storybook/blocks": "npm:^8.2.9"
     "@storybook/nextjs": "npm:^8.1.1"
     "@storybook/react": "npm:^8.2.9"
     "@storybook/test": "npm:^8.1.1"
@@ -13164,6 +13195,15 @@ __metadata:
   peerDependencies:
     react: ">= 0.14.0"
   checksum: 10c0/191b9a9defeed02e12dd340cebf279f577266dac7b34574fa44ce4d64ee8536f9967d455b8303c853f84413feb473118290a6160d8221eeaf3b9e4961b8980e3
+  languageName: node
+  linkType: hard
+
+"markdown-to-jsx@npm:^7.4.5":
+  version: 7.5.0
+  resolution: "markdown-to-jsx@npm:7.5.0"
+  peerDependencies:
+    react: ">= 0.14.0"
+  checksum: 10c0/88213e64afd41d6934fbb70bcea0e2ef1f9553db1ba4c6f423b17d6e9c2b99c82b0fcbed29036dd5b91704b170803d1fae730ab40ae27af5c7994e2717686ebc
   languageName: node
   linkType: hard
 
