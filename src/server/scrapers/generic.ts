@@ -1,6 +1,7 @@
 import type { LunchMenu, WeeklySpecial } from '@type/lunch-menu';
 import type Scraper from '@type/scraper';
 import { sweDays } from '@type/swedish-days';
+import { removeDuplicatesWithKey } from '@util/array-utils';
 import { decodeHtmlEntity } from '@util/html-utils';
 import { parseHTML } from 'linkedom';
 
@@ -85,7 +86,15 @@ const genericWebScraper: Scraper = async (
     }
   }
   console.timeEnd(`Generic scraper for ${lunchUrl}`);
-  return weeklySpecials.length > 0 ? { lunchWeek, weeklySpecials } : lunchWeek;
+  return weeklySpecials.length > 0
+    ? {
+        lunchWeek,
+        weeklySpecials: removeDuplicatesWithKey<WeeklySpecial>(
+          weeklySpecials,
+          'type'
+        ),
+      }
+    : lunchWeek;
 };
 
 export default genericWebScraper;
