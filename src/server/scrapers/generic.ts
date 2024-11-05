@@ -21,7 +21,8 @@ const genericWebScraper: Scraper = async (
     })
   ).text();
   const { document } = parseHTML(html);
-  const searchRegex = /\n(?:Tisdag|Tis|Torsdag|Tors)(?!\w)(?!\s*\:\s*\d)/gim;
+  const searchRegex =
+    /^\s*(?:Tisdag|Tis|Torsdag|Tors)(?!\w|\s*\d+\:|\:\s*\d+\:)/gim;
   const lunchMenu = (
     Array.from(document.querySelectorAll('div'))
       .filter(({ innerText }) => innerText && searchRegex.test(innerText))
@@ -45,7 +46,10 @@ const genericWebScraper: Scraper = async (
 
   if (debug) {
     console.timeEnd(`Generic scraper for ${lunchUrl}`);
-    return JSON.stringify(lunchMenu);
+    return (
+      JSON.stringify(lunchMenu) ??
+      JSON.stringify('ERROR: SOMETHING WITH THE SCRAPER WENT WRONG!')
+    );
   }
 
   const lunchWeek: LunchMenu[] = [];
